@@ -1,0 +1,76 @@
+/* Styles for elements added by MarkDownPreview. Used in VS Code's preview and in exports;
+   VS Code theme variables are used when present, with neutral fallbacks for exports. */
+
+/* GitHub alerts */
+.markdown-alert {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  border-left: 0.25em solid var(--mdp-alert-color);
+  border-radius: 0 4px 4px 0;
+  background: color-mix(in srgb, var(--mdp-alert-color) 8%, transparent);
+}
+.markdown-alert > :last-child { margin-bottom: 0; }
+.markdown-alert-title { font-weight: 600; color: var(--mdp-alert-color); margin: 0 0 0.25em; }
+.markdown-alert-note { --mdp-alert-color: #0969da; }
+.markdown-alert-tip { --mdp-alert-color: #1a7f37; }
+.markdown-alert-important { --mdp-alert-color: #8250df; }
+.markdown-alert-warning { --mdp-alert-color: #9a6700; }
+.markdown-alert-caution { --mdp-alert-color: #cf222e; }
+.vscode-dark .markdown-alert-note, .vscode-high-contrast .markdown-alert-note { --mdp-alert-color: #4493f8; }
+.vscode-dark .markdown-alert-tip, .vscode-high-contrast .markdown-alert-tip { --mdp-alert-color: #3fb950; }
+.vscode-dark .markdown-alert-important, .vscode-high-contrast .markdown-alert-important { --mdp-alert-color: #ab7df8; }
+.vscode-dark .markdown-alert-warning, .vscode-high-contrast .markdown-alert-warning { --mdp-alert-color: #d29922; }
+.vscode-dark .markdown-alert-caution, .vscode-high-contrast .markdown-alert-caution { --mdp-alert-color: #f85149; }
+
+/* ::: containers */
+.mdp-container {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  border: 1px solid var(--mdp-box-color);
+  border-left-width: 0.3em;
+  border-radius: 4px;
+}
+.mdp-container > :last-child { margin-bottom: 0; }
+.mdp-container-title { font-weight: 600; margin: 0 0 0.25em; }
+.mdp-container-note { --mdp-box-color: #0969da; }
+.mdp-container-info { --mdp-box-color: #0550ae; }
+.mdp-container-tip { --mdp-box-color: #1a7f37; }
+.mdp-container-warning { --mdp-box-color: #9a6700; }
+.mdp-container-danger { --mdp-box-color: #cf222e; }
+details.mdp-details { margin: 1em 0; }
+details.mdp-details > summary { cursor: pointer; font-weight: 600; }
+
+/* [TOC] */
+.mdp-toc { margin: 1em 0; padding: 0.5em 1em; border: 1px solid var(--vscode-editorWidget-border, #d0d7de); border-radius: 4px; }
+.mdp-toc ul { list-style: none; margin: 0; padding: 0; }
+.mdp-toc li { margin: 0.15em 0; }
+.mdp-toc-level-2 { padding-left: 1.2em; }
+.mdp-toc-level-3 { padding-left: 2.4em; }
+.mdp-toc-level-4 { padding-left: 3.6em; }
+.mdp-toc-level-5 { padding-left: 4.8em; }
+.mdp-toc-level-6 { padding-left: 6em; }
+
+/* Task lists */
+.mdp-task-item { list-style: none; }
+.mdp-task-item > .mdp-task:first-child, .mdp-task-item > p > .mdp-task:first-child { margin-left: -1.3em; }
+.mdp-task { display: inline-block; width: 1.1em; }
+.mdp-task-done { color: #1a7f37; }
+
+/* Mermaid */
+.mdp-mermaid { margin: 1em 0; text-align: center; }
+.mdp-mermaid-source { display: none; }
+.mdp-mermaid-has-error .mdp-mermaid-source { display: block; text-align: left; }
+.mdp-mermaid-output svg { max-width: 100%; height: auto; }
+.mdp-mermaid-error {
+  text-align: left;
+  padding: 0.5em 1em;
+  border-left: 0.25em solid #cf222e;
+  background: color-mix(in srgb, #cf222e 8%, transparent);
+  font-family: var(--vscode-editor-font-family, monospace);
+  white-space: pre-wrap;
+}
+
+/* Highlight, insert */
+mark { background: #fff8c5; color: inherit; }
+.vscode-dark mark { background: #bb800966; }
+ins { text-decoration: underline; }

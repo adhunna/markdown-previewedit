@@ -1,0 +1,187 @@
+{
+  "name": "markdownpreview",
+  "displayName": "MarkDownPreview",
+  "description": "Mermaid diagrams, GitHub alerts, extra Markdown syntax, and Word/PDF/HTML export for VS Code's Markdown preview.",
+  "version": "0.1.0",
+  "publisher": "adhunna",
+  "license": "UNLICENSED",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adhunna/MarkDownPreview.git"
+  },
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "markdown",
+    "preview",
+    "mermaid",
+    "docx",
+    "pdf"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "Export to PDF starts a local browser and is disabled in Restricted Mode.",
+      "restrictedConfigurations": [
+        "mdp.export.browserPath"
+      ]
+    },
+    "virtualWorkspaces": {
+      "supported": "limited",
+      "description": "Export needs files on disk."
+    }
+  },
+  "contributes": {
+    "markdown.markdownItPlugins": true,
+    "markdown.previewScripts": [
+      "./dist/preview/mermaid.js"
+    ],
+    "markdown.previewStyles": [
+      "./media/mdp-preview.css"
+    ],
+    "commands": [
+      {
+        "command": "mdp.exportDocx",
+        "title": "Export to Word (.docx)",
+        "category": "MDP"
+      },
+      {
+        "command": "mdp.exportPdf",
+        "title": "Export to PDF",
+        "category": "MDP"
+      },
+      {
+        "command": "mdp.exportHtml",
+        "title": "Export to HTML",
+        "category": "MDP"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "mdp.exportDocx",
+          "when": "editorLangId == markdown"
+        },
+        {
+          "command": "mdp.exportPdf",
+          "when": "editorLangId == markdown && isWorkspaceTrusted"
+        },
+        {
+          "command": "mdp.exportHtml",
+          "when": "editorLangId == markdown"
+        }
+      ],
+      "editor/context": [
+        {
+          "submenu": "mdp.export",
+          "when": "editorLangId == markdown",
+          "group": "navigation@90"
+        }
+      ],
+      "mdp.export": [
+        {
+          "command": "mdp.exportDocx",
+          "group": "1_export@1"
+        },
+        {
+          "command": "mdp.exportPdf",
+          "when": "isWorkspaceTrusted",
+          "group": "1_export@2"
+        },
+        {
+          "command": "mdp.exportHtml",
+          "group": "1_export@3"
+        }
+      ]
+    },
+    "submenus": [
+      {
+        "id": "mdp.export",
+        "label": "MDP: Export"
+      }
+    ],
+    "configuration": {
+      "title": "MarkDownPreview",
+      "properties": {
+        "mdp.mermaid.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Render ```mermaid code blocks as diagrams in the preview and in exports."
+        },
+        "mdp.export.openAfterExport": {
+          "type": "boolean",
+          "default": true,
+          "description": "Open the exported file with its default application after export."
+        },
+        "mdp.export.browserPath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "Path to Microsoft Edge, Google Chrome or Chromium used for PDF export. Leave empty to detect an installed browser automatically."
+        },
+        "mdp.export.pdf.format": {
+          "type": "string",
+          "default": "A4",
+          "enum": [
+            "A4",
+            "A3",
+            "A5",
+            "Letter",
+            "Legal"
+          ],
+          "description": "Paper size for PDF export."
+        },
+        "mdp.export.pdf.margin": {
+          "type": "string",
+          "default": "20mm",
+          "description": "Page margin for PDF export (CSS length, e.g. 20mm or 0.75in)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit -p .",
+    "test": "node esbuild.mjs --tests && node --test \"test-output/*.test.js\"",
+    "package": "npm run build -- --production && vsce package --no-dependencies --skip-license"
+  },
+  "dependencies": {
+    "@vscode/markdown-it-katex": "1.1.2",
+    "docx": "9.8.0",
+    "katex": "0.18.9",
+    "markdown-it": "14.3.2",
+    "markdown-it-abbr": "2.0.0",
+    "markdown-it-container": "4.0.0",
+    "markdown-it-deflist": "4.0.0",
+    "markdown-it-emoji": "3.1.0",
+    "markdown-it-footnote": "4.0.0",
+    "markdown-it-github-alerts": "1.0.1",
+    "markdown-it-ins": "4.0.0",
+    "markdown-it-mark": "4.0.0",
+    "markdown-it-sub": "2.0.0",
+    "markdown-it-sup": "2.0.0",
+    "mermaid": "12.0.0",
+    "puppeteer-core": "25.12.0",
+    "sanitize-html": "2.17.7"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "14.2.0",
+    "@types/node": "22.20.5",
+    "@types/sanitize-html": "2.16.1",
+    "@types/vscode": "1.95.0",
+    "@vscode/vsce": "4.0.0",
+    "esbuild": "0.28.2",
+    "typescript": "5.9.3"
+  }
+}

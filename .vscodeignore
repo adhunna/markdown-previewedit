@@ -1,0 +1,8 @@
+**
+!dist/extension.js
+!dist/preview/mermaid.js
+!dist/katex-inline.css
+!media/**
+!package.json
+!README.md
+!CHANGELOG.md
