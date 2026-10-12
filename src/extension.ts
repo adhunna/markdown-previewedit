@@ -7,6 +7,7 @@ import { renderDocx } from './export/docx';
 import { renderHtmlDocument, type ExportAssets } from './export/html';
 import { renderPdf, type PdfOptions } from './export/pdf';
 import { extendMarkdownIt } from './markdown/plugins';
+import { ENTER_FULL_SCREEN, exitFullScreenCommands, isMarkdownPreviewViewType, type FullScreenState } from './full-screen';
 import { isPreviewTheme, nextPreviewTheme, stepFontSize, type PreviewTheme } from './preview-settings';
 
 type ExportKind = 'docx' | 'pdf' | 'html';
@@ -18,6 +19,9 @@ const FILTERS: Record<ExportKind, Record<string, string[]>> = {
 };
 
 let log: vscode.LogOutputChannel;
+
+/** Set while the preview is in full-screen mode (mirrored to the `mdp.previewFullScreen` context key). */
+let fullScreen: FullScreenState | undefined;
 
 export function activate(context: vscode.ExtensionContext) {
   log = vscode.window.createOutputChannel('MarkDownPreview', { log: true });
@@ -35,6 +39,16 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('mdp.preview.decreaseFontSize', () => changeFontSize(-1)),
     vscode.commands.registerCommand('mdp.preview.resetFontSize', () => changeFontSize(0)),
     vscode.commands.registerCommand('mdp.preview.toggleTheme', toggleTheme),
+    vscode.commands.registerCommand('mdp.preview.toggleFullScreen', () => (fullScreen ? exitFullScreen() : enterFullScreen())),
+    vscode.commands.registerCommand('mdp.preview.exitFullScreen', exitFullScreen),
+    // If the last preview is closed while full screen, put the side bar back and reset the button.
+    vscode.window.tabGroups.onDidChangeTabs(() => {
+      if (fullScreen && !hasMarkdownPreviewTab()) {
+        fullScreen = undefined;
+        void runCommands(['workbench.action.toggleSidebarVisibility']);
+        void setFullScreenContext(false);
+      }
+    }),
   );
 
   context.subscriptions.push(
@@ -80,6 +94,43 @@ async function toggleTheme(): Promise<void> {
   await vscode.workspace.getConfiguration('mdp').update('preview.theme', next, vscode.ConfigurationTarget.Global);
   const label = { auto: 'Auto (follows VS Code)', light: 'Light', dark: 'Dark' }[next];
   vscode.window.setStatusBarMessage(`Markdown preview theme: ${label}`, 3000);
+}
+
+async function enterFullScreen(): Promise<void> {
+  fullScreen = { maximizedGroup: vscode.window.tabGroups.all.length > 1 };
+  await runCommands(ENTER_FULL_SCREEN);
+  await setFullScreenContext(true);
+}
+
+async function exitFullScreen(): Promise<void> {
+  if (!fullScreen) {
+    return;
+  }
+  const state = fullScreen;
+  fullScreen = undefined;
+  await runCommands(exitFullScreenCommands(state));
+  await setFullScreenContext(false);
+}
+
+/** Runs VS Code layout commands in order; one that does not apply to the current layout is logged and skipped. */
+async function runCommands(commands: readonly string[]): Promise<void> {
+  for (const command of commands) {
+    try {
+      await vscode.commands.executeCommand(command);
+    } catch (error) {
+      log.warn(`Layout command ${command} failed: ${String(error)}`);
+    }
+  }
+}
+
+function setFullScreenContext(value: boolean): Thenable<unknown> {
+  return vscode.commands.executeCommand('setContext', 'mdp.previewFullScreen', value);
+}
+
+function hasMarkdownPreviewTab(): boolean {
+  return vscode.window.tabGroups.all.some((group) =>
+    group.tabs.some((tab) => tab.input instanceof vscode.TabInputWebview && isMarkdownPreviewViewType(tab.input.viewType)),
+  );
 }
 
 export function deactivate(): void {

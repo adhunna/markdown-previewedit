@@ -4,12 +4,16 @@
   "description": "Mermaid diagrams, GitHub alerts, extra Markdown syntax, and Word/PDF/HTML export for VS Code's Markdown preview.",
   "version": "0.2.0",
   "publisher": "adhunna",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/adhunna/MarkDownPreview.git"
   },
+  "bugs": {
+    "url": "https://github.com/adhunna/MarkDownPreview/issues"
+  },
+  "homepage": "https://github.com/adhunna/MarkDownPreview#readme",
   "engines": {
     "vscode": "^1.95.0"
   },
@@ -21,8 +25,12 @@
     "markdown",
     "preview",
     "mermaid",
+    "github alerts",
     "docx",
-    "pdf"
+    "word",
+    "pdf",
+    "html export",
+    "katex"
   ],
   "main": "./dist/extension.js",
   "activationEvents": [
@@ -94,6 +102,18 @@
         "title": "Toggle Preview Theme (Auto / Light / Dark)",
         "category": "MDP",
         "icon": "$(color-mode)"
+      },
+      {
+        "command": "mdp.preview.toggleFullScreen",
+        "title": "Toggle Full-Screen Preview",
+        "category": "MDP",
+        "icon": "$(screen-full)"
+      },
+      {
+        "command": "mdp.preview.exitFullScreen",
+        "title": "Exit Full-Screen Preview",
+        "category": "MDP",
+        "icon": "$(screen-normal)"
       }
     ],
     "menus": {
@@ -113,6 +133,14 @@
         {
           "command": "mdp.openPreviewToSide",
           "when": "editorLangId == markdown"
+        },
+        {
+          "command": "mdp.preview.toggleFullScreen",
+          "when": "activeWebviewPanelId == 'markdown.preview' || mdp.previewFullScreen"
+        },
+        {
+          "command": "mdp.preview.exitFullScreen",
+          "when": "false"
         }
       ],
       "editor/context": [
@@ -158,6 +186,16 @@
           "command": "mdp.preview.toggleTheme",
           "when": "activeWebviewPanelId == 'markdown.preview'",
           "group": "navigation@3"
+        },
+        {
+          "command": "mdp.preview.toggleFullScreen",
+          "when": "activeWebviewPanelId == 'markdown.preview' && !mdp.previewFullScreen",
+          "group": "navigation@4"
+        },
+        {
+          "command": "mdp.preview.exitFullScreen",
+          "when": "activeWebviewPanelId == 'markdown.preview' && mdp.previewFullScreen",
+          "group": "navigation@4"
         }
       ]
     },
@@ -264,7 +302,8 @@
     "watch": "node esbuild.mjs --watch",
     "typecheck": "tsc --noEmit -p .",
     "test": "node esbuild.mjs --tests && node --test \"test-output/*.test.js\"",
-    "package": "npm run build -- --production && vsce package --no-dependencies --skip-license"
+    "package": "npm run build -- --production && vsce package --no-dependencies",
+    "notices": "node scripts/third-party-notices.mjs"
   },
   "dependencies": {
     "@vscode/markdown-it-katex": "1.1.2",
