@@ -2,7 +2,7 @@
 
 Adds the missing pieces to **VS Code's built-in Markdown preview** — Mermaid diagrams, GitHub alerts, task lists, a table of contents and more — and exports your Markdown to **Word, PDF and HTML**.
 
-> **Status:** v0.1.0 MVP. Install it from the `.vsix` file (not on the Marketplace yet).
+> **Status:** v0.2.0. Install it from the `.vsix` file (not on the Marketplace yet).
 
 ## What you get
 
@@ -18,6 +18,15 @@ Adds the missing pieces to **VS Code's built-in Markdown preview** — Mermaid d
 | Footnotes, definition lists, abbreviations | `[^1]`, `Term` + `: Definition`, `*[HTML]: …` |
 | Highlight, inserted, sub/superscript, emoji | `==mark==`, `++ins++`, `H~2~O`, `x^2^`, `:tada:` |
 
+**Font size and theme** — while the preview is open, use the buttons in its title bar (top right):
+
+| Button / shortcut (preview focused) | Action |
+|---|---|
+| 🔍➖ / `Ctrl+-` | Smaller text |
+| 🔍➕ / `Ctrl+=` | Larger text |
+| `Ctrl+0` | Reset text size |
+| Colour-mode button (half circle) | Cycle theme: **Auto** (follow VS Code) → **Light** → **Dark** |
+
 Everything the built-in preview already does keeps working: math (`$…$`, `$$…$$`), front matter, scroll sync, live update, themes, links.
 
 **Export** — right-click in a Markdown editor → **MDP: Export**, or `Ctrl+Shift+P` → "MDP: Export…":
@@ -30,7 +39,7 @@ Everything the built-in preview already does keeps working: math (`$…$`, `$$�
 
 ## Install (Windows)
 
-1. Get `markdownpreview-0.1.0.vsix` (from the GitHub Actions **CI** run artifacts, or build it — see below).
+1. Get `markdownpreview-0.2.0.vsix` (from the GitHub Actions **CI** run artifacts, or build it — see below).
 2. In VS Code: **Extensions** view (`Ctrl+Shift+X`) → **`…`** menu (top right of the view) → **Install from VSIX…** → pick the file.
 3. Open `samples/features/all.md` from this repository and press `Ctrl+K V`.
 
@@ -38,6 +47,8 @@ Everything the built-in preview already does keeps working: math (`$…$`, `$$�
 
 | Setting | Default | Meaning |
 |---|---|---|
+| `mdp.preview.theme` | `auto` | Preview colours: `auto` (follow VS Code), `light`, `dark` |
+| `markdown.preview.fontSize` | `14` | VS Code's own preview font size — changed by the zoom buttons |
 | `mdp.mermaid.enabled` | `true` | Render Mermaid code blocks as diagrams |
 | `mdp.export.openAfterExport` | `true` | Open the exported file (e.g. in Word) when done |
 | `mdp.export.browserPath` | *(auto)* | Browser for PDF export, if Edge/Chrome is not found automatically |
@@ -58,7 +69,7 @@ Requires Node.js 22 LTS.
 ```powershell
 npm ci
 npm test            # plugins, exports, security corpus (+ PDF if Edge/Chrome is installed)
-npm run package     # → markdownpreview-0.1.0.vsix
+npm run package     # → markdownpreview-0.2.0.vsix
 ```
 
 Press **F5** in VS Code to run the extension in a development window.

@@ -30,9 +30,9 @@
 | A07 | Preview → editor scroll sync; click / double-click in preview jumps to the source line | P1 | 2 | W+S | Built-in ✅ |
 | A08 | Highlight the block under the editor cursor in the preview | P1 | 2 | W | Planned |
 | A09 | Preview follows the VS Code theme (light / dark / high-contrast) via `--vscode-*` CSS variables | P0 | 1 | W | Built-in ✅ |
-| A10 | Built-in preview themes: GitHub Light/Dark, **"Word document" look** ★, Academic/print | P1 | 2 | W | Planned |
+| A10 | Built-in preview themes: GitHub Light/Dark, **"Word document" look** ★, Academic/print | P1 | 2 | W | Partial (v0.2.0: Auto/Light/Dark) |
 | A11 | Custom CSS: user-level, workspace-level (`.mdp/style.css`), front-matter `css:` | P1 | 2 | S+E | Planned |
-| A12 | Font family / size / line height; zoom in/out/reset (`Ctrl +/-/0`, `Ctrl`+wheel) | P1 | 2 | W | Planned |
+| A12 | Font family / size / line height; zoom in/out/reset (`Ctrl +/-/0`, `Ctrl`+wheel) | P1 | 2 | W | Partial (v0.2.0: font size; built-in font/line height) |
 | A13 | Outline (TOC) sidebar inside the preview: collapsible, resizable, highlights current section | P1 | 2 | E+W | Planned |
 | A14 | Find in preview (`Ctrl+F`) | P1 | 2 | S | Built-in ✅ |
 | A15 | Relative images/links resolved safely; `Ctrl+click` opens `.md` links in the editor, web links in the browser (other schemes need confirmation) | P0 | 1 | S+E | Built-in ✅ |
