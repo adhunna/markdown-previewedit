@@ -26,6 +26,11 @@ export function inlineText(token: Token | undefined): string {
  */
 export function sourceLineAttrs(token: Token, extraClass: string): string {
   const classes = [extraClass, token.attrGet('class')].filter(Boolean).join(' ');
-  const line = token.attrGet('data-line');
-  return `class="${escapeHtml(classes)}"${line !== null ? ` data-line="${escapeHtml(line)}"` : ''}`;
+  // data-line-end / data-block are only set by the Edit Preview's source map (sourceMap.ts).
+  const extra = ['data-line', 'data-line-end', 'data-block']
+    .map((name) => [name, token.attrGet(name)] as const)
+    .filter(([, value]) => value !== null)
+    .map(([name, value]) => ` ${name}="${escapeHtml(String(value))}"`)
+    .join('');
+  return `class="${escapeHtml(classes)}"${extra}`;
 }
