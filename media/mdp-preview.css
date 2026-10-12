@@ -74,3 +74,46 @@ details.mdp-details > summary { cursor: pointer; font-weight: 600; }
 mark { background: #fff8c5; color: inherit; }
 .vscode-dark mark { background: #bb800966; }
 ins { text-decoration: underline; }
+
+/* Forced preview theme (mdp.preview.theme = light | dark). The preview script sets
+   data-mdp-theme on <body> and swaps VS Code's theme classes; these variables replace the
+   VS Code theme colours that the built-in preview stylesheet uses. */
+body[data-mdp-theme="dark"] {
+  color-scheme: dark;
+  --vscode-editor-background: #1f1f1f;
+  --vscode-editor-foreground: #cccccc;
+  --vscode-foreground: #cccccc;
+  --vscode-textLink-foreground: #4daafc;
+  --vscode-textLink-activeForeground: #4daafc;
+  --vscode-textCodeBlock-background: #2b2b2b;
+  --vscode-textPreformat-foreground: #d0d0d0;
+  --vscode-textPreformat-background: #3c3c3c;
+  --vscode-textBlockQuote-background: #2b2b2b;
+  --vscode-textBlockQuote-border: #616161;
+  --vscode-textSeparator-foreground: #3c3c3c;
+  --vscode-widget-border: #313131;
+  --vscode-editorWidget-border: #454545;
+  background-color: #1f1f1f;
+  color: #cccccc;
+}
+body[data-mdp-theme="light"] {
+  color-scheme: light;
+  --vscode-editor-background: #ffffff;
+  --vscode-editor-foreground: #3b3b3b;
+  --vscode-foreground: #3b3b3b;
+  --vscode-textLink-foreground: #005fb8;
+  --vscode-textLink-activeForeground: #005fb8;
+  --vscode-textCodeBlock-background: #f5f5f5;
+  --vscode-textPreformat-foreground: #3b3b3b;
+  --vscode-textPreformat-background: #0000001f;
+  --vscode-textBlockQuote-background: #f8f8f8;
+  --vscode-textBlockQuote-border: #e5e5e5;
+  --vscode-textSeparator-foreground: #e5e5e5;
+  --vscode-widget-border: #e5e5e5;
+  --vscode-editorWidget-border: #c8c8c8;
+  background-color: #ffffff;
+  color: #3b3b3b;
+}
+html:has(body[data-mdp-theme="dark"]) { background-color: #1f1f1f; }
+html:has(body[data-mdp-theme="light"]) { background-color: #ffffff; }
+body[data-mdp-theme] a { color: var(--vscode-textLink-foreground); }

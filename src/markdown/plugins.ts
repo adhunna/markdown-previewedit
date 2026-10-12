@@ -10,15 +10,19 @@ import sub from 'markdown-it-sub';
 import sup from 'markdown-it-sup';
 import { containersPlugin } from './containers';
 import { mermaidPlugin } from './mermaid';
+import { previewThemePlugin } from './previewTheme';
 import { taskListPlugin } from './tasklists';
 import { tocPlugin } from './toc';
 import { escapeHtml, sourceLineAttrs } from './util';
+import type { PreviewTheme } from '../preview-settings';
 
 export interface MdpPluginOptions {
   /** Read at render time so toggling the setting only needs a preview refresh. */
   readonly isMermaidEnabled: () => boolean;
   /** Exports need heading ids; VS Code's preview adds its own. */
   readonly addHeadingIds: boolean;
+  /** Preview only: forced Light/Dark theme (read at render time). Exports leave this out. */
+  readonly previewTheme?: () => PreviewTheme;
 }
 
 /** Everything this extension adds to markdown-it — shared by the preview and all exports. */
@@ -44,5 +48,8 @@ export function extendMarkdownIt(md: MarkdownIt, options: MdpPluginOptions): Mar
   taskListPlugin(md);
   mermaidPlugin(md, { isEnabled: options.isMermaidEnabled });
   tocPlugin(md, { addHeadingIds: options.addHeadingIds });
+  if (options.previewTheme) {
+    previewThemePlugin(md, { theme: options.previewTheme });
+  }
   return md;
 }

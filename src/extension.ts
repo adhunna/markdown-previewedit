@@ -7,6 +7,7 @@ import { renderDocx } from './export/docx';
 import { renderHtmlDocument, type ExportAssets } from './export/html';
 import { renderPdf, type PdfOptions } from './export/pdf';
 import { extendMarkdownIt } from './markdown/plugins';
+import { isPreviewTheme, nextPreviewTheme, stepFontSize, type PreviewTheme } from './preview-settings';
 
 type ExportKind = 'docx' | 'pdf' | 'html';
 
@@ -28,8 +29,15 @@ export function activate(context: vscode.ExtensionContext) {
   }
 
   context.subscriptions.push(
+    vscode.commands.registerCommand('mdp.preview.increaseFontSize', () => changeFontSize(1)),
+    vscode.commands.registerCommand('mdp.preview.decreaseFontSize', () => changeFontSize(-1)),
+    vscode.commands.registerCommand('mdp.preview.resetFontSize', () => changeFontSize(0)),
+    vscode.commands.registerCommand('mdp.preview.toggleTheme', toggleTheme),
+  );
+
+  context.subscriptions.push(
     vscode.workspace.onDidChangeConfiguration((event) => {
-      if (event.affectsConfiguration('mdp.mermaid.enabled')) {
+      if (event.affectsConfiguration('mdp.mermaid.enabled') || event.affectsConfiguration('mdp.preview.theme')) {
         void vscode.commands.executeCommand('markdown.preview.refresh');
       }
     }),
@@ -41,9 +49,35 @@ export function activate(context: vscode.ExtensionContext) {
       return extendMarkdownIt(md, {
         isMermaidEnabled: () => vscode.workspace.getConfiguration('mdp').get<boolean>('mermaid.enabled', true),
         addHeadingIds: false,
+        previewTheme: currentPreviewTheme,
       });
     },
   };
+}
+
+function currentPreviewTheme(): PreviewTheme {
+  const value = vscode.workspace.getConfiguration('mdp').get<string>('preview.theme', 'auto');
+  return isPreviewTheme(value) ? value : 'auto';
+}
+
+/** Steps VS Code's own `markdown.preview.fontSize` (User settings); 0 resets to the default. */
+async function changeFontSize(delta: number): Promise<void> {
+  const config = vscode.workspace.getConfiguration('markdown.preview');
+  if (delta === 0) {
+    await config.update('fontSize', undefined, vscode.ConfigurationTarget.Global);
+    vscode.window.setStatusBarMessage('Markdown preview font size reset', 2000);
+    return;
+  }
+  const size = stepFontSize(config.get<number>('fontSize'), delta);
+  await config.update('fontSize', size, vscode.ConfigurationTarget.Global);
+  vscode.window.setStatusBarMessage(`Markdown preview font size: ${size}px`, 2000);
+}
+
+async function toggleTheme(): Promise<void> {
+  const next = nextPreviewTheme(currentPreviewTheme());
+  await vscode.workspace.getConfiguration('mdp').update('preview.theme', next, vscode.ConfigurationTarget.Global);
+  const label = { auto: 'Auto (follows VS Code)', light: 'Light', dark: 'Dark' }[next];
+  vscode.window.setStatusBarMessage(`Markdown preview theme: ${label}`, 3000);
 }
 
 export function deactivate(): void {

@@ -2,7 +2,7 @@
   "name": "markdownpreview",
   "displayName": "MarkDownPreview",
   "description": "Mermaid diagrams, GitHub alerts, extra Markdown syntax, and Word/PDF/HTML export for VS Code's Markdown preview.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "adhunna",
   "license": "UNLICENSED",
   "private": true,
@@ -26,7 +26,8 @@
   ],
   "main": "./dist/extension.js",
   "activationEvents": [
-    "onLanguage:markdown"
+    "onLanguage:markdown",
+    "onWebviewPanel:markdown.preview"
   ],
   "capabilities": {
     "untrustedWorkspaces": {
@@ -64,6 +65,29 @@
         "command": "mdp.exportHtml",
         "title": "Export to HTML",
         "category": "MDP"
+      },
+      {
+        "command": "mdp.preview.increaseFontSize",
+        "title": "Increase Preview Font Size",
+        "category": "MDP",
+        "icon": "$(zoom-in)"
+      },
+      {
+        "command": "mdp.preview.decreaseFontSize",
+        "title": "Decrease Preview Font Size",
+        "category": "MDP",
+        "icon": "$(zoom-out)"
+      },
+      {
+        "command": "mdp.preview.resetFontSize",
+        "title": "Reset Preview Font Size",
+        "category": "MDP"
+      },
+      {
+        "command": "mdp.preview.toggleTheme",
+        "title": "Toggle Preview Theme (Auto / Light / Dark)",
+        "category": "MDP",
+        "icon": "$(color-mode)"
       }
     ],
     "menus": {
@@ -102,6 +126,23 @@
           "command": "mdp.exportHtml",
           "group": "1_export@3"
         }
+      ],
+      "editor/title": [
+        {
+          "command": "mdp.preview.decreaseFontSize",
+          "when": "activeWebviewPanelId == 'markdown.preview'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "mdp.preview.increaseFontSize",
+          "when": "activeWebviewPanelId == 'markdown.preview'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "mdp.preview.toggleTheme",
+          "when": "activeWebviewPanelId == 'markdown.preview'",
+          "group": "navigation@3"
+        }
       ]
     },
     "submenus": [
@@ -113,6 +154,21 @@
     "configuration": {
       "title": "MarkDownPreview",
       "properties": {
+        "mdp.preview.theme": {
+          "type": "string",
+          "default": "auto",
+          "enum": [
+            "auto",
+            "light",
+            "dark"
+          ],
+          "enumDescriptions": [
+            "Follow the VS Code colour theme.",
+            "Always show the preview light.",
+            "Always show the preview dark."
+          ],
+          "description": "Colour theme of the Markdown preview. Exports are always light."
+        },
         "mdp.mermaid.enabled": {
           "type": "boolean",
           "default": true,
@@ -147,7 +203,45 @@
           "description": "Page margin for PDF export (CSS length, e.g. 20mm or 0.75in)."
         }
       }
-    }
+    },
+    "keybindings": [
+      {
+        "command": "mdp.preview.increaseFontSize",
+        "key": "ctrl+=",
+        "mac": "cmd+=",
+        "when": "activeWebviewPanelId == 'markdown.preview'"
+      },
+      {
+        "command": "mdp.preview.increaseFontSize",
+        "key": "ctrl+numpad_add",
+        "mac": "cmd+numpad_add",
+        "when": "activeWebviewPanelId == 'markdown.preview'"
+      },
+      {
+        "command": "mdp.preview.decreaseFontSize",
+        "key": "ctrl+-",
+        "mac": "cmd+-",
+        "when": "activeWebviewPanelId == 'markdown.preview'"
+      },
+      {
+        "command": "mdp.preview.decreaseFontSize",
+        "key": "ctrl+numpad_subtract",
+        "mac": "cmd+numpad_subtract",
+        "when": "activeWebviewPanelId == 'markdown.preview'"
+      },
+      {
+        "command": "mdp.preview.resetFontSize",
+        "key": "ctrl+numpad0",
+        "mac": "cmd+numpad0",
+        "when": "activeWebviewPanelId == 'markdown.preview'"
+      },
+      {
+        "command": "mdp.preview.resetFontSize",
+        "key": "ctrl+0",
+        "mac": "cmd+0",
+        "when": "activeWebviewPanelId == 'markdown.preview'"
+      }
+    ]
   },
   "scripts": {
     "build": "node esbuild.mjs",
