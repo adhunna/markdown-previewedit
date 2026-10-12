@@ -1,7 +1,7 @@
 # 02 — Feature Catalog
 
 > **Purpose:** The single, numbered list of everything the extension may do. Every piece of work references a **Feature ID** from this file (e.g. `E04`).
-> **Status:** v0.1.0 MVP delivered (see ADR-001). *Built-in ✅* = provided by VS Code's own Markdown preview, which this extension extends. *Done* / *Partial* = implemented here. Agents update the *Status* column as work lands — see [AGENTS.md](../AGENTS.md).
+> **Status:** v0.2.0 (see [ROADMAP.md](../ROADMAP.md) for the implemented / future summary and [ADR-001](adr/001-stack-typescript-builtin-preview.md) for the stack). *Built-in ✅* = provided by VS Code's own Markdown preview, which this extension extends. *Done* / *Partial* = implemented here. *N/A* = not needed with the TypeScript stack. Agents update the *Status* column as work lands — see [AGENTS.md](../AGENTS.md).
 
 ## Legend
 
@@ -43,7 +43,7 @@
 | A20 | Preview non-file sources: untitled documents, Git diff views, remote/virtual file systems | P2 | 4 | S | Planned |
 | A21 | Right-click context menu in preview (export, copy, open in browser, toggles) | P1 | 2 | W+S | Planned |
 | A22 | Open rendered HTML in the external browser | P2 | 4 | S+E | Planned |
-| A23 | Zen / reading mode (centered column, no chrome) | P3 | 5 | W | Planned |
+| A23 | Zen / reading mode (centered column, no chrome) | P3 | 5 | W | Partial (v0.2.0: full-screen preview button) |
 
 ## B. Markdown syntax (engine: Markdig + custom extensions)
 
@@ -165,15 +165,15 @@
 | ID | Feature | Pri | Phase | Owner | Status |
 |---|---|---|---|---|---|
 | J01 | Strict webview Content-Security-Policy with per-load nonce; no inline scripts; `localResourceRoots` limited to extension + workspace + document folder | P0 | 1 | S+W | Built-in ✅ |
-| J02 | HTML sanitization in the engine (allowlist) **and** DOMPurify in the webview (defense in depth) | P0 | 1 | E+W | Planned |
+| J02 | HTML sanitization in the engine (allowlist) **and** DOMPurify in the webview (defense in depth) | P0 | 1 | E+W | Done (v0.1.0: VS Code sanitizer in preview, sanitize-html in exports) |
 | J03 | Workspace Trust — Restricted Mode disables: raw-HTML scripts, custom `<head>`, external tools (Java/Pandoc/D2), code chunks, imports outside the workspace | P0 | 1 | S+E | Partial (v0.1.0: PDF export off in Restricted Mode) |
-| J04 | Typed, allowlisted webview ↔ shell messages; every payload validated; paths/URIs checked against the source document | P0 | 1 | S+W | Planned |
-| J05 | No `eval` / `new Function` / dynamic code anywhere (diagram libraries configured in CSP-safe modes) | P0 | 1 | S+W+E | Planned |
-| J06 | External processes started **without a shell**, arguments as arrays, validated paths, timeouts | P0 | 1 | E | Planned |
+| J04 | Typed, allowlisted webview ↔ shell messages; every payload validated; paths/URIs checked against the source document | P0 | 1 | S+W | N/A (no custom webview messages; ADR-001) |
+| J05 | No `eval` / `new Function` / dynamic code anywhere (diagram libraries configured in CSP-safe modes) | P0 | 1 | S+W+E | Done (v0.1.0) |
+| J06 | External processes started **without a shell**, arguments as arrays, validated paths, timeouts | P0 | 1 | E | Done (v0.1.0) |
 | J07 | **Offline by default** — all libraries bundled, zero CDN; network features opt-in and clearly labelled | P0 | 1 | all | Done (v0.1.0) |
 | J08 | Remote-content security levels (Strict / Default / Off), similar to the built-in preview | P1 | 2 | S+W | Planned |
 | J09 | No telemetry by default; any future telemetry is opt-in and respects `telemetry.telemetryLevel` | P0 | 1 | S | Done (v0.1.0) |
-| J10 | Supply chain: lockfiles, dependency + licence scanning, SBOM, signed native binaries, `SECURITY.md` disclosure policy | P1 | 3 | all | Planned |
+| J10 | Supply chain: lockfiles, dependency + licence scanning, SBOM, signed native binaries, `SECURITY.md` disclosure policy | P1 | 3 | all | Partial (v0.2.0: lockfile, licence notices, SECURITY.md) |
 | J11 | **Malicious-Markdown regression corpus** in CI (XSS, path traversal, command injection, ReDoS, huge files) | P0 | 1 | E+W | Done (v0.1.0) |
 
 ## K. Platform, distribution, accessibility
@@ -181,13 +181,13 @@
 | ID | Feature | Pri | Phase | Owner | Status |
 |---|---|---|---|---|---|
 | K01 | Windows x64 | P0 | 1 | all | Done (v0.1.0) |
-| K02 | Windows arm64, macOS x64/arm64, Linux x64/arm64/armhf, Alpine x64/arm64 | P1 | 3 | E | Planned |
-| K03 | Remote-SSH, WSL, Dev Containers, Codespaces (engine runs on the workspace side) | P1 | 3 | S+E | Planned |
+| K02 | Windows arm64, macOS x64/arm64, Linux x64/arm64/armhf, Alpine x64/arm64 | P1 | 3 | E | Done (v0.1.0: one universal VSIX, no native code) |
+| K03 | Remote-SSH, WSL, Dev Containers, Codespaces (engine runs on the workspace side) | P1 | 3 | S+E | Planned (untested in remote setups) |
 | K04 | Published to VS Code Marketplace **and** Open VSX (Cursor, Windsurf, VSCodium …) | P1 | 2 | — | Planned |
 | K05 | Pre-release channel | P1 | 2 | — | Planned |
 | K06 | Accessibility: keyboard navigation, screen-reader-friendly HTML, MathML for math, high-contrast themes | P1 | 2 | W | Planned |
 | K07 | Localization (`vscode.l10n`, `package.nls.*.json`) | P2 | 4 | S | Planned |
-| K08 | Universal fallback VSIX for other platforms (gets .NET via the .NET Install Tool) | P2 | 4 | S | Done (v0.1.0) |
+| K08 | Universal fallback VSIX for other platforms (gets .NET via the .NET Install Tool) | P2 | 4 | S | Done (v0.1.0: universal TypeScript VSIX, no .NET needed) |
 | K09 | **VS Code for the Web** (vscode.dev / github.dev) via a .NET WebAssembly engine build ★ | P3 | 5 | E | Planned |
 
 ## L. AI-era integration (opt-in)
@@ -212,10 +212,10 @@
 
 | ID | Feature | Pri | Phase | Owner | Status |
 |---|---|---|---|---|---|
-| N01 | Engine supervisor: lazy start, health check, auto-restart with back-off, graceful shutdown | P0 | 1 | S | Planned |
-| N02 | Log output channel with levels; render timings | P0 | 1 | S+E | Planned |
+| N01 | Engine supervisor: lazy start, health check, auto-restart with back-off, graceful shutdown | P0 | 1 | S | N/A (no separate engine; ADR-001) |
+| N02 | Log output channel with levels; render timings | P0 | 1 | S+E | Partial (v0.1.0: log channel; no render timings) |
 | N03 | "Report an issue" command (versions + redacted settings) | P1 | 2 | S | Planned |
-| N04 | Error UI in the preview — clear message, failures isolated per block (never a blank page) | P0 | 1 | E+W | Planned |
+| N04 | Error UI in the preview — clear message, failures isolated per block (never a blank page) | P0 | 1 | E+W | Partial (v0.1.0: per-diagram error boxes) |
 
 ---
 

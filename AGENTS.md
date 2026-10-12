@@ -6,7 +6,7 @@ This file is the **operating manual for any AI coding agent** (Claude Code, GitH
 
 ## 1. Mission
 
-Build a **secure, fast, Office-friendly Markdown preview extension for VS Code**, comparable to *Markdown Preview Enhanced*.
+Build a **secure, fast, Office-friendly Markdown preview extension for VS Code**, comparable to *Markdown Preview Enhanced*. This is a **public open-source project** (MIT licence): write code, commits, issues and docs for outside contributors to read.
 
 **Stack (ADR-001):** 100% **TypeScript**. The extension **extends VS Code's built-in Markdown preview** (markdown-it plugins + a preview script) and runs exports (Word, PDF, HTML) in the extension host. The C# / .NET engine in `docs/03-architecture.md` is a *future option*, not current work.
 
@@ -18,10 +18,11 @@ Read these before any non-trivial change — they are the source of truth:
 | [docs/02-feature-catalog.md](docs/02-feature-catalog.md) | **What** to build — every task maps to a Feature ID |
 | [docs/03-architecture.md](docs/03-architecture.md) | Long-term C# design (future option; see ADR-001 for the current stack) |
 | [docs/04-implementation-plan.md](docs/04-implementation-plan.md) | **When** — phases, order, exit criteria |
-| [docs/05-one-week-mvp.md](docs/05-one-week-mvp.md) | **Now** — the one-week MVP scope and day-by-day plan |
+| [ROADMAP.md](ROADMAP.md) | **Now** — what is implemented and the prioritised future list |
+| [docs/05-one-week-mvp.md](docs/05-one-week-mvp.md) | Original one-week C# plan (superseded) |
 | [docs/adr/](docs/adr/) | Accepted decisions — start with ADR-001 (stack) |
 
-**Current phase:** MVP delivered (v0.1.0, see `CHANGELOG.md`). Next work is chosen by the owner from the feature catalog (P1 items first). Do not start large features without a plan approved by the owner.
+**Current phase:** v0.2.0 pre-release (see `CHANGELOG.md`). Next work is chosen by the owner from the *Next — v1.0* list in `ROADMAP.md`. Do not start large features without a plan approved by the owner.
 
 ---
 
@@ -84,6 +85,7 @@ Read these before any non-trivial change — they are the source of truth:
 1. Do not add an npm package without the owner's approval. When proposing one, state: purpose, licence, bundle size, maintenance status and alternatives. Prefer versions published at least two weeks ago.
 2. Allowed licences: MIT, BSD, Apache-2.0, ISC, MS-PL, EPL-2.0 (tools only). **No GPL/AGPL/LGPL in shipped code.**
 3. Versions are pinned exactly in `package.json`; commit `package-lock.json`.
+4. After any dependency change run `npm run notices` and commit `THIRD_PARTY_NOTICES.md` (CI fails if it is out of date).
 
 ### 3.5 Performance
 
@@ -103,7 +105,7 @@ Plugins run on every keystroke in the preview: no regexes with catastrophic back
 2. **Plan** — for anything over ~1 hour or touching more than one layer, write a short plan (files, steps, tests) and share it first.
 3. **Implement** in small, focused commits.
 4. **Test** — add/update tests at the right level (see §6). Run the fast checks locally.
-5. **Document** — update the feature catalog *Status* column, settings docs, `CHANGELOG.md` (from Phase 1), and ADRs when a decision changes.
+5. **Document** — update the feature catalog *Status* column, `ROADMAP.md`, the README (settings, commands, buttons), `CHANGELOG.md`, and ADRs when a decision changes.
 6. **Report** — say what was done, what was verified (with command output), and what was **not** verified. Never claim a test passed that you did not run.
 
 ### Git rules
@@ -111,7 +113,7 @@ Plugins run on every keystroke in the preview: no regexes with catastrophic back
 - Integration branch: **`develop`**. Never commit directly to `main`. Feature branches: `feat/<feature-id>-<slug>` (e.g. `feat/E04-docx-export`), fixes: `fix/<slug>`.
 - **Conventional Commits** with the Feature ID as scope: `feat(E04): write tables to DOCX`, `fix(A06): scroll sync drift on long tables`, `docs: …`, `test: …`, `chore: …`.
 - Never force-push shared branches, rewrite published history, or delete branches without approval.
-- Open pull requests only when the owner asks.
+- AI agents open pull requests only when the owner asks. Outside contributors: see `CONTRIBUTING.md`.
 - Never commit secrets, tokens, personal data, generated binaries, or `*.vsix` files.
 
 ---
@@ -127,6 +129,7 @@ Run from the repository root (Node.js 22 LTS):
 | Watch while developing | `npm run watch` |
 | Type-check | `npm run typecheck` |
 | Tests (plugins, exports, security corpus, PDF if a browser is found) | `npm test` — set `MDP_TEST_BROWSER=<path>` to force a browser |
+| Refresh third-party licence notices | `npm run notices` (`-- --check` to verify) |
 | Package the VSIX | `npm run package` → `markdownpreview-<version>.vsix` |
 | Debug in VS Code | Open the folder, press **F5** (Extension Development Host) |
 
@@ -163,7 +166,7 @@ A Feature ID is **Done** when:
 - [ ] Tests added and passing (`npm run typecheck && npm test`)
 - [ ] Security rules (§3.2) respected; malicious corpus passes
 - [ ] Works in Restricted Mode (degrades safely)
-- [ ] Docs updated: catalog *Status*, settings/README, CHANGELOG
+- [ ] Docs updated: catalog *Status*, `ROADMAP.md`, settings/README, CHANGELOG
 - [ ] No new warnings; lint and format clean
 
 ---

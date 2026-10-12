@@ -36,7 +36,7 @@
 | 0.7 | **Spike S3 — library AOT check:** Open XML SDK (heading + table + image DOCX), HtmlSanitizer, YamlDotNet, ReverseMarkdown, PuppeteerSharp (PDF via installed Edge) | Each library: works under NativeAOT ✅ / needs workaround ⚠️ / blocked ❌ — results in ADR-001 |
 | 0.8 | **Spike S4 — dev & fallback mode:** shell runs the engine framework-dependent (via `dotnet` or the .NET Install Tool's `dotnet.acquire`) | F5 debugging works with C# breakpoints (attach to engine process) |
 | 0.9 | CI (GitHub Actions): engine build+test on `windows-latest` and `ubuntu-latest`; extension build+lint+test; package a `win32-x64` VSIX as an artifact | Green on `develop` |
-| 0.10 | Write `docs/adr/001…006`, `SECURITY.md`, `CONTRIBUTING.md`, `LICENSE` (after decision D2) | Reviewed and accepted by the owner |
+| 0.10 | Write `docs/adr/001…006`, `SECURITY.md`, `CONTRIBUTING.md`, `LICENSE` (after decision D2) — ✅ done in v0.2.0 | Reviewed and accepted by the owner |
 | 0.11 | Fill in the **Commands** section of `AGENTS.md` with the real build/test/package commands | Agent can build and test from a clean clone using only AGENTS.md |
 
 ## 3. Phase 1 — MVP (detailed)
@@ -135,15 +135,17 @@ After Phase 0: clone the repo, open the folder in VS Code, press **F5** → an *
 | R8 | IPC overhead on very large documents | Low | Block hashing, only changed blocks sent; measured in S2 |
 | R9 | macOS Gatekeeper / binary permissions after VSIX install | Low–Medium | Verify in Phase 3; set executable bit at activation; sign if required |
 
-## 9. Open decisions (owner to confirm — recommended default in **bold**)
+## 9. Decisions (owner to confirm — recommended default in **bold**)
 
-| ID | Decision | Recommendation |
+**Decided:** D2 and D8 — the project is public open source under the MIT licence (v0.2.0); D3 — superseded by [ADR-001](adr/001-stack-typescript-builtin-preview.md) (one universal TypeScript VSIX). The rest are still open.
+
+| ID | Decision | Recommendation / outcome |
 |---|---|---|
 | D1 | Product display name, Marketplace publisher ID, command/setting prefix | Working codename **MarkDownPreview**, prefix **`mdp.`**; pick final name before Phase 2 (check Marketplace for conflicts) |
-| D2 | Licence | **MIT** (all dependencies are MIT/BSD/Apache-compatible) |
-| D3 | Engine hosting model | **NativeAOT per platform + universal fallback** (ADR-001) |
+| D2 | Licence | ✅ **Decided: MIT** — see `LICENSE`; bundled packages and their licences in `THIRD_PARTY_NOTICES.md` (includes elkjs, EPL-2.0, via Mermaid) |
+| D3 | Engine hosting model | ✅ **Superseded** by ADR-001: no separate engine, one universal VSIX |
 | D4 | Minimum VS Code version | **A version ~3 months older than the release date** |
 | D5 | Publish to Open VSX too | **Yes** (Cursor, Windsurf, VSCodium users) |
 | D6 | Code-signing for Windows binaries | **Yes** — a code-signing service or OV certificate before v1.0 |
 | D7 | Notes/PKM features (wiki links, graph) | **Defer** to Phase 4/5 |
-| D8 | Business model | **Free & open source core**; revisit after v1.0 |
+| D8 | Business model | ✅ **Decided: free and open source** (public repository) |

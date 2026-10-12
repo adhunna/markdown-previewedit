@@ -1,0 +1,31 @@
+name: Feature request
+description: Suggest a feature or vote for one on the roadmap
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please check the [roadmap](https://github.com/adhunna/MarkDownPreview/blob/develop/ROADMAP.md) first — your idea may already be planned. If so, give its Feature ID below.
+  - type: input
+    id: feature-id
+    attributes:
+      label: Feature ID (if it is on the roadmap)
+      placeholder: "E05"
+  - type: textarea
+    id: problem
+    attributes:
+      label: What do you want to do?
+      description: Describe the task or problem, not only the solution.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: How should it work?
+      description: Example Markdown, commands, or screenshots from other tools are welcome.
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Contributing
+      options:
+        - label: I would like to implement this myself
