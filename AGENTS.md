@@ -16,9 +16,10 @@ Read these before any non-trivial change — they are the source of truth:
 | [docs/02-feature-catalog.md](docs/02-feature-catalog.md) | **What** to build — every task maps to a Feature ID |
 | [docs/03-architecture.md](docs/03-architecture.md) | **Where** code goes and **how** the parts talk |
 | [docs/04-implementation-plan.md](docs/04-implementation-plan.md) | **When** — phases, order, exit criteria |
+| [docs/05-one-week-mvp.md](docs/05-one-week-mvp.md) | **Now** — the one-week MVP scope and day-by-day plan |
 | `docs/adr/` | Accepted decisions (created in Phase 0) |
 
-**Current phase:** Phase 0 — Foundations & spikes. Do not start work from a later phase unless the owner asks.
+**Current phase:** One-week MVP ([docs/05-one-week-mvp.md](docs/05-one-week-mvp.md)) — replaces Phase 0 + 1 scope. Work only on the Feature IDs listed there unless the owner asks. In this phase the engine ships framework-dependent (universal VSIX), but code must still be AOT-safe (§3.3).
 
 ---
 

@@ -2,7 +2,7 @@
 
 A **secure, fast, Office-friendly Markdown preview extension for VS Code**, with its core engine written in **C# / .NET 10**.
 
-> **Status:** Planning complete — Phase 0 (foundations & spikes) is next. No installable build yet.
+> **Status:** Planning complete — next is the **one-week MVP** ([docs/05-one-week-mvp.md](docs/05-one-week-mvp.md)). No installable build yet.
 
 ## Why another Markdown preview?
 
@@ -20,6 +20,7 @@ A **secure, fast, Office-friendly Markdown preview extension for VS Code**, with
 | [docs/02-feature-catalog.md](docs/02-feature-catalog.md) | 128 features with IDs, priorities and phases |
 | [docs/03-architecture.md](docs/03-architecture.md) | TypeScript shell + C# engine + webview design, protocol, security model, tech stack |
 | [docs/04-implementation-plan.md](docs/04-implementation-plan.md) | Phases 0–5, detailed Phase 0/1 tasks, testing, CI/CD, Windows dev setup, risks, open decisions |
+| [docs/05-one-week-mvp.md](docs/05-one-week-mvp.md) | One-week MVP: 29 features, day-by-day plan, shortcuts taken |
 | [AGENTS.md](AGENTS.md) | Glossary and rules for AI coding agents (and humans) |
 
 ## Planned architecture (one picture)

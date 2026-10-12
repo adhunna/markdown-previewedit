@@ -19,6 +19,8 @@
 
 **≈ 15 weeks to v1.0.**
 
+> **Fast track (current):** a one-week MVP with 29 features replaces Phase 0 + 1 scope — see [05-one-week-mvp.md](05-one-week-mvp.md). After it, continue with Phase 2.
+
 ---
 
 ## 2. Phase 0 — Foundations & spikes (detailed)
