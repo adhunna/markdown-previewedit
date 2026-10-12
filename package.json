@@ -130,18 +130,18 @@
       "editor/title": [
         {
           "command": "mdp.preview.decreaseFontSize",
-          "when": "activeWebviewPanelId == 'markdown.preview'",
-          "group": "navigation@1"
+          "when": "activeWebviewPanelId == 'markdown.preview' || (editorLangId == markdown && !notebookEditorFocused)",
+          "group": "navigation@11"
         },
         {
           "command": "mdp.preview.increaseFontSize",
-          "when": "activeWebviewPanelId == 'markdown.preview'",
-          "group": "navigation@2"
+          "when": "activeWebviewPanelId == 'markdown.preview' || (editorLangId == markdown && !notebookEditorFocused)",
+          "group": "navigation@12"
         },
         {
           "command": "mdp.preview.toggleTheme",
-          "when": "activeWebviewPanelId == 'markdown.preview'",
-          "group": "navigation@3"
+          "when": "activeWebviewPanelId == 'markdown.preview' || (editorLangId == markdown && !notebookEditorFocused)",
+          "group": "navigation@13"
         }
       ]
     },

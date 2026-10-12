@@ -2,6 +2,7 @@
 
 ## 0.2.0
 
+- **Title-bar buttons on Markdown files:** the zoom-out, zoom-in and colour-mode buttons also appear when a `.md` file is open in the editor (next to VS Code's built-in *Open Preview to the Side* button), not only on the preview.
 - **Preview font size (A12):** "MDP: Increase / Decrease / Reset Preview Font Size", zoom buttons in the preview's title bar, and `Ctrl+=` / `Ctrl+-` / `Ctrl+0` while the preview is focused. Uses VS Code's own `markdown.preview.fontSize` setting (8–40 px, saved in User settings).
 - **Preview theme (A10):** new setting `mdp.preview.theme` — Auto (follow VS Code), Light or Dark — and a colour-mode button / "MDP: Toggle Preview Theme" command that cycles through them. Code highlighting, alerts and Mermaid diagrams follow the chosen theme. Exports stay light.
 
