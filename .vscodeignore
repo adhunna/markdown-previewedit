@@ -1,6 +1,7 @@
 **
 !dist/extension.js
 !dist/preview/mermaid.js
+!dist/edit/toolbar.js
 !dist/katex-inline.css
 !media/**
 !package.json

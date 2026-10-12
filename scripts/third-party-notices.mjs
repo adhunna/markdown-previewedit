@@ -11,6 +11,7 @@ const LICENCE_FILES = ['LICENSE', 'LICENSE.md', 'LICENSE.txt', 'LICENCE', 'LICEN
 const BUNDLES = [
   { entryPoints: ['src/extension.ts'], platform: 'node', format: 'cjs', external: ['vscode', 'bufferutil', 'utf-8-validate'] },
   { entryPoints: ['src/preview/mermaid.ts'], platform: 'browser', format: 'iife' },
+  { entryPoints: ['src/edit/toolbar.ts'], platform: 'browser', format: 'iife' },
 ];
 
 const packageDirs = new Set(['node_modules/katex']); // KaTeX CSS and fonts are inlined into dist/katex-inline.css

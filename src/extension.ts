@@ -7,6 +7,7 @@ import { renderDocx } from './export/docx';
 import { renderHtmlDocument, type ExportAssets } from './export/html';
 import { renderPdf, type PdfOptions } from './export/pdf';
 import { extendMarkdownIt } from './markdown/plugins';
+import { EditPreviewManager } from './edit/panel';
 import { ENTER_FULL_SCREEN, exitFullScreenCommands, isMarkdownPreviewViewType, type FullScreenState } from './full-screen';
 import { isPreviewTheme, nextPreviewTheme, stepFontSize, type PreviewTheme } from './preview-settings';
 
@@ -51,10 +52,34 @@ export function activate(context: vscode.ExtensionContext) {
     }),
   );
 
+  const editPreviews = new EditPreviewManager(
+    context,
+    {
+      mermaid: () => vscode.workspace.getConfiguration('mdp').get<boolean>('mermaid.enabled', true),
+      theme: currentPreviewTheme,
+      fontSize: () => stepFontSize(vscode.workspace.getConfiguration('markdown.preview').get<number>('fontSize'), 0),
+    },
+    log,
+  );
+  context.subscriptions.push(
+    editPreviews,
+    vscode.commands.registerCommand('mdp.openEditPreview', async (uri?: vscode.Uri) => {
+      const document = await resolveDocument(uri);
+      if (!document || document.languageId !== 'markdown') {
+        void vscode.window.showWarningMessage('Open a Markdown file to format it from the preview.');
+        return;
+      }
+      editPreviews.open(document);
+    }),
+  );
+
   context.subscriptions.push(
     vscode.workspace.onDidChangeConfiguration((event) => {
       if (event.affectsConfiguration('mdp.mermaid.enabled') || event.affectsConfiguration('mdp.preview.theme')) {
         void vscode.commands.executeCommand('markdown.preview.refresh');
+      }
+      if (event.affectsConfiguration('mdp.mermaid.enabled') || event.affectsConfiguration('mdp.preview.theme') || event.affectsConfiguration('markdown.preview.fontSize')) {
+        editPreviews.refreshAll();
       }
     }),
   );

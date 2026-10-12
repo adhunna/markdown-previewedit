@@ -48,13 +48,24 @@ const previewBuild = {
   logLevel: 'info',
 };
 
+const editBuild = {
+  entryPoints: ['src/edit/toolbar.ts'],
+  bundle: true,
+  platform: 'browser',
+  format: 'iife',
+  target: 'es2022',
+  outfile: 'dist/edit/toolbar.js',
+  minify: production,
+  logLevel: 'info',
+};
+
 await writeKatexCss();
 
 if (watch) {
-  const contexts = await Promise.all([esbuild.context(extensionBuild), esbuild.context(previewBuild)]);
+  const contexts = await Promise.all([esbuild.context(extensionBuild), esbuild.context(previewBuild), esbuild.context(editBuild)]);
   await Promise.all(contexts.map((c) => c.watch()));
 } else {
-  await Promise.all([esbuild.build(extensionBuild), esbuild.build(previewBuild)]);
+  await Promise.all([esbuild.build(extensionBuild), esbuild.build(previewBuild), esbuild.build(editBuild)]);
 }
 
 if (tests) {
