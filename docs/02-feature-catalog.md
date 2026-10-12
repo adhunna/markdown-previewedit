@@ -44,6 +44,7 @@
 | A21 | Right-click context menu in preview (export, copy, open in browser, toggles) | P1 | 2 | W+S | Planned |
 | A22 | Open rendered HTML in the external browser | P2 | 4 | S+E | Planned |
 | A23 | Zen / reading mode (centered column, no chrome) | P3 | 5 | W | Partial (v0.2.0: full-screen preview button) |
+| A24 | **Format from preview** ★: select text in an *Edit Preview* and apply headings, bold/italic/…, lists, quotes, alerts, case, colour and size from a toolbar; written into the `.md` file (format only, no typing — see ADR-002) | P1 | 2 | S+W+E | Partial (v0.3.0: text formatting) |
 
 ## B. Markdown syntax (engine: Markdig + custom extensions)
 
@@ -89,6 +90,7 @@
 | C09 | Pan / zoom for large diagrams | P2 | 4 | W | Planned |
 | C10 | Charts from tables/CSV (```` ```chart ````) | P3 | 5 | W | Planned |
 | C11 | WaveDrom (JSON only), D2 (CLI if installed), draw.io `.drawio.svg` embeds | P3 | 5 | E+W | Planned |
+| C12 | **Style diagrams from preview** ★: click a Mermaid node in the Edit Preview to change its fill, border and text colour or its label (writes `style`/`classDef` lines) — phase 2 of A24 | P1 | 2 | W+E | Planned |
 
 ## D. Composition (imports)
 
@@ -167,7 +169,7 @@
 | J01 | Strict webview Content-Security-Policy with per-load nonce; no inline scripts; `localResourceRoots` limited to extension + workspace + document folder | P0 | 1 | S+W | Built-in ✅ |
 | J02 | HTML sanitization in the engine (allowlist) **and** DOMPurify in the webview (defense in depth) | P0 | 1 | E+W | Done (v0.1.0: VS Code sanitizer in preview, sanitize-html in exports) |
 | J03 | Workspace Trust — Restricted Mode disables: raw-HTML scripts, custom `<head>`, external tools (Java/Pandoc/D2), code chunks, imports outside the workspace | P0 | 1 | S+E | Partial (v0.1.0: PDF export off in Restricted Mode) |
-| J04 | Typed, allowlisted webview ↔ shell messages; every payload validated; paths/URIs checked against the source document | P0 | 1 | S+W | N/A (no custom webview messages; ADR-001) |
+| J04 | Typed, allowlisted webview ↔ shell messages; every payload validated; paths/URIs checked against the source document | P0 | 1 | S+W | Done (v0.3.0: Edit Preview messages, `src/edit/messages.ts`) |
 | J05 | No `eval` / `new Function` / dynamic code anywhere (diagram libraries configured in CSP-safe modes) | P0 | 1 | S+W+E | Done (v0.1.0) |
 | J06 | External processes started **without a shell**, arguments as arrays, validated paths, timeouts | P0 | 1 | E | Done (v0.1.0) |
 | J07 | **Offline by default** — all libraries bundled, zero CDN; network features opt-in and clearly labelled | P0 | 1 | all | Done (v0.1.0) |
@@ -223,7 +225,7 @@
 
 | Not building | Why | Use instead |
 |---|---|---|
-| WYSIWYG editor | VS Code now ships a built-in rich Markdown editor; market is crowded | Built-in "Markdown Editor" |
+| WYSIWYG editor (typing in the preview) | VS Code now ships a built-in rich Markdown editor; market is crowded. *Formatting* selected text from the preview is in scope (A24); typing text there is not. | Built-in "Markdown Editor" |
 | Linting | Solved well | markdownlint |
 | List editing, shortcuts, table formatter | Solved well | Markdown All in One |
 | Image paste/drop, link validation, header rename | Built into VS Code | Built-in Markdown features |
@@ -232,4 +234,4 @@
 
 ## Totals
 
-128 features — **30 P0**, **45 P1**, **35 P2**, **18 P3**; 17 marked ★ as differentiators.
+130 features — **30 P0**, **47 P1**, **35 P2**, **18 P3**; 19 marked ★ as differentiators. (A24 and C12 were added in v0.3.0 at the owner's request.)

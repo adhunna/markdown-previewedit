@@ -2,7 +2,7 @@
 
 What MarkDownPreview can do today, and everything planned for later. Every item has a **Feature ID** from the [feature catalog](docs/02-feature-catalog.md), which has the full descriptions and the original market research behind them ([docs/01-market-research.md](docs/01-market-research.md)).
 
-**Where we are:** v0.2.0, a pre-release you install from a `.vsix` file. Of the 128 researched features, **22 are done**, **9 are partly done**, **16 come free with VS Code's built-in preview** (we extend it rather than replace it), and **2 are no longer needed** with the TypeScript stack. The other **79**, plus the unfinished parts of the partial items, are in the [future list](#future-list) below.
+**Where we are:** v0.3.0 in development (pre-release, installed from a `.vsix` file). Of the 130 catalogued features (128 from the original research plus 2 requested since), **23 are done**, **10 are partly done**, **16 come free with VS Code's built-in preview** (we extend it rather than replace it), and **1 is no longer needed** with the TypeScript stack. The other **80**, plus the unfinished parts of the partial items, are in the [future list](#future-list) below.
 
 ★ = a differentiator: something Markdown Preview Enhanced and similar extensions do not offer.
 
@@ -20,6 +20,7 @@ Want to help? Pick an item, comment on (or open) an issue that names its ID, and
 | A10 | Preview theme: **Auto / Light / Dark**, independent of the VS Code theme *(partial; see future list)* | 0.2.0 |
 | A12 | Preview **font size**: zoom buttons, `Ctrl+=` / `Ctrl+-` / `Ctrl+0` *(partial)* | 0.2.0 |
 | A23 | **Full-screen preview** inside the VS Code window *(partial)* | 0.2.0 |
+| A24 | **Format from preview** ★: select text in the Edit Preview and use the toolbar (headings, bold/italic/…, lists, quote, alerts, case, colour, size); written into the `.md` file *(partial: text)* | 0.3.0 |
 | B02 | Task lists rendered as checkboxes (rest of GitHub Flavored Markdown is built in) | 0.1.0 |
 | B03 | GitHub alerts: `> [!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]`, `[!CAUTION]` | 0.1.0 |
 | B10 | Footnotes, definition lists, abbreviations | 0.1.0 |
@@ -30,13 +31,14 @@ Want to help? Pick an item, comment on (or open) an issue that names its ID, and
 | C01 | **Mermaid diagrams**, bundled (offline), follow the light/dark theme | 0.1.0 |
 | C02 | A clear error box for a broken diagram instead of a blank area | 0.1.0 |
 | C03 | Diagrams are not redrawn when unrelated text changes | 0.1.0 |
-| E01 | **Export to HTML**: one self-contained, offline page with math and diagrams | 0.1.0 |
+| E01 | **Export to HTML**: one self-contained, offline page with math and diagrams (keeps safe text colour and size) | 0.1.0 |
 | E02 | **Export to PDF** with the Edge/Chrome already installed (no browser download) ★ | 0.1.0 |
 | E03 | PDF paper size and margins *(partial)* | 0.1.0 |
 | E04 | **Export to Word (.docx)**, native with real Word styles, no Pandoc ★ *(partial: "DOCX-lite")* | 0.1.0 |
 | J02 | Sanitized HTML: VS Code's sanitizer in the preview, an allowlist sanitizer in exports | 0.1.0 |
 | J03 | Workspace Trust: PDF export is off in Restricted Mode *(partial)* | 0.1.0 |
 | J05 | No `eval` or dynamic code anywhere; Mermaid runs in strict mode | 0.1.0 |
+| J04 | Every message from the Edit Preview is allowlisted and validated | 0.3.0 |
 | J06 | The PDF browser is started without a shell | 0.1.0 |
 | J07 | **Offline by default**: everything bundled, no CDN | 0.1.0 |
 | J09 | No telemetry | 0.1.0 |
@@ -67,7 +69,6 @@ Want to help? Pick an item, comment on (or open) an issue that names its ID, and
 
 | ID | Feature | Why |
 |---|---|---|
-| J04 | Validated messages between preview and extension | We send no custom messages; VS Code's preview handles it |
 | N01 | Supervisor for a separate rendering engine | There is no separate engine ([ADR-001](docs/adr/001-stack-typescript-builtin-preview.md)) |
 
 ---
@@ -89,6 +90,8 @@ Ordered by priority. **Next** = wanted for v1.0, **Later** = v1.x, **Ideas** = o
 | A13 | Preview | Outline (TOC) side panel in the preview: collapsible, highlights the current section |
 | A19 | Preview | Large-document mode: render budget, progressive rendering, pause live update above a size |
 | A21 | Preview | Right-click menu in the preview (export, copy, open in browser, toggles) |
+| A24 *(rest)* | Preview | Format more from the Edit Preview: table rows/columns, image size, code-block language |
+| C12 | Diagrams | **Style diagrams from the preview**: click a Mermaid node to change its colours or label ★ (phase 2 of A24) |
 | B09 | Syntax | Code-block extras: line numbers, highlighted lines `{highlight=2-4}`, title, copy button, diff colours |
 | B15 | Syntax | Line-break mode (single newline → line break) toggle |
 | B22 | Syntax | Page-break marker `<!-- pagebreak -->` for PDF and Word |

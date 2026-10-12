@@ -2,6 +2,13 @@
 
 All notable changes to MarkDownPreview. Feature IDs refer to the [feature catalog](docs/02-feature-catalog.md); see the [roadmap](ROADMAP.md) for what's next.
 
+## 0.3.0 — in development
+
+- **Format from preview (A24):** new **Edit Preview** (pencil button on Markdown files, "MDP: Open Edit Preview"). Select text and use the toolbar: text style and headings, bold, italic, strikethrough, underline, highlight, code, sub/superscript, link, bulleted/numbered/task list, quote, alert type, UPPER/lower/Title/Sentence case, text colour, fill, size and clear formatting. Changes are written into the `.md` file as normal, undoable edits. See [ADR-002](docs/adr/002-edit-preview-webview.md).
+- **Colours in exports:** `<span style>` with text colour, background colour or font size is kept in HTML and PDF exports and becomes coloured, shaded or resized text in Word. Any other CSS is removed. Inline `<span style>` was previously shown as literal text.
+- **Word export:** inline HTML tags are no longer printed as text; HTML blocks keep their visible text.
+- **Security (J04):** the Edit Preview's messages are allowlisted and validated; new hostile sample `samples/malicious/css-injection.md`.
+
 ## 0.2.0 — pre-release
 
 - **Full-screen preview (A23):** a full-screen button on the preview's title bar (and "MDP: Toggle Full-Screen Preview") fills the VS Code window with the preview, hiding the other editors, the side bars and the panel; click again to restore.

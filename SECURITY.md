@@ -8,7 +8,8 @@ MarkDownPreview is pre-release. Only the latest version on the `develop` branch 
 
 | Version | Supported |
 |---|---|
-| 0.2.x (latest) | ✅ |
+| 0.3.x (latest, in development) | ✅ |
+| 0.2.x | ❌ |
 | older | ❌ |
 
 ## Reporting a vulnerability
@@ -34,6 +35,7 @@ We aim to acknowledge reports within **5 working days** and to agree a fix and d
 - The preview runs inside VS Code's own sandbox (Content-Security-Policy and sanitizer); we never loosen it.
 - Exported HTML is sanitized with an allowlist; scripts, frames, forms, event handlers and `javascript:` links are removed.
 - Mermaid diagrams run in strict mode; no `eval` or dynamic code anywhere.
+- The Edit Preview accepts only a fixed list of checked messages, edits only its own document, and refuses edits made against an older version of it. The only CSS it writes or keeps is text colour, background colour and a bounded font size.
 - PDF export starts your installed browser without a shell, loads only local files, data and web images, and is disabled in Restricted Mode.
 - Everything is bundled; nothing is downloaded at runtime; no telemetry.
 - A corpus of hostile Markdown files ([`samples/malicious/`](samples/malicious/)) is tested on every build. Every security fix adds a new case.

@@ -3,11 +3,11 @@
 [![CI](https://github.com/adhunna/MarkDownPreview/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/adhunna/MarkDownPreview/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-A free, open-source VS Code extension that adds the missing pieces to **VS Code's built-in Markdown preview**: Mermaid diagrams, GitHub alerts, task lists, a table of contents, a Dark/Light switch, zoom and a full-screen view. It also exports your Markdown to **Word, PDF and HTML**.
+A free, open-source VS Code extension that adds the missing pieces to **VS Code's built-in Markdown preview**: Mermaid diagrams, GitHub alerts, task lists, a table of contents, a Dark/Light switch, zoom and a full-screen view. You can **format text straight from a preview** (headings, bold, lists, colours…) and it is written into your `.md` file. It also exports your Markdown to **Word, PDF and HTML**.
 
 It works offline, sends no telemetry, and treats every Markdown file as untrusted.
 
-> **Status:** v0.2.0 pre-release. It is not on the Marketplace yet; install it from a `.vsix` file (see [Install](#install)). See the [roadmap](ROADMAP.md) for what's done and what's next.
+> **Status:** v0.3.0 in development (pre-release). It is not on the Marketplace yet; install it from a `.vsix` file (see [Install](#install)). See the [roadmap](ROADMAP.md) for what's done and what's next.
 
 ## Features
 
@@ -25,6 +25,22 @@ The preview tab then gets these buttons (top right):
 | Full screen (four corners) | — | Fill the VS Code window with the preview: other editors, side bars and the panel are hidden. Click again to restore. |
 
 All of these are also in the Command Palette (`Ctrl+Shift+P`, type **MDP**).
+
+### Format from the preview (Edit Preview)
+
+Click the **pencil button** next to the preview button on a Markdown file (or `Ctrl+Shift+P` → **MDP: Open Edit Preview**). An *Edit Preview* opens beside the file. Select any text in it and a toolbar appears:
+
+| Toolbar | What it writes into the `.md` file |
+|---|---|
+| Text style | Normal text, **Title** (`#`), Heading 2–6 (`##` … `######`) |
+| **B** *I* S U H `</>` x₂ x² | `**bold**`, `*italic*`, `~~strike~~`, `++underline++`, `==highlight==`, `` `code` ``, `~sub~`, `^sup^`. Click again to remove. |
+| 🔗 | `[text](url)`; asks for the address (empty removes the link) |
+| • 1. ☐ ❝ Alert | Bulleted, numbered or task list; quote; GitHub alert (Note, Tip, Important, Warning, Caution) |
+| Aa | UPPERCASE, lowercase, Title Case, Sentence case |
+| Colour, Fill, Size | `<span style="color:…">` etc. — **HTML**, because Markdown has no colours or sizes. Shown in the previews and in Word/PDF/HTML exports, but not on GitHub. |
+| ✕ | Clear formatting (keeps the text) |
+
+`Ctrl+B` / `Ctrl+I` work while text is selected. Every change is a normal edit: undo it with `Ctrl+Z` in the editor; nothing is saved until you save. Double-click in the Edit Preview to jump to that line in the editor. You still type text in the editor; the Edit Preview only formats.
 
 ### Extra Markdown
 
@@ -50,7 +66,7 @@ Right-click in a Markdown file → **MDP: Export**, or `Ctrl+Shift+P` → "MDP: 
 | **MDP: Export to PDF** | Printed by the **Microsoft Edge** already on your PC (or Chrome/Chromium); nothing is downloaded. Includes diagrams and math. |
 | **MDP: Export to HTML** | One self-contained page that works offline, with diagrams and math. |
 
-Exports always use a light, print-friendly style, whatever the preview theme.
+Exports always use a light, print-friendly style, whatever the preview theme. Text colour, fill and size set with `<span style>` (for example from the Edit Preview) are kept in all three formats.
 
 ## Install
 
@@ -77,6 +93,7 @@ Requires VS Code 1.95 or newer, on Windows, macOS or Linux. PDF export needs Mic
 - Works inside VS Code's preview security (Content-Security-Policy, sanitizer) and never asks you to loosen it.
 - Exported HTML is sanitized: scripts, frames, forms, event handlers and `javascript:` links are removed. A set of hostile Markdown files ([`samples/malicious/`](samples/malicious/)) is tested on every build.
 - PDF export starts a local browser, so it is disabled in untrusted (Restricted Mode) workspaces.
+- The Edit Preview only accepts a fixed set of checked messages and changes nothing but the document you opened it for. The only CSS it writes or keeps is text colour, background colour and a limited font size.
 - Nothing is downloaded at runtime. No telemetry.
 
 Found a vulnerability? Please report it privately. See [SECURITY.md](SECURITY.md).

@@ -22,7 +22,7 @@ Read these before any non-trivial change — they are the source of truth:
 | [docs/05-one-week-mvp.md](docs/05-one-week-mvp.md) | Original one-week C# plan (superseded) |
 | [docs/adr/](docs/adr/) | Accepted decisions — start with ADR-001 (stack) |
 
-**Current phase:** v0.2.0 pre-release (see `CHANGELOG.md`). Next work is chosen by the owner from the *Next — v1.0* list in `ROADMAP.md`. Do not start large features without a plan approved by the owner.
+**Current phase:** v0.3.0 in development (see `CHANGELOG.md`). Next work is chosen by the owner from the *Next — v1.0* list in `ROADMAP.md`. Do not start large features without a plan approved by the owner.
 
 ---
 
@@ -34,6 +34,8 @@ Read these before any non-trivial change — they are the source of truth:
 | **Built-in preview** | VS Code's own Markdown preview (`markdown.showPreview`). We extend it; we do not replace it. |
 | **Plugins** | Our markdown-it extensions in `src/markdown/` (alerts, containers, TOC, task lists, Mermaid placeholder, extra syntax). One set, used by the preview **and** all exports. |
 | **Preview script** | Browser code injected into the built-in preview via `markdown.previewScripts` (`src/preview/mermaid.ts`). Also embedded in exported HTML/PDF. |
+| **Edit Preview** | Our own webview (`src/edit/`, ADR-002) that shows the document and lets the user format selected text from a toolbar (A24). The built-in preview cannot send messages to extensions, so this is separate from it. |
+| **Source map** | `src/markdown/sourceMap.ts`: `data-line`/`data-line-end`/`data-block` on blocks and `<span data-src>` on text in the Edit Preview, so a selection maps to exact source offsets. |
 | **Exporters** | `src/export/` — HTML (`html.ts`), PDF (`pdf.ts` + `browser.ts`), Word (`docx.ts`), and the sanitizing export engine (`engine.ts`). |
 | **Render host** | The installed Edge/Chrome/Chromium that PDF export drives headless (never downloaded). |
 | **Engine (future)** | The optional C# / .NET process described in `docs/03-architecture.md`. Not part of the current code. |
@@ -60,12 +62,12 @@ Read these before any non-trivial change — they are the source of truth:
 
 1. If VS Code's built-in Markdown preview already does something (math, front matter, scroll sync, link validation, image paste…), **do not rebuild it**.
 2. New syntax = a markdown-it plugin in `src/markdown/`, registered in `plugins.ts`, so the preview and every exporter get it at once.
-3. Keep `src/export/` and `src/markdown/` free of `import 'vscode'` so they stay unit-testable; only `src/extension.ts` talks to the VS Code API.
+3. Keep `src/export/`, `src/markdown/` and `src/edit/` free of `import 'vscode'` so they stay unit-testable; only `src/extension.ts` and `src/edit/panel.ts` (the Edit Preview webview) talk to the VS Code API.
 
 ### 3.2 Security (a Markdown file is untrusted input)
 
 1. **Never** use `eval`, `new Function`, `vm.runIn*`, string-built `setTimeout`, or any "execute this text" mechanism.
-2. **Never** assign unsanitized content to `innerHTML`/`outerHTML`/`insertAdjacentHTML`. Renderers escape user text (`escapeHtml`); exported HTML passes the export sanitizer. The only `innerHTML` is Mermaid's own sanitized SVG (`securityLevel: 'strict'`).
+2. **Never** assign unsanitized content to `innerHTML`/`outerHTML`/`insertAdjacentHTML`. Renderers escape user text (`escapeHtml`); exported HTML passes the export sanitizer. The only `innerHTML` uses are Mermaid's own sanitized SVG (`securityLevel: 'strict'`) and the Edit Preview's document content, which the extension renders through the export sanitizer.
 3. **Never** start a process through a shell: `spawn`/`execFile` with an args array (puppeteer-core does this), never `exec` or `shell: true`.
 4. Never ask users to loosen the preview's security settings, and never inject HTML into the preview outside markdown-it renderers.
 5. Respect **Workspace Trust**: anything that runs code or starts external tools (e.g. PDF export's browser) is disabled in Restricted Mode.
@@ -73,6 +75,8 @@ Read these before any non-trivial change — they are the source of truth:
 7. Configuration is **declarative JSON only**. Never add executable config/plugin files.
 8. **Offline by default**: no CDN URLs, no network calls unless the user enabled a labelled opt-in feature. No telemetry.
 9. Every security-relevant fix adds a case to `samples/malicious/`.
+10. The Edit Preview accepts only the messages in `src/edit/messages.ts`, fully validated, and refuses edits made against an older document version. Changing that list is a security-model change (ask the owner).
+11. The only CSS written into or kept from documents is `color`, `background-color` and a bounded `font-size` on `<span>` (`src/markdown/styles.ts`).
 
 ### 3.3 Preview compatibility
 
