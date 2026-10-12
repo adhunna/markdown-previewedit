@@ -54,3 +54,53 @@ export function formatStyle(style: Map<StyleProperty, string>): string {
 
 /** An inline `<span style="…">` opening tag as written in Markdown source. */
 export const STYLED_SPAN_OPEN = /^<span\s+style\s*=\s*(?:"([^"<>]*)"|'([^'<>]*)')\s*>$/i;
+
+const NAMED_COLORS: Record<string, string> = {
+  black: '000000', white: 'FFFFFF', red: 'FF0000', green: '008000', blue: '0000FF', yellow: 'FFFF00',
+  orange: 'FFA500', purple: '800080', pink: 'FFC0CB', brown: 'A52A2A', gray: '808080', grey: '808080',
+  navy: '000080', teal: '008080', maroon: '800000', olive: '808000', lime: '00FF00', aqua: '00FFFF',
+  cyan: '00FFFF', magenta: 'FF00FF', fuchsia: 'FF00FF', silver: 'C0C0C0', gold: 'FFD700', indigo: '4B0082',
+  violet: 'EE82EE', crimson: 'DC143C', coral: 'FF7F50', salmon: 'FA8072', tomato: 'FF6347', orchid: 'DA70D6',
+  darkred: '8B0000', darkgreen: '006400', darkblue: '00008B', darkorange: 'FF8C00', lightgray: 'D3D3D3',
+  lightgrey: 'D3D3D3', darkgray: 'A9A9A9', darkgrey: 'A9A9A9', lightblue: 'ADD8E6', lightgreen: '90EE90',
+  lightyellow: 'FFFFE0', lightpink: 'FFB6C1',
+};
+
+/** `RRGGBB` for Word, or undefined for colours Word cannot use (transparent, unknown names). */
+export function cssColorToHex(value: string): string | undefined {
+  const v = value.trim().toLowerCase();
+  if (/^#[0-9a-f]{6}$/.test(v)) {
+    return v.slice(1).toUpperCase();
+  }
+  if (/^#[0-9a-f]{3}$/.test(v)) {
+    return [...v.slice(1)].map((c) => c + c).join('').toUpperCase();
+  }
+  const fn = /^(rgb|hsl)a?\(([^)]*)\)$/.exec(v);
+  if (fn) {
+    const [a, b, c] = fn[2].split(',').map((part) => parseFloat(part));
+    if ([a, b, c].some((n) => !Number.isFinite(n))) {
+      return undefined;
+    }
+    const rgb = fn[1] === 'rgb' ? [a, b, c].map((n, i) => (fn[2].split(',')[i].includes('%') ? (n / 100) * 255 : n)) : hslToRgb(a, b / 100, c / 100);
+    return rgb.map((n) => Math.round(Math.min(255, Math.max(0, n))).toString(16).padStart(2, '0')).join('').toUpperCase();
+  }
+  return NAMED_COLORS[v];
+}
+
+function hslToRgb(h: number, s: number, l: number): number[] {
+  const k = (n: number) => (n + h / 30) % 12;
+  const a = s * Math.min(l, 1 - l);
+  const f = (n: number) => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+  return [f(0) * 255, f(8) * 255, f(4) * 255];
+}
+
+/** Word font size in half-points for a safe CSS size, relative to an 11 pt body. */
+export function cssSizeToHalfPoints(value: string): number | undefined {
+  const match = /^(\d+(?:\.\d+)?)(em|rem|%|px)$/.exec(value.trim());
+  if (!match) {
+    return undefined;
+  }
+  const n = parseFloat(match[1]);
+  const points = match[2] === 'px' ? n * 0.75 : match[2] === '%' ? (n / 100) * 11 : n * 11;
+  return Math.round(points * 2);
+}

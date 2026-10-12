@@ -82,3 +82,11 @@ test('front matter title is read without evaluating YAML', () => {
   assert.deepEqual(parseFrontMatter('---\ntitle: "Hello"\nother: 1\n---\n# Body\n'), { title: 'Hello', body: '# Body\n' });
   assert.deepEqual(parseFrontMatter('# No front matter'), { title: undefined, body: '# No front matter' });
 });
+
+test('HTML export keeps safe colour and size spans (inline and in HTML blocks), normalized', () => {
+  const md = 'A <span style="color: #D1242F">red</span> and <span style="font-size:1.25em;background-color:#fff8c5">big</span> word.\n\n<div><span style="color:green">block</span></div>\n';
+  const body = mainContent(renderHtmlDocument(md, assets(), { mermaid: false }).html);
+  assert.match(body, /A <span style="color:#D1242F">red<\/span> and <span style="background-color:#fff8c5; font-size:1.25em">big<\/span> word\./);
+  assert.match(body, /<span style="color:green">block<\/span>/);
+  assert.doesNotMatch(body, /&lt;span/, 'styled spans are no longer shown as text');
+});

@@ -16,9 +16,11 @@ import {
   WidthType,
 } from 'docx';
 import MarkdownIt from 'markdown-it';
+import sanitizeHtml from 'sanitize-html';
 import type Token from 'markdown-it/lib/token.mjs';
 import { firstHeading, parseFrontMatter } from './engine';
 import { extendMarkdownIt } from '../markdown/plugins';
+import { cssColorToHex, cssSizeToHalfPoints, parseSafeStyle, STYLED_SPAN_OPEN } from '../markdown/styles';
 import type { TocHeading } from '../markdown/toc';
 
 /*
@@ -51,7 +53,14 @@ interface RunStyle {
   underline?: boolean;
   superScript?: boolean;
   subScript?: boolean;
+  /** From `<span style="…">` (A24): text colour and fill as RRGGBB, size in half-points. */
+  color?: string;
+  fill?: string;
+  size?: number;
 }
+
+/** The on/off parts of a run style (Markdown emphasis and friends). */
+type ToggleKey = 'bold' | 'italics' | 'strike' | 'code' | 'highlight' | 'underline' | 'superScript' | 'subScript';
 
 interface ListContext {
   readonly ordered: boolean;
@@ -65,7 +74,8 @@ export interface DocxExportOptions {
 /** Builds a .docx file (as bytes) from Markdown text. */
 export async function renderDocx(markdown: string, options: DocxExportOptions = {}): Promise<Uint8Array> {
   const { title: frontMatterTitle, body } = parseFrontMatter(markdown);
-  const md = new MarkdownIt({ html: false, linkify: true });
+  // Raw HTML is parsed so <span style> colours carry over; other tags are dropped, their text kept.
+  const md = new MarkdownIt({ html: true, linkify: true });
   // Same syntax as the preview; Mermaid stays a code fence and becomes a placeholder below.
   extendMarkdownIt(md, { isMermaidEnabled: () => false, addHeadingIds: false });
   const tokens = md.parse(body, {});
@@ -205,6 +215,15 @@ class DocxWriter {
         case 'hr':
           out.push(new Paragraph({ border: { bottom: { style: BorderStyle.SINGLE, size: 6, color: 'BBBBBB', space: 1 } } }));
           break;
+        case 'html_block': {
+          // Visible text only: tags, comments and scripts are removed.
+          const text = sanitizeHtml(token.content, { allowedTags: [], allowedAttributes: {}, nonTextTags: ['script', 'style', 'textarea', 'noscript', 'title'] })
+            .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&');
+          for (const line of text.split('\n').map((l) => l.trim()).filter(Boolean)) {
+            out.push(new Paragraph({ children: [new TextRun(line)] }));
+          }
+          break;
+        }
         case 'mdp_toc':
           out.push(...this.toc((token.meta as { headings: TocHeading[] }).headings));
           break;
@@ -218,7 +237,7 @@ class DocxWriter {
           } else if (container?.[2] === 'close') {
             this.quoteDepth--;
           }
-          // html_block and other tokens are not exported in DOCX-lite.
+          // Other tokens are not exported in DOCX-lite.
           break;
         }
       }
@@ -320,8 +339,11 @@ class DocxWriter {
     let link: { href: string; runs: TextRun[] } | undefined;
     const children = token?.children ?? [];
 
+    // Open `<span>` tags; styled ones carry colour/fill/size for the runs inside them.
+    const spans: Partial<RunStyle>[] = [];
+
     const emit = (text: string, extra: Partial<RunStyle> = {}, isBreak = false) => {
-      const s = { ...style, ...extra };
+      const s: RunStyle = Object.assign({}, style, ...spans, extra);
       const run = new TextRun({
         text,
         bold: s.bold,
@@ -332,7 +354,9 @@ class DocxWriter {
         superScript: s.superScript,
         subScript: s.subScript,
         font: s.code ? CODE_FONT : undefined,
-        shading: s.code ? { type: ShadingType.CLEAR, color: 'auto', fill: 'F3F3F3' } : undefined,
+        color: s.color,
+        size: s.size,
+        shading: s.code ? { type: ShadingType.CLEAR, color: 'auto', fill: 'F3F3F3' } : s.fill ? { type: ShadingType.CLEAR, color: 'auto', fill: s.fill } : undefined,
         style: link ? 'Hyperlink' : undefined,
         break: isBreak ? 1 : undefined,
       });
@@ -343,7 +367,7 @@ class DocxWriter {
       }
     };
 
-    const toggles: Record<string, keyof RunStyle> = {
+    const toggles: Record<string, ToggleKey> = {
       strong: 'bold',
       em: 'italics',
       s: 'strike',
@@ -398,6 +422,26 @@ class DocxWriter {
         case 'image':
           emit(`[Image: ${child.content || child.attrGet('src') || ''}]`, { italics: true });
           break;
+        case 'html_inline': {
+          const tag = child.content.trim();
+          const styled = STYLED_SPAN_OPEN.exec(tag);
+          if (styled) {
+            const css = parseSafeStyle(styled[1] ?? styled[2] ?? '');
+            const color = css.get('color');
+            const fill = css.get('background-color');
+            const size = css.get('font-size');
+            spans.push({
+              color: color ? cssColorToHex(color) : undefined,
+              fill: fill ? cssColorToHex(fill) : undefined,
+              size: size ? cssSizeToHalfPoints(size) : undefined,
+            });
+          } else if (/^<span\s*>$/i.test(tag)) {
+            spans.push({});
+          } else if (/^<\/span\s*>$/i.test(tag)) {
+            spans.pop();
+          }
+          break;
+        }
         default:
           if (child.content) {
             emit(child.content);

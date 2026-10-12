@@ -41,3 +41,10 @@ test('only web and mail links become hyperlinks', async () => {
   const { doc } = await documentXml('[a](https://example.com) [b](javascript:alert(1)) [c](./local.md)');
   assert.equal((doc.match(/<w:hyperlink /g) ?? []).length, 1);
 });
+
+test('colour, fill and size spans become Word run formatting', async () => {
+  const { doc } = await documentXml('Make <span style="color:#d1242f; font-size:1.25em">this</span> and <span style="background-color:yellow">that</span> stand out.');
+  assert.match(doc, /<w:color w:val="D1242F"\/>[\s\S]{0,120}<w:sz w:val="28"\/>[\s\S]{0,200}>this<\/w:t>/);
+  assert.match(doc, /<w:shd [^>]*w:fill="FFFF00"[^>]*\/>[\s\S]{0,200}>that<\/w:t>/);
+  assert.doesNotMatch(doc, /&lt;span/);
+});

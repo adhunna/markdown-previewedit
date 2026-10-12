@@ -2,10 +2,14 @@ import katex from '@vscode/markdown-it-katex';
 import MarkdownIt from 'markdown-it';
 import sanitizeHtml from 'sanitize-html';
 import { extendMarkdownIt } from '../markdown/plugins';
+import { formatStyle, parseSafeStyle, SAFE_COLOR, SAFE_FONT_SIZE, STYLED_SPAN_OPEN } from '../markdown/styles';
 
 const SAFE_DATA_IMAGE = /^data:image\/(png|jpe?g|gif|webp|avif|bmp);/i;
 
-/** Raw HTML allowed in exported documents. Scripts, styles, frames, forms and event handlers never pass. */
+/**
+ * Raw HTML allowed in exported documents. Scripts, `<style>`, frames, forms and event handlers never
+ * pass; the only CSS kept is colour, background colour and font size on `<span>` (styles.ts).
+ */
 const SANITIZE_OPTIONS: sanitizeHtml.IOptions = {
   allowedTags: [
     ...sanitizeHtml.defaults.allowedTags,
@@ -17,13 +21,21 @@ const SANITIZE_OPTIONS: sanitizeHtml.IOptions = {
     img: ['src', 'srcset', 'alt', 'title', 'width', 'height', 'loading'],
     source: ['srcset', 'media', 'type'],
     details: ['open'],
+    span: ['style'],
     td: ['colspan', 'rowspan', 'align'],
     th: ['colspan', 'rowspan', 'align'],
   },
+  allowedStyles: { span: { color: [SAFE_COLOR], 'background-color': [SAFE_COLOR], 'font-size': [SAFE_FONT_SIZE] } },
   allowedSchemes: ['http', 'https', 'mailto'],
   allowedSchemesByTag: { img: ['http', 'https', 'data'] },
   allowProtocolRelative: false,
   transformTags: {
+    // Keep only safe declarations, with sizes range-checked; drop the attribute if none are left.
+    span: (tagName, attribs) => {
+      const { style, ...rest } = attribs;
+      const css = style === undefined ? '' : formatStyle(parseSafeStyle(style));
+      return { tagName, attribs: css ? { ...rest, style: css } : rest };
+    },
     // Inline images may only be real image data, never data:text/html and the like.
     img: (tagName, attribs) => {
       const { src, ...rest } = attribs;
@@ -62,6 +74,11 @@ export function createExportMarkdownIt(options: { mermaid: boolean }): MarkdownI
     const content = tokens[idx].content;
     if (SAFE_INLINE_TAG.test(content.trim())) {
       return content;
+    }
+    const styled = STYLED_SPAN_OPEN.exec(content.trim());
+    if (styled) {
+      const css = formatStyle(parseSafeStyle(styled[1] ?? styled[2] ?? ''));
+      return css ? `<span style="${md.utils.escapeHtml(css)}">` : '<span>';
     }
     if (/^<!--[\s\S]*-->$/.test(content.trim())) {
       return '';

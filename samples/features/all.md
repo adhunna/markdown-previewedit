@@ -12,6 +12,8 @@ author: MarkDownPreview
 **Bold**, *italic*, ~~strikethrough~~, `inline code`, ==highlight==, ++inserted++,
 H~2~O, x^2^, and emoji :tada: :rocket:.
 
+Colour and size (HTML): <span style="color:#d1242f">red text</span>, <span style="background-color:#fff8c5">filled</span> and <span style="font-size:1.25em">larger</span>.
+
 Visit [VS Code](https://code.visualstudio.com) or email <mailto:someone@example.com>.
 
 The HTML spec is maintained by the W3C.
