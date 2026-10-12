@@ -19,7 +19,7 @@
 
 **≈ 15 weeks to v1.0.**
 
-> **Fast track (current):** a one-week MVP with 29 features replaces Phase 0 + 1 scope — see [05-one-week-mvp.md](05-one-week-mvp.md). After it, continue with Phase 2.
+> **Update:** the MVP (v0.1.0) is built with the TypeScript stack from [ADR-001](adr/001-stack-typescript-builtin-preview.md), replacing Phase 0 + 1. Phases 2–5 below remain the feature roadmap; C#-specific tasks (NativeAOT, JSON-RPC, per-platform builds) apply only if the C# engine is reintroduced.
 
 ---
 

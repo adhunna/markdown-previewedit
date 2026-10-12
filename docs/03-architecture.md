@@ -1,5 +1,7 @@
 # 03 — Architecture
 
+> **Current stack:** superseded for the MVP by [ADR-001](adr/001-stack-typescript-builtin-preview.md) — a TypeScript extension on VS Code's built-in preview. This C#/.NET design is kept as the long-term option (e.g. for a richer Word engine or own webview).
+
 > **Purpose:** How a C#/.NET-first Markdown preview runs inside VS Code, which code goes where, and the key technical decisions.
 > **Status:** Proposed. Decisions marked *Proposed* are confirmed (or changed) by the Phase 0 spikes in [04-implementation-plan.md](04-implementation-plan.md).
 

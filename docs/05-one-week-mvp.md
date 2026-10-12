@@ -1,5 +1,7 @@
 # 05 — One-Week MVP (Fast Track)
 
+> **Outcome:** superseded by [ADR-001](adr/001-stack-typescript-builtin-preview.md). With the TypeScript stack the MVP (v0.1.0) was built in one session instead of one week, and covers more than this plan (including PDF export). This page is kept as the record of the C# fast-track option.
+
 > **Purpose:** Get a working, installable C#-powered Markdown preview on your Windows PC in **5 working days**, with a deliberately short feature list.
 > **Replaces:** the scope of Phase 0 + Phase 1 in [04-implementation-plan.md](04-implementation-plan.md) for now. Everything not listed here moves to the roadmap (Phases 2–5) unchanged.
 > **Assumes:** one developer working full-time with an AI coding agent; .NET 10 SDK, Node.js LTS and VS Code installed (see plan §7).

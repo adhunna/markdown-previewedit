@@ -1,7 +1,7 @@
 # 02 — Feature Catalog
 
 > **Purpose:** The single, numbered list of everything the extension may do. Every piece of work references a **Feature ID** from this file (e.g. `E04`).
-> **Status of all features:** `Planned` (nothing is built yet). Agents update the *Status* column as work lands — see [AGENTS.md](../AGENTS.md).
+> **Status:** v0.1.0 MVP delivered (see ADR-001). *Built-in ✅* = provided by VS Code's own Markdown preview, which this extension extends. *Done* / *Partial* = implemented here. Agents update the *Status* column as work lands — see [AGENTS.md](../AGENTS.md).
 
 ## Legend
 
@@ -12,7 +12,7 @@
 | **P2** | Valuable; v1.x | Phase 4 |
 | **P3** | Later / only if users ask | Phase 5 |
 
-**Owner** — where the code lives: **E** = C# engine, **S** = TypeScript shell (VS Code API), **W** = webview (browser-side TS), **R** = render host (webview or headless Edge/Chrome used for exports).
+**Owner** — where the code would live in the original C# design: **E** = engine, **S** = shell (VS Code API), **W** = webview, **R** = render host. Under ADR-001 (TypeScript), *E* items live in `src/markdown/` or `src/export/`, *W* items in the preview script.
 **★** = differentiator versus Markdown Preview Enhanced and other competitors.
 
 ---
@@ -21,23 +21,23 @@
 
 | ID | Feature | Pri | Phase | Owner | Status |
 |---|---|---|---|---|---|
-| A01 | Open preview in current tab / to the side; editor-title button; keybindings (`Ctrl+K V`, `Ctrl+Shift+V` — configurable) | P0 | 1 | S | Planned |
-| A02 | Locked preview (stays on one file) and toggle lock | P1 | 2 | S | Planned |
+| A01 | Open preview in current tab / to the side; editor-title button; keybindings (`Ctrl+K V`, `Ctrl+Shift+V` — configurable) | P0 | 1 | S | Built-in ✅ |
+| A02 | Locked preview (stays on one file) and toggle lock | P1 | 2 | S | Built-in ✅ |
 | A03 | Single-preview vs multiple-preview mode | P1 | 2 | S | Planned |
-| A04 | Live update while typing, debounced; stale renders cancelled | P0 | 1 | S+E | Planned |
+| A04 | Live update while typing, debounced; stale renders cancelled | P0 | 1 | S+E | Built-in ✅ |
 | A05 | Incremental DOM update — only changed blocks are replaced, so scroll position, diagrams and images stay stable | P0 | 1 | E+W | Planned |
-| A06 | Editor → preview scroll sync (source-line map) | P0 | 1 | E+W | Planned |
-| A07 | Preview → editor scroll sync; click / double-click in preview jumps to the source line | P1 | 2 | W+S | Planned |
+| A06 | Editor → preview scroll sync (source-line map) | P0 | 1 | E+W | Built-in ✅ |
+| A07 | Preview → editor scroll sync; click / double-click in preview jumps to the source line | P1 | 2 | W+S | Built-in ✅ |
 | A08 | Highlight the block under the editor cursor in the preview | P1 | 2 | W | Planned |
-| A09 | Preview follows the VS Code theme (light / dark / high-contrast) via `--vscode-*` CSS variables | P0 | 1 | W | Planned |
+| A09 | Preview follows the VS Code theme (light / dark / high-contrast) via `--vscode-*` CSS variables | P0 | 1 | W | Built-in ✅ |
 | A10 | Built-in preview themes: GitHub Light/Dark, **"Word document" look** ★, Academic/print | P1 | 2 | W | Planned |
 | A11 | Custom CSS: user-level, workspace-level (`.mdp/style.css`), front-matter `css:` | P1 | 2 | S+E | Planned |
 | A12 | Font family / size / line height; zoom in/out/reset (`Ctrl +/-/0`, `Ctrl`+wheel) | P1 | 2 | W | Planned |
 | A13 | Outline (TOC) sidebar inside the preview: collapsible, resizable, highlights current section | P1 | 2 | E+W | Planned |
-| A14 | Find in preview (`Ctrl+F`) | P1 | 2 | S | Planned |
-| A15 | Relative images/links resolved safely; `Ctrl+click` opens `.md` links in the editor, web links in the browser (other schemes need confirmation) | P0 | 1 | S+E | Planned |
+| A14 | Find in preview (`Ctrl+F`) | P1 | 2 | S | Built-in ✅ |
+| A15 | Relative images/links resolved safely; `Ctrl+click` opens `.md` links in the editor, web links in the browser (other schemes need confirmation) | P0 | 1 | S+E | Built-in ✅ |
 | A16 | Image lightbox (click to enlarge) | P2 | 4 | W | Planned |
-| A17 | Previews restored after VS Code restart | P1 | 2 | S | Planned |
+| A17 | Previews restored after VS Code restart | P1 | 2 | S | Built-in ✅ |
 | A18 | Status bar: word count, reading time, characters | P2 | 4 | S+E | Planned |
 | A19 | Large-document mode: render budget, progressive rendering, auto-pause live update above a size threshold | P1 | 2 | E+W | Planned |
 | A20 | Preview non-file sources: untitled documents, Git diff views, remote/virtual file systems | P2 | 4 | S | Planned |
@@ -49,20 +49,20 @@
 
 | ID | Feature | Pri | Phase | Owner | Status |
 |---|---|---|---|---|---|
-| B01 | CommonMark 0.31.2 compliance | P0 | 1 | E | Planned |
-| B02 | GitHub Flavored Markdown: tables, task lists, strikethrough, autolinks | P0 | 1 | E | Planned |
-| B03 | GitHub alerts `> [!NOTE]` / TIP / IMPORTANT / WARNING / CAUTION and Obsidian-style callouts (incl. collapsible `[!info]-`) | P0 | 1 | E | Planned |
-| B04 | YAML front matter: hide / show as table / show as code; supplies title and per-document options | P0 | 1 | E | Planned |
-| B05 | Heading IDs with GitHub-compatible slugs (de-duplicated), `{#custom-id}` and `{.class}` attributes | P0 | 1 | E | Planned |
-| B06 | Raw HTML via a sanitizing allowlist (`details/summary`, `kbd`, `sup/sub`, sized `img`, …) | P0 | 1 | E | Planned |
-| B07 | Math: `$…$`, `$$…$$`, `\(…\)`, `\[…\]`, ```` ```math ````; KaTeX default, MathJax 4 option | P0 | 1 | E+W | Planned |
-| B08 | Code-block syntax highlighting that matches the active VS Code theme (TextMate grammars via Shiki), languages lazy-loaded | P0 | 1 | W | Planned |
+| B01 | CommonMark 0.31.2 compliance | P0 | 1 | E | Built-in ✅ |
+| B02 | GitHub Flavored Markdown: tables, task lists, strikethrough, autolinks | P0 | 1 | E | Done (v0.1.0) |
+| B03 | GitHub alerts `> [!NOTE]` / TIP / IMPORTANT / WARNING / CAUTION and Obsidian-style callouts (incl. collapsible `[!info]-`) | P0 | 1 | E | Done (v0.1.0) |
+| B04 | YAML front matter: hide / show as table / show as code; supplies title and per-document options | P0 | 1 | E | Built-in ✅ |
+| B05 | Heading IDs with GitHub-compatible slugs (de-duplicated), `{#custom-id}` and `{.class}` attributes | P0 | 1 | E | Built-in ✅ |
+| B06 | Raw HTML via a sanitizing allowlist (`details/summary`, `kbd`, `sup/sub`, sized `img`, …) | P0 | 1 | E | Built-in ✅ |
+| B07 | Math: `$…$`, `$$…$$`, `\(…\)`, `\[…\]`, ```` ```math ````; KaTeX default, MathJax 4 option | P0 | 1 | E+W | Built-in ✅ |
+| B08 | Code-block syntax highlighting that matches the active VS Code theme (TextMate grammars via Shiki), languages lazy-loaded | P0 | 1 | W | Built-in ✅ |
 | B09 | Code-block extras: line numbers, line highlights `{highlight=2-4}`, title/filename, copy button, diff colouring | P1 | 2 | E+W | Planned |
-| B10 | Footnotes, definition lists, abbreviations | P1 | 2 | E | Planned |
-| B11 | Subscript, superscript, `==mark==`, `++inserted++` | P1 | 2 | E | Planned |
-| B12 | Emoji shortcodes `:tada:` | P1 | 2 | E | Planned |
-| B13 | Custom containers / admonitions `::: warning` | P1 | 2 | E | Planned |
-| B14 | `[TOC]` / `<!-- toc -->` placeholder rendered as a table of contents (depth configurable) | P1 | 2 | E | Planned |
+| B10 | Footnotes, definition lists, abbreviations | P1 | 2 | E | Done (v0.1.0) |
+| B11 | Subscript, superscript, `==mark==`, `++inserted++` | P1 | 2 | E | Done (v0.1.0) |
+| B12 | Emoji shortcodes `:tada:` | P1 | 2 | E | Done (v0.1.0) |
+| B13 | Custom containers / admonitions `::: warning` | P1 | 2 | E | Done (v0.1.0) |
+| B14 | `[TOC]` / `<!-- toc -->` placeholder rendered as a table of contents (depth configurable) | P1 | 2 | E | Done (v0.1.0) |
 | B15 | Line-break mode (single newline → `<br>`) toggle | P1 | 2 | E | Planned |
 | B16 | Grid tables & extended tables (colspan/rowspan, multi-line cells) | P2 | 4 | E | Planned |
 | B17 | Smart typography (curly quotes, dashes, ellipses) | P2 | 4 | E | Planned |
@@ -78,9 +78,9 @@
 
 | ID | Feature | Pri | Phase | Owner | Status |
 |---|---|---|---|---|---|
-| C01 | Mermaid — bundled (offline), theme-aware, all diagram types | P0 | 1 | W | Planned |
-| C02 | Inline error box for broken diagrams (never a blank area) + per-diagram render timeout | P0 | 1 | W | Planned |
-| C03 | Diagram cache keyed by content hash (no re-render on unrelated edits) | P1 | 2 | E+W | Planned |
+| C01 | Mermaid — bundled (offline), theme-aware, all diagram types | P0 | 1 | W | Done (v0.1.0) |
+| C02 | Inline error box for broken diagrams (never a blank area) + per-diagram render timeout | P0 | 1 | W | Done (v0.1.0) |
+| C03 | Diagram cache keyed by content hash (no re-render on unrelated edits) | P1 | 2 | E+W | Done (v0.1.0) |
 | C04 | Graphviz / DOT via bundled WebAssembly (no install) | P1 | 2 | W | Planned |
 | C05 | Copy diagram as SVG/PNG, save diagram as file — paste straight into Word/PowerPoint ★ | P2 | 4 | W+S | Planned |
 | C06 | PlantUML via local `plantuml.jar` (Java) or user-configured server | P2 | 4 | E | Planned |
@@ -106,10 +106,10 @@
 
 | ID | Feature | Pri | Phase | Owner | Status |
 |---|---|---|---|---|---|
-| E01 | HTML export — single self-contained file (inline CSS, optional embedded images, math/diagrams pre-rendered to SVG, works offline) | P1 | 2 | E+R | Planned |
-| E02 | PDF export using the **browser already installed** (Edge on Windows; Chrome/Chromium/Edge elsewhere) — no bundled Chromium ★ | P1 | 3 | E+R | Planned |
-| E03 | PDF options: page size, margins, orientation, header/footer templates (title, page X of Y, date), print backgrounds, CSS `@page` | P1 | 3 | E | Planned |
-| E04 | **Native DOCX export** (no Pandoc) via Open XML SDK: Word built-in styles, lists, tables, hyperlinks, bookmarks, footnotes, images (SVG + PNG fallback), highlighted code, page breaks ★ | P1 | 3 | E | Planned |
+| E01 | HTML export — single self-contained file (inline CSS, optional embedded images, math/diagrams pre-rendered to SVG, works offline) | P1 | 2 | E+R | Done (v0.1.0) |
+| E02 | PDF export using the **browser already installed** (Edge on Windows; Chrome/Chromium/Edge elsewhere) — no bundled Chromium ★ | P1 | 3 | E+R | Done (v0.1.0) |
+| E03 | PDF options: page size, margins, orientation, header/footer templates (title, page X of Y, date), print backgrounds, CSS `@page` | P1 | 3 | E | Partial (v0.1.0: paper size, margins) |
+| E04 | **Native DOCX export** (no Pandoc) via Open XML SDK: Word built-in styles, lists, tables, hyperlinks, bookmarks, footnotes, images (SVG + PNG fallback), highlighted code, page breaks ★ | P1 | 3 | E | Partial (v0.1.0: DOCX-lite) |
 | E05 | DOCX **reference template** — apply styles from the user's corporate `.dotx`/`.docx` ★ | P1 | 3 | E | Planned |
 | E06 | DOCX extras: Word TOC field, document properties from front matter (title, author, subject, keywords), headers/footers, cover page | P2 | 4 | E | Planned |
 | E07 | Math → **native, editable Word equations (OMML)** ★; fallback to equation images | P2 | 4 | E+R | Planned |
@@ -164,30 +164,30 @@
 
 | ID | Feature | Pri | Phase | Owner | Status |
 |---|---|---|---|---|---|
-| J01 | Strict webview Content-Security-Policy with per-load nonce; no inline scripts; `localResourceRoots` limited to extension + workspace + document folder | P0 | 1 | S+W | Planned |
+| J01 | Strict webview Content-Security-Policy with per-load nonce; no inline scripts; `localResourceRoots` limited to extension + workspace + document folder | P0 | 1 | S+W | Built-in ✅ |
 | J02 | HTML sanitization in the engine (allowlist) **and** DOMPurify in the webview (defense in depth) | P0 | 1 | E+W | Planned |
-| J03 | Workspace Trust — Restricted Mode disables: raw-HTML scripts, custom `<head>`, external tools (Java/Pandoc/D2), code chunks, imports outside the workspace | P0 | 1 | S+E | Planned |
+| J03 | Workspace Trust — Restricted Mode disables: raw-HTML scripts, custom `<head>`, external tools (Java/Pandoc/D2), code chunks, imports outside the workspace | P0 | 1 | S+E | Partial (v0.1.0: PDF export off in Restricted Mode) |
 | J04 | Typed, allowlisted webview ↔ shell messages; every payload validated; paths/URIs checked against the source document | P0 | 1 | S+W | Planned |
 | J05 | No `eval` / `new Function` / dynamic code anywhere (diagram libraries configured in CSP-safe modes) | P0 | 1 | S+W+E | Planned |
 | J06 | External processes started **without a shell**, arguments as arrays, validated paths, timeouts | P0 | 1 | E | Planned |
-| J07 | **Offline by default** — all libraries bundled, zero CDN; network features opt-in and clearly labelled | P0 | 1 | all | Planned |
+| J07 | **Offline by default** — all libraries bundled, zero CDN; network features opt-in and clearly labelled | P0 | 1 | all | Done (v0.1.0) |
 | J08 | Remote-content security levels (Strict / Default / Off), similar to the built-in preview | P1 | 2 | S+W | Planned |
-| J09 | No telemetry by default; any future telemetry is opt-in and respects `telemetry.telemetryLevel` | P0 | 1 | S | Planned |
+| J09 | No telemetry by default; any future telemetry is opt-in and respects `telemetry.telemetryLevel` | P0 | 1 | S | Done (v0.1.0) |
 | J10 | Supply chain: lockfiles, dependency + licence scanning, SBOM, signed native binaries, `SECURITY.md` disclosure policy | P1 | 3 | all | Planned |
-| J11 | **Malicious-Markdown regression corpus** in CI (XSS, path traversal, command injection, ReDoS, huge files) | P0 | 1 | E+W | Planned |
+| J11 | **Malicious-Markdown regression corpus** in CI (XSS, path traversal, command injection, ReDoS, huge files) | P0 | 1 | E+W | Done (v0.1.0) |
 
 ## K. Platform, distribution, accessibility
 
 | ID | Feature | Pri | Phase | Owner | Status |
 |---|---|---|---|---|---|
-| K01 | Windows x64 | P0 | 1 | all | Planned |
+| K01 | Windows x64 | P0 | 1 | all | Done (v0.1.0) |
 | K02 | Windows arm64, macOS x64/arm64, Linux x64/arm64/armhf, Alpine x64/arm64 | P1 | 3 | E | Planned |
 | K03 | Remote-SSH, WSL, Dev Containers, Codespaces (engine runs on the workspace side) | P1 | 3 | S+E | Planned |
 | K04 | Published to VS Code Marketplace **and** Open VSX (Cursor, Windsurf, VSCodium …) | P1 | 2 | — | Planned |
 | K05 | Pre-release channel | P1 | 2 | — | Planned |
 | K06 | Accessibility: keyboard navigation, screen-reader-friendly HTML, MathML for math, high-contrast themes | P1 | 2 | W | Planned |
 | K07 | Localization (`vscode.l10n`, `package.nls.*.json`) | P2 | 4 | S | Planned |
-| K08 | Universal fallback VSIX for other platforms (gets .NET via the .NET Install Tool) | P2 | 4 | S | Planned |
+| K08 | Universal fallback VSIX for other platforms (gets .NET via the .NET Install Tool) | P2 | 4 | S | Done (v0.1.0) |
 | K09 | **VS Code for the Web** (vscode.dev / github.dev) via a .NET WebAssembly engine build ★ | P3 | 5 | E | Planned |
 
 ## L. AI-era integration (opt-in)
@@ -202,7 +202,7 @@
 
 | ID | Feature | Pri | Phase | Owner | Status |
 |---|---|---|---|---|---|
-| M01 | Small, well-defaulted settings set (target **≤ 30 settings** at v1.0; MPE has 74) | P0 | 1 | S | Planned |
+| M01 | Small, well-defaulted settings set (target **≤ 30 settings** at v1.0; MPE has 74) | P0 | 1 | S | Done (v0.1.0) |
 | M02 | Per-document overrides in front matter | P1 | 2 | E | Planned |
 | M03 | Workspace config `.mdp/config.json` — declarative JSON with a schema, **never executable code** ★ | P2 | 4 | E | Planned |
 | M04 | JSON Schemas for front matter and config (IntelliSense) | P2 | 4 | S | Planned |
