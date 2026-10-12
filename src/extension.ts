@@ -29,6 +29,8 @@ export function activate(context: vscode.ExtensionContext) {
   }
 
   context.subscriptions.push(
+    // A01: our own title-bar button, because VS Code hides its built-in one in some setups.
+    vscode.commands.registerCommand('mdp.openPreviewToSide', (uri?: vscode.Uri) => vscode.commands.executeCommand('markdown.showPreviewToSide', uri)),
     vscode.commands.registerCommand('mdp.preview.increaseFontSize', () => changeFontSize(1)),
     vscode.commands.registerCommand('mdp.preview.decreaseFontSize', () => changeFontSize(-1)),
     vscode.commands.registerCommand('mdp.preview.resetFontSize', () => changeFontSize(0)),

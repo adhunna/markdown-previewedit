@@ -6,7 +6,7 @@ Adds the missing pieces to **VS Code's built-in Markdown preview** — Mermaid d
 
 ## What you get
 
-**In the preview** (`Ctrl+Shift+V`, or `Ctrl+K V` for side-by-side):
+**In the preview** — click the **Open Preview to the Side** button at the top right of any Markdown file (hold `Alt` to open it in the same tab), or press `Ctrl+K V` / `Ctrl+Shift+V`:
 
 | Feature | Syntax |
 |---|---|
@@ -18,7 +18,7 @@ Adds the missing pieces to **VS Code's built-in Markdown preview** — Mermaid d
 | Footnotes, definition lists, abbreviations | `[^1]`, `Term` + `: Definition`, `*[HTML]: …` |
 | Highlight, inserted, sub/superscript, emoji | `==mark==`, `++ins++`, `H~2~O`, `x^2^`, `:tada:` |
 
-**Font size and theme** — use the buttons in the title bar (top right) of a Markdown file or of its preview, next to VS Code's own *Open Preview to the Side* button:
+**Font size and theme** — while the preview is open, use the buttons in its title bar (top right):
 
 | Button / shortcut (preview focused) | Action |
 |---|---|

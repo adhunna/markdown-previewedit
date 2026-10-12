@@ -67,6 +67,12 @@
         "category": "MDP"
       },
       {
+        "command": "mdp.openPreviewToSide",
+        "title": "Open Preview to the Side",
+        "category": "MDP",
+        "icon": "$(open-preview)"
+      },
+      {
         "command": "mdp.preview.increaseFontSize",
         "title": "Increase Preview Font Size",
         "category": "MDP",
@@ -103,6 +109,10 @@
         {
           "command": "mdp.exportHtml",
           "when": "editorLangId == markdown"
+        },
+        {
+          "command": "mdp.openPreviewToSide",
+          "when": "editorLangId == markdown"
         }
       ],
       "editor/context": [
@@ -129,19 +139,25 @@
       ],
       "editor/title": [
         {
+          "command": "mdp.openPreviewToSide",
+          "alt": "markdown.showPreview",
+          "when": "editorLangId == markdown && !notebookEditorFocused",
+          "group": "navigation@0"
+        },
+        {
           "command": "mdp.preview.decreaseFontSize",
-          "when": "activeWebviewPanelId == 'markdown.preview' || (editorLangId == markdown && !notebookEditorFocused)",
-          "group": "navigation@11"
+          "when": "activeWebviewPanelId == 'markdown.preview'",
+          "group": "navigation@1"
         },
         {
           "command": "mdp.preview.increaseFontSize",
-          "when": "activeWebviewPanelId == 'markdown.preview' || (editorLangId == markdown && !notebookEditorFocused)",
-          "group": "navigation@12"
+          "when": "activeWebviewPanelId == 'markdown.preview'",
+          "group": "navigation@2"
         },
         {
           "command": "mdp.preview.toggleTheme",
-          "when": "activeWebviewPanelId == 'markdown.preview' || (editorLangId == markdown && !notebookEditorFocused)",
-          "group": "navigation@13"
+          "when": "activeWebviewPanelId == 'markdown.preview'",
+          "group": "navigation@3"
         }
       ]
     },
