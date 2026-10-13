@@ -1,17 +1,17 @@
 <p align="center">
-  <img src="media/icon.png" width="96" height="96" alt="MarkDownPreview logo">
+  <img src="media/icon.png" width="96" height="96" alt="Markdown PreviewEdit logo">
 </p>
 
-<h1 align="center">MarkDownPreview</h1>
+<h1 align="center">Markdown PreviewEdit</h1>
 
 <p align="center">
-  <b>A better Markdown preview for VS Code: diagrams, alerts, formatting from the preview, and export to Word, PDF and HTML.</b><br>
+  <b>Preview <i>and edit</i> Markdown in VS Code: diagrams, alerts, formatting straight from the preview, and export to Word, PDF and HTML.</b><br>
   Free, open source, offline, no telemetry.
 </p>
 
 <p align="center">
-  <a href="https://github.com/adhunna/MarkDownPreview/actions/workflows/ci.yml"><img src="https://github.com/adhunna/MarkDownPreview/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a>
-  <a href="https://github.com/adhunna/MarkDownPreview/releases"><img src="https://img.shields.io/github/v/release/adhunna/MarkDownPreview?include_prereleases&label=release" alt="Latest release"></a>
+  <a href="https://github.com/adhunna/markdown-previewedit/actions/workflows/ci.yml"><img src="https://github.com/adhunna/markdown-previewedit/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a>
+  <a href="https://github.com/adhunna/markdown-previewedit/releases"><img src="https://img.shields.io/github/v/release/adhunna/markdown-previewedit?include_prereleases&label=release" alt="Latest release"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT licence"></a>
 </p>
 
@@ -19,7 +19,7 @@
   <img src="docs/images/edit-preview.png" alt="Selecting text in the Edit Preview shows a formatting toolbar" width="820">
 </p>
 
-MarkDownPreview builds on **VS Code's own Markdown preview** instead of replacing it, so live update, scroll sync, math and your theme keep working. It adds what's missing:
+Markdown PreviewEdit builds on **VS Code's own Markdown preview** instead of replacing it, so live update, scroll sync, math and your theme keep working. It adds what's missing:
 
 - 🧜 **Mermaid diagrams**, **GitHub alerts**, task lists, a table of contents, footnotes and more
 - ✏️ **Format from the preview:** select text and make it a title, bold, a list, red, bigger… The change is written into your `.md` file.
@@ -27,11 +27,11 @@ MarkDownPreview builds on **VS Code's own Markdown preview** instead of replacin
 - 🌗 **Light/Dark switch, zoom and full screen** for the preview, whatever your VS Code theme
 - 🔒 **Safe with untrusted files:** everything is bundled, nothing is downloaded, and nothing in a document can run code
 
-> **Status:** 0.3.0 pre-release. Install it from a [GitHub Release](https://github.com/adhunna/MarkDownPreview/releases); it is not on the VS Code Marketplace yet.
+> **Status:** 0.3.0 pre-release. Install it from a [GitHub Release](https://github.com/adhunna/markdown-previewedit/releases); it is not on the VS Code Marketplace yet.
 
 ## Install
 
-1. Download `markdownpreview-<version>.vsix` from the latest [GitHub Release](https://github.com/adhunna/MarkDownPreview/releases).
+1. Download `markdown-previewedit-<version>.vsix` from the latest [GitHub Release](https://github.com/adhunna/markdown-previewedit/releases).
 2. In VS Code, open the **Extensions** view (`Ctrl+Shift+X`), click the **`…`** menu at the top right of the view, choose **Install from VSIX…** and pick the file.
 3. Reload VS Code if it asks.
 
@@ -42,7 +42,7 @@ You need VS Code 1.95 or newer on Windows, macOS or Linux. PDF export also needs
 1. Open any `.md` file. You can try [`samples/features/all.md`](samples/features/all.md), which uses every feature.
 2. Click **Open Preview to the Side** (top right). In the preview, use the zoom, colour-mode and full-screen buttons.
 3. Click the **pencil** button instead to open the **Edit Preview**, then select some text and use the toolbar.
-4. Right-click in the file → **MDP: Export** → Word, PDF or HTML.
+4. Right-click in the file → **PreviewEdit: Export** → Word, PDF or HTML.
 
 Everything is explained in the **[user guide](docs/user-guide.md)**: all buttons, commands, shortcuts, settings and syntax.
 
@@ -90,11 +90,11 @@ Found a vulnerability? Please report it privately; see [SECURITY.md](SECURITY.md
 Bug reports, ideas, documentation and code are all welcome. Start with **[CONTRIBUTING.md](CONTRIBUTING.md)** and the [architecture guide](docs/architecture.md). Everyone taking part follows the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ```powershell
-git clone https://github.com/adhunna/MarkDownPreview.git
-cd MarkDownPreview
+git clone https://github.com/adhunna/markdown-previewedit.git
+cd markdown-previewedit
 npm ci
 npm test          # unit, export and security tests
-npm run package   # → markdownpreview-<version>.vsix
+npm run package   # → markdown-previewedit-<version>.vsix
 ```
 
 Press **F5** in VS Code to try your changes in a development window. All project documents are listed in [docs/README.md](docs/README.md).
@@ -107,4 +107,4 @@ Inspired by [Markdown Preview Enhanced](https://github.com/shd101wyy/vscode-mark
 
 ## Licence
 
-[MIT](LICENSE) © The MarkDownPreview contributors
+[MIT](LICENSE) © The Markdown PreviewEdit contributors

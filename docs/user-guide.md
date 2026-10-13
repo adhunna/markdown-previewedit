@@ -1,6 +1,6 @@
 # User guide
 
-Everything MarkDownPreview adds to VS Code, in one place. For installation see the [README](../README.md#install).
+Everything Markdown PreviewEdit adds to VS Code, in one place. For installation see the [README](../README.md#install).
 
 - [Opening the preview](#opening-the-preview)
 - [Preview buttons: size, theme, full screen](#preview-buttons-size-theme-full-screen)
@@ -16,7 +16,7 @@ Everything MarkDownPreview adds to VS Code, in one place. For installation see t
 
 ## Opening the preview
 
-MarkDownPreview extends **VS Code's own Markdown preview**, so everything you know still works.
+Markdown PreviewEdit extends **VS Code's own Markdown preview**, so everything you know still works.
 
 | How | Result |
 |---|---|
@@ -49,8 +49,8 @@ When the preview tab is active, its title bar (top right) shows:
 
 To open it:
 - click the **pencil button** next to the preview button on a Markdown file,
-- right-click in the editor → **MDP: Open Edit Preview**, or
-- run **MDP: Open Edit Preview** from the Command Palette.
+- right-click in the editor → **PreviewEdit: Open Edit Preview**, or
+- run **PreviewEdit: Open Edit Preview** from the Command Palette.
 
 The Edit Preview opens beside the file. Select text in it and a toolbar appears above the selection:
 
@@ -114,13 +114,13 @@ On top of CommonMark and what VS Code already renders (math, front matter, table
 
 ## Export to Word, PDF and HTML
 
-Right-click in a Markdown file → **MDP: Export**, or use the Command Palette:
+Right-click in a Markdown file → **PreviewEdit: Export**, or use the Command Palette:
 
 | Command | Result |
 |---|---|
-| **MDP: Export to Word (.docx)** | A native Word document with real Heading, list, table, quote and code styles. Colours and sizes are kept. *Images, diagrams and equations are placeholders in this version.* |
-| **MDP: Export to PDF** | Printed by the **Microsoft Edge** already on your PC (or Chrome/Chromium). Nothing is downloaded. Includes diagrams and math. |
-| **MDP: Export to HTML** | One self-contained page that works offline, with diagrams and math |
+| **PreviewEdit: Export to Word (.docx)** | A native Word document with real Heading, list, table, quote and code styles. Colours and sizes are kept. *Images, diagrams and equations are placeholders in this version.* |
+| **PreviewEdit: Export to PDF** | Printed by the **Microsoft Edge** already on your PC (or Chrome/Chromium). Nothing is downloaded. Includes diagrams and math. |
+| **PreviewEdit: Export to HTML** | One self-contained page that works offline, with diagrams and math |
 
 ![First page of a Word export](images/word-export.png)
 
@@ -128,24 +128,24 @@ Right-click in a Markdown file → **MDP: Export**, or use the Command Palette:
 
 - Exports always use a light, print-friendly style, whatever the preview theme.
 - The document title comes from `title:` in the front matter, or else the first heading.
-- After exporting, the file opens in its default application. Turn this off with `mdp.export.openAfterExport`.
+- After exporting, the file opens in its default application. Turn this off with `previewEdit.export.openAfterExport`.
 
 ## Commands and keyboard shortcuts
 
-All commands are in the Command Palette (`Ctrl+Shift+P`) under **MDP**.
+All commands are in the Command Palette (`Ctrl+Shift+P`) under **PreviewEdit**.
 
 | Command | Shortcut | Where the button is |
 |---|---|---|
-| MDP: Open Preview to the Side | VS Code: `Ctrl+K V` | Title bar of a `.md` file |
-| MDP: Open Edit Preview (format from preview) | — | Title bar of a `.md` file (pencil); editor right-click menu |
-| MDP: Increase Preview Font Size | `Ctrl+=` (preview focused) | Preview title bar |
-| MDP: Decrease Preview Font Size | `Ctrl+-` (preview focused) | Preview title bar |
-| MDP: Reset Preview Font Size | `Ctrl+0` (preview focused) | — |
-| MDP: Toggle Preview Theme (Auto / Light / Dark) | — | Preview title bar |
-| MDP: Toggle Full-Screen Preview | — | Preview title bar |
-| MDP: Export to Word (.docx) / PDF / HTML | — | Editor right-click menu → **MDP: Export** |
+| PreviewEdit: Open Preview to the Side | VS Code: `Ctrl+K V` | Title bar of a `.md` file |
+| PreviewEdit: Open Edit Preview (format from preview) | — | Title bar of a `.md` file (pencil); editor right-click menu |
+| PreviewEdit: Increase Preview Font Size | `Ctrl+=` (preview focused) | Preview title bar |
+| PreviewEdit: Decrease Preview Font Size | `Ctrl+-` (preview focused) | Preview title bar |
+| PreviewEdit: Reset Preview Font Size | `Ctrl+0` (preview focused) | — |
+| PreviewEdit: Toggle Preview Theme (Auto / Light / Dark) | — | Preview title bar |
+| PreviewEdit: Toggle Full-Screen Preview | — | Preview title bar |
+| PreviewEdit: Export to Word (.docx) / PDF / HTML | — | Editor right-click menu → **PreviewEdit: Export** |
 
-To change a shortcut: **File → Preferences → Keyboard Shortcuts**, search for "MDP".
+To change a shortcut: **File → Preferences → Keyboard Shortcuts**, search for "PreviewEdit".
 
 ## Settings
 
@@ -153,13 +153,13 @@ To change a shortcut: **File → Preferences → Keyboard Shortcuts**, search fo
 
 | Setting | Default | Meaning |
 |---|---|---|
-| `mdp.preview.theme` | `auto` | Preview colours: `auto` (follow VS Code), `light`, `dark` |
+| `previewEdit.preview.theme` | `auto` | Preview colours: `auto` (follow VS Code), `light`, `dark` |
 | `markdown.preview.fontSize` | `14` | VS Code's own preview text size, changed by the zoom buttons |
-| `mdp.mermaid.enabled` | `true` | Render Mermaid code blocks as diagrams |
-| `mdp.export.openAfterExport` | `true` | Open the exported file when done |
-| `mdp.export.browserPath` | *(empty: detect)* | Edge/Chrome/Chromium used for PDF export, if not found automatically |
-| `mdp.export.pdf.format` | `A4` | Paper size: A4, A3, A5, Letter, Legal |
-| `mdp.export.pdf.margin` | `20mm` | Page margin (any CSS length, e.g. `0.75in`) |
+| `previewEdit.mermaid.enabled` | `true` | Render Mermaid code blocks as diagrams |
+| `previewEdit.export.openAfterExport` | `true` | Open the exported file when done |
+| `previewEdit.export.browserPath` | *(empty: detect)* | Edge/Chrome/Chromium used for PDF export, if not found automatically |
+| `previewEdit.export.pdf.format` | `A4` | Paper size: A4, A3, A5, Letter, Legal |
+| `previewEdit.export.pdf.margin` | `20mm` | Page margin (any CSS length, e.g. `0.75in`) |
 
 ## Untrusted workspaces
 
@@ -167,14 +167,14 @@ In VS Code's **Restricted Mode** (a folder you have not trusted):
 
 - The previews, the Edit Preview, and Word and HTML export work normally. Content is sanitized either way.
 - **PDF export is off**, because it starts a local browser. Trust the folder to use it.
-- `mdp.export.browserPath` from the workspace settings is ignored.
+- `previewEdit.export.browserPath` from the workspace settings is ignored.
 
 ## Troubleshooting
 
 | Problem | What to do |
 |---|---|
-| "PDF export needs Microsoft Edge, Google Chrome or Chromium" | Install one, or set `mdp.export.browserPath` to its `.exe`, e.g. `C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe` |
+| "PDF export needs Microsoft Edge, Google Chrome or Chromium" | Install one, or set `previewEdit.export.browserPath` to its `.exe`, e.g. `C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe` |
 | A diagram shows a red error box | The Mermaid code has a syntax error; the box shows Mermaid's message |
 | The toolbar does not appear | Select text that comes from the file. Generated text (TOC entries, emoji shortcodes, math) can't be formatted. |
 | "The document changed while you were selecting" | The file changed after the preview was drawn (e.g. you were typing). Select the text again. |
-| Something else | **View → Output**, choose **MarkDownPreview** in the drop-down, and include that log in a [bug report](https://github.com/adhunna/MarkDownPreview/issues/new/choose) |
+| Something else | **View → Output**, choose **Markdown PreviewEdit** in the drop-down, and include that log in a [bug report](https://github.com/adhunna/markdown-previewedit/issues/new/choose) |

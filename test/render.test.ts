@@ -10,7 +10,7 @@ import { assets, mainContent, sample } from './helpers';
 test('feature tour renders every added syntax in HTML export', () => {
   const { html, title, hasMermaid } = renderHtmlDocument(sample('features', 'all.md'), assets(), { mermaid: true });
   const body = mainContent(html);
-  assert.equal(title, 'MarkDownPreview Feature Tour');
+  assert.equal(title, 'Markdown PreviewEdit Feature Tour');
   assert.equal(hasMermaid, true);
   for (const type of ['note', 'tip', 'important', 'warning', 'caution']) {
     assert.match(body, new RegExp(`class="markdown-alert markdown-alert-${type}"`), `alert ${type}`);
@@ -35,7 +35,7 @@ test('feature tour renders every added syntax in HTML export', () => {
   assert.match(body, /<table>/);
   assert.match(body, /<li class="mdp-task-item"><span class="mdp-task mdp-task-done" role="img" aria-label="done">☑<\/span> Write the plan/);
   assert.match(body, /<span class="mdp-task" role="img" aria-label="not done">☐<\/span> Ship the MVP/);
-  assert.doesNotMatch(body, /title: MarkDownPreview/, 'front matter is not rendered');
+  assert.doesNotMatch(body, /title: Markdown PreviewEdit/, 'front matter is not rendered');
   assert.match(html, /<style>[\s\S]*data:font\/woff2;base64/, 'KaTeX fonts are embedded');
   assert.match(html, /<script>/, 'Mermaid renderer is embedded');
 });

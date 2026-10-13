@@ -24,5 +24,5 @@ jobs:
       - run: npm run package
       - uses: actions/upload-artifact@v4
         with:
-          name: markdownpreview-vsix
+          name: markdown-previewedit-vsix
           path: '*.vsix'

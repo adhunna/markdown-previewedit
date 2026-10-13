@@ -1,6 +1,6 @@
 # Code of Conduct
 
-MarkDownPreview follows the **[Contributor Covenant, version 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct/)**. Everyone who takes part in this project (issues, pull requests, discussions, reviews) agrees to it.
+Markdown PreviewEdit follows the **[Contributor Covenant, version 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct/)**. Everyone who takes part in this project (issues, pull requests, discussions, reviews) agrees to it.
 
 ## In short
 
@@ -10,6 +10,6 @@ MarkDownPreview follows the **[Contributor Covenant, version 2.1](https://www.co
 
 ## Reporting
 
-If you see or experience unacceptable behaviour, contact the maintainers privately through the **Report content** option on the comment or issue on GitHub, or by [opening a private security advisory](https://github.com/adhunna/MarkDownPreview/security/advisories/new) and saying it is a conduct report. Reports are handled confidentially.
+If you see or experience unacceptable behaviour, contact the maintainers privately through the **Report content** option on the comment or issue on GitHub, or by [opening a private security advisory](https://github.com/adhunna/markdown-previewedit/security/advisories/new) and saying it is a conduct report. Reports are handled confidentially.
 
 Maintainers may edit or remove contributions and warn, temporarily ban or permanently ban contributors, following the enforcement guidelines of the Contributor Covenant.

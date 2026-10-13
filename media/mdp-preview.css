@@ -1,4 +1,4 @@
-/* Styles for elements added by MarkDownPreview. Used in VS Code's preview and in exports;
+/* Styles for elements added by Markdown PreviewEdit. Used in VS Code's preview and in exports;
    VS Code theme variables are used when present, with neutral fallbacks for exports. */
 
 /* GitHub alerts */
@@ -75,7 +75,7 @@ mark { background: #fff8c5; color: inherit; }
 .vscode-dark mark { background: #bb800966; }
 ins { text-decoration: underline; }
 
-/* Forced preview theme (mdp.preview.theme = light | dark). The preview script sets
+/* Forced preview theme (previewEdit.preview.theme = light | dark). The preview script sets
    data-mdp-theme on <body> and swaps VS Code's theme classes; these variables replace the
    VS Code theme colours that the built-in preview stylesheet uses. */
 body[data-mdp-theme="dark"] {

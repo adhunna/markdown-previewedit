@@ -1,8 +1,8 @@
 # Roadmap
 
-What MarkDownPreview can do today, and everything planned for later. Every item has a **Feature ID** from the [feature catalog](docs/02-feature-catalog.md), which has the full descriptions and the original market research behind them ([docs/01-market-research.md](docs/01-market-research.md)).
+What Markdown PreviewEdit can do today, and everything planned for later. Every item has a **Feature ID** from the [feature catalog](docs/02-feature-catalog.md), which has the full descriptions and the original market research behind them ([docs/01-market-research.md](docs/01-market-research.md)).
 
-**Where we are:** [v0.3.0](https://github.com/adhunna/MarkDownPreview/releases), the first public pre-release (installed from a `.vsix` file). Of the 130 catalogued features (128 from the original research plus 2 requested since), **23 are done**, **10 are partly done**, **16 come free with VS Code's built-in preview** (we extend it rather than replace it), and **1 is no longer needed** with the TypeScript stack. The other **80**, plus the unfinished parts of the partial items, are in the [future list](#future-list) below.
+**Where we are:** [v0.3.0](https://github.com/adhunna/markdown-previewedit/releases), the first public pre-release (installed from a `.vsix` file). Of the 130 catalogued features (128 from the original research plus 2 requested since), **23 are done**, **10 are partly done**, **16 come free with VS Code's built-in preview** (we extend it rather than replace it), and **1 is no longer needed** with the TypeScript stack. The other **80**, plus the unfinished parts of the partial items, are in the [future list](#future-list) below.
 
 ★ = a differentiator: something Markdown Preview Enhanced and similar extensions do not offer.
 
@@ -12,7 +12,7 @@ Want to help? Pick an item, comment on (or open) an issue that names its ID, and
 
 ## Implemented
 
-### Added by MarkDownPreview
+### Added by Markdown PreviewEdit
 
 | ID | Feature | Since |
 |---|---|---|
@@ -46,7 +46,7 @@ Want to help? Pick an item, comment on (or open) an issue that names its ID, and
 | J11 | Hostile-Markdown test corpus run on every build | 0.1.0 |
 | K01, K02, K08 | One universal `.vsix` for Windows, macOS and Linux (no native code) | 0.1.0 |
 | M01 | Small settings set: 6 settings (MPE has 74) | 0.1.0 |
-| N02 | "MarkDownPreview" log in the Output panel *(partial)* | 0.1.0 |
+| N02 | "Markdown PreviewEdit" log in the Output panel *(partial)* | 0.1.0 |
 | N04 | Errors are isolated per diagram *(partial)* | 0.1.0 |
 
 ### Provided by VS Code's built-in preview (kept working)

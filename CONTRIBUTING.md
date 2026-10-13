@@ -1,4 +1,4 @@
-# Contributing to MarkDownPreview
+# Contributing to Markdown PreviewEdit
 
 Thanks for helping! Bug reports, ideas, documentation fixes and code are all welcome.
 
@@ -6,7 +6,7 @@ By taking part you agree to follow our [Code of Conduct](CODE_OF_CONDUCT.md). Co
 
 ## Ways to help
 
-- **Report a bug:** [open an issue](https://github.com/adhunna/MarkDownPreview/issues/new/choose) with the *Bug report* form. Attach a small Markdown file that shows the problem.
+- **Report a bug:** [open an issue](https://github.com/adhunna/markdown-previewedit/issues/new/choose) with the *Bug report* form. Attach a small Markdown file that shows the problem.
 - **Suggest a feature:** check the [roadmap](ROADMAP.md) first. If the feature is listed, comment on or open an issue that names its **Feature ID** (for example `E05`). New ideas are welcome too.
 - **Report a security problem:** do **not** open a public issue. Follow [SECURITY.md](SECURITY.md).
 - **Write code or docs:** see below.
@@ -22,8 +22,8 @@ By taking part you agree to follow our [Code of Conduct](CODE_OF_CONDUCT.md). Co
 You need [Node.js 22 LTS](https://nodejs.org/), [Git](https://git-scm.com/) and [VS Code](https://code.visualstudio.com/). Microsoft Edge or Google Chrome is needed only for the PDF test.
 
 ```powershell
-git clone https://github.com/adhunna/MarkDownPreview.git
-cd MarkDownPreview
+git clone https://github.com/adhunna/markdown-previewedit.git
+cd markdown-previewedit
 npm ci
 code .
 ```

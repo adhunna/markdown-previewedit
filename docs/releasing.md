@@ -1,8 +1,8 @@
 # Releasing
 
-How a new version of MarkDownPreview is published. Only maintainers do this.
+How a new version of Markdown PreviewEdit is published. Only maintainers do this.
 
-Releases are **GitHub Releases** with the `.vsix` attached. Publishing to the VS Code Marketplace and Open VSX comes later: the product name and publisher ID are still open decision D1 in the [implementation plan](04-implementation-plan.md#9-decisions-owner-to-confirm--recommended-default-in-bold).
+Releases are **GitHub Releases** with the `.vsix` attached. Publishing to the VS Code Marketplace and Open VSX comes later; it needs a Marketplace publisher account for `adhunna` and a check that the name *Markdown PreviewEdit* is free there.
 
 ## Steps
 
@@ -19,13 +19,13 @@ Releases are **GitHub Releases** with the `.vsix` attached. Publishing to the VS
    npm run typecheck
    npm run notices -- --check
    npm test
-   npm run package    # → markdownpreview-0.4.0.vsix; install it and try it
+   npm run package    # → markdown-previewedit-0.4.0.vsix; install it and try it
    ```
 
 5. **Tag and push** (or use the alternative below):
 
    ```powershell
-   git tag -a v0.4.0 -m "MarkDownPreview 0.4.0"
+   git tag -a v0.4.0 -m "Markdown PreviewEdit 0.4.0"
    git push origin develop v0.4.0
    ```
 

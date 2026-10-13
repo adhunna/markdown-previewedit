@@ -1,7 +1,7 @@
 {
-  "name": "markdownpreview",
-  "displayName": "MarkDownPreview",
-  "description": "Mermaid diagrams, GitHub alerts, formatting from the preview, and Word/PDF/HTML export for VS Code's Markdown preview. Offline, no telemetry.",
+  "name": "markdown-previewedit",
+  "displayName": "Markdown PreviewEdit",
+  "description": "Preview and edit Markdown in VS Code: Mermaid diagrams, GitHub alerts, formatting from the preview, and Word/PDF/HTML export. Offline, no telemetry.",
   "version": "0.3.0",
   "publisher": "adhunna",
   "icon": "media/icon.png",
@@ -14,12 +14,12 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/adhunna/MarkDownPreview.git"
+    "url": "https://github.com/adhunna/markdown-previewedit.git"
   },
   "bugs": {
-    "url": "https://github.com/adhunna/MarkDownPreview/issues"
+    "url": "https://github.com/adhunna/markdown-previewedit/issues"
   },
-  "homepage": "https://github.com/adhunna/MarkDownPreview#readme",
+  "homepage": "https://github.com/adhunna/markdown-previewedit#readme",
   "engines": {
     "vscode": "^1.95.0"
   },
@@ -45,14 +45,14 @@
   "activationEvents": [
     "onLanguage:markdown",
     "onWebviewPanel:markdown.preview",
-    "onWebviewPanel:mdp.editPreview"
+    "onWebviewPanel:previewEdit.editPreview"
   ],
   "capabilities": {
     "untrustedWorkspaces": {
       "supported": "limited",
       "description": "Export to PDF starts a local browser and is disabled in Restricted Mode.",
       "restrictedConfigurations": [
-        "mdp.export.browserPath"
+        "previewEdit.export.browserPath"
       ]
     },
     "virtualWorkspaces": {
@@ -70,175 +70,175 @@
     ],
     "commands": [
       {
-        "command": "mdp.exportDocx",
+        "command": "previewEdit.exportDocx",
         "title": "Export to Word (.docx)",
-        "category": "MDP"
+        "category": "PreviewEdit"
       },
       {
-        "command": "mdp.exportPdf",
+        "command": "previewEdit.exportPdf",
         "title": "Export to PDF",
-        "category": "MDP"
+        "category": "PreviewEdit"
       },
       {
-        "command": "mdp.exportHtml",
+        "command": "previewEdit.exportHtml",
         "title": "Export to HTML",
-        "category": "MDP"
+        "category": "PreviewEdit"
       },
       {
-        "command": "mdp.openPreviewToSide",
+        "command": "previewEdit.openPreviewToSide",
         "title": "Open Preview to the Side",
-        "category": "MDP",
+        "category": "PreviewEdit",
         "icon": "$(open-preview)"
       },
       {
-        "command": "mdp.openEditPreview",
+        "command": "previewEdit.openEditPreview",
         "title": "Open Edit Preview (format from preview)",
-        "category": "MDP",
+        "category": "PreviewEdit",
         "icon": "$(edit)"
       },
       {
-        "command": "mdp.preview.increaseFontSize",
+        "command": "previewEdit.preview.increaseFontSize",
         "title": "Increase Preview Font Size",
-        "category": "MDP",
+        "category": "PreviewEdit",
         "icon": "$(zoom-in)"
       },
       {
-        "command": "mdp.preview.decreaseFontSize",
+        "command": "previewEdit.preview.decreaseFontSize",
         "title": "Decrease Preview Font Size",
-        "category": "MDP",
+        "category": "PreviewEdit",
         "icon": "$(zoom-out)"
       },
       {
-        "command": "mdp.preview.resetFontSize",
+        "command": "previewEdit.preview.resetFontSize",
         "title": "Reset Preview Font Size",
-        "category": "MDP"
+        "category": "PreviewEdit"
       },
       {
-        "command": "mdp.preview.toggleTheme",
+        "command": "previewEdit.preview.toggleTheme",
         "title": "Toggle Preview Theme (Auto / Light / Dark)",
-        "category": "MDP",
+        "category": "PreviewEdit",
         "icon": "$(color-mode)"
       },
       {
-        "command": "mdp.preview.toggleFullScreen",
+        "command": "previewEdit.preview.toggleFullScreen",
         "title": "Toggle Full-Screen Preview",
-        "category": "MDP",
+        "category": "PreviewEdit",
         "icon": "$(screen-full)"
       },
       {
-        "command": "mdp.preview.exitFullScreen",
+        "command": "previewEdit.preview.exitFullScreen",
         "title": "Exit Full-Screen Preview",
-        "category": "MDP",
+        "category": "PreviewEdit",
         "icon": "$(screen-normal)"
       }
     ],
     "menus": {
       "commandPalette": [
         {
-          "command": "mdp.exportDocx",
+          "command": "previewEdit.exportDocx",
           "when": "editorLangId == markdown"
         },
         {
-          "command": "mdp.exportPdf",
+          "command": "previewEdit.exportPdf",
           "when": "editorLangId == markdown && isWorkspaceTrusted"
         },
         {
-          "command": "mdp.exportHtml",
+          "command": "previewEdit.exportHtml",
           "when": "editorLangId == markdown"
         },
         {
-          "command": "mdp.openPreviewToSide",
+          "command": "previewEdit.openPreviewToSide",
           "when": "editorLangId == markdown"
         },
         {
-          "command": "mdp.preview.toggleFullScreen",
-          "when": "activeWebviewPanelId == 'markdown.preview' || mdp.previewFullScreen"
+          "command": "previewEdit.preview.toggleFullScreen",
+          "when": "activeWebviewPanelId == 'markdown.preview' || previewEdit.previewFullScreen"
         },
         {
-          "command": "mdp.preview.exitFullScreen",
+          "command": "previewEdit.preview.exitFullScreen",
           "when": "false"
         },
         {
-          "command": "mdp.openEditPreview",
+          "command": "previewEdit.openEditPreview",
           "when": "editorLangId == markdown"
         }
       ],
       "editor/context": [
         {
-          "submenu": "mdp.export",
+          "submenu": "previewEdit.export",
           "when": "editorLangId == markdown",
           "group": "navigation@90"
         },
         {
-          "command": "mdp.openEditPreview",
+          "command": "previewEdit.openEditPreview",
           "when": "editorLangId == markdown",
           "group": "navigation@91"
         }
       ],
-      "mdp.export": [
+      "previewEdit.export": [
         {
-          "command": "mdp.exportDocx",
+          "command": "previewEdit.exportDocx",
           "group": "1_export@1"
         },
         {
-          "command": "mdp.exportPdf",
+          "command": "previewEdit.exportPdf",
           "when": "isWorkspaceTrusted",
           "group": "1_export@2"
         },
         {
-          "command": "mdp.exportHtml",
+          "command": "previewEdit.exportHtml",
           "group": "1_export@3"
         }
       ],
       "editor/title": [
         {
-          "command": "mdp.openPreviewToSide",
+          "command": "previewEdit.openPreviewToSide",
           "alt": "markdown.showPreview",
           "when": "editorLangId == markdown && !notebookEditorFocused",
           "group": "navigation@0"
         },
         {
-          "command": "mdp.openEditPreview",
+          "command": "previewEdit.openEditPreview",
           "when": "editorLangId == markdown && !notebookEditorFocused",
           "group": "navigation@0"
         },
         {
-          "command": "mdp.preview.decreaseFontSize",
+          "command": "previewEdit.preview.decreaseFontSize",
           "when": "activeWebviewPanelId == 'markdown.preview'",
           "group": "navigation@1"
         },
         {
-          "command": "mdp.preview.increaseFontSize",
+          "command": "previewEdit.preview.increaseFontSize",
           "when": "activeWebviewPanelId == 'markdown.preview'",
           "group": "navigation@2"
         },
         {
-          "command": "mdp.preview.toggleTheme",
+          "command": "previewEdit.preview.toggleTheme",
           "when": "activeWebviewPanelId == 'markdown.preview'",
           "group": "navigation@3"
         },
         {
-          "command": "mdp.preview.toggleFullScreen",
-          "when": "activeWebviewPanelId == 'markdown.preview' && !mdp.previewFullScreen",
+          "command": "previewEdit.preview.toggleFullScreen",
+          "when": "activeWebviewPanelId == 'markdown.preview' && !previewEdit.previewFullScreen",
           "group": "navigation@4"
         },
         {
-          "command": "mdp.preview.exitFullScreen",
-          "when": "activeWebviewPanelId == 'markdown.preview' && mdp.previewFullScreen",
+          "command": "previewEdit.preview.exitFullScreen",
+          "when": "activeWebviewPanelId == 'markdown.preview' && previewEdit.previewFullScreen",
           "group": "navigation@4"
         }
       ]
     },
     "submenus": [
       {
-        "id": "mdp.export",
-        "label": "MDP: Export"
+        "id": "previewEdit.export",
+        "label": "PreviewEdit: Export"
       }
     ],
     "configuration": {
-      "title": "MarkDownPreview",
+      "title": "Markdown PreviewEdit",
       "properties": {
-        "mdp.preview.theme": {
+        "previewEdit.preview.theme": {
           "type": "string",
           "default": "auto",
           "enum": [
@@ -253,23 +253,23 @@
           ],
           "description": "Colour theme of the Markdown preview. Exports are always light."
         },
-        "mdp.mermaid.enabled": {
+        "previewEdit.mermaid.enabled": {
           "type": "boolean",
           "default": true,
           "description": "Render ```mermaid code blocks as diagrams in the preview and in exports."
         },
-        "mdp.export.openAfterExport": {
+        "previewEdit.export.openAfterExport": {
           "type": "boolean",
           "default": true,
           "description": "Open the exported file with its default application after export."
         },
-        "mdp.export.browserPath": {
+        "previewEdit.export.browserPath": {
           "type": "string",
           "default": "",
           "scope": "machine",
           "description": "Path to Microsoft Edge, Google Chrome or Chromium used for PDF export. Leave empty to detect an installed browser automatically."
         },
-        "mdp.export.pdf.format": {
+        "previewEdit.export.pdf.format": {
           "type": "string",
           "default": "A4",
           "enum": [
@@ -281,7 +281,7 @@
           ],
           "description": "Paper size for PDF export."
         },
-        "mdp.export.pdf.margin": {
+        "previewEdit.export.pdf.margin": {
           "type": "string",
           "default": "20mm",
           "description": "Page margin for PDF export (CSS length, e.g. 20mm or 0.75in)."
@@ -290,37 +290,37 @@
     },
     "keybindings": [
       {
-        "command": "mdp.preview.increaseFontSize",
+        "command": "previewEdit.preview.increaseFontSize",
         "key": "ctrl+=",
         "mac": "cmd+=",
         "when": "activeWebviewPanelId == 'markdown.preview'"
       },
       {
-        "command": "mdp.preview.increaseFontSize",
+        "command": "previewEdit.preview.increaseFontSize",
         "key": "ctrl+numpad_add",
         "mac": "cmd+numpad_add",
         "when": "activeWebviewPanelId == 'markdown.preview'"
       },
       {
-        "command": "mdp.preview.decreaseFontSize",
+        "command": "previewEdit.preview.decreaseFontSize",
         "key": "ctrl+-",
         "mac": "cmd+-",
         "when": "activeWebviewPanelId == 'markdown.preview'"
       },
       {
-        "command": "mdp.preview.decreaseFontSize",
+        "command": "previewEdit.preview.decreaseFontSize",
         "key": "ctrl+numpad_subtract",
         "mac": "cmd+numpad_subtract",
         "when": "activeWebviewPanelId == 'markdown.preview'"
       },
       {
-        "command": "mdp.preview.resetFontSize",
+        "command": "previewEdit.preview.resetFontSize",
         "key": "ctrl+numpad0",
         "mac": "cmd+numpad0",
         "when": "activeWebviewPanelId == 'markdown.preview'"
       },
       {
-        "command": "mdp.preview.resetFontSize",
+        "command": "previewEdit.preview.resetFontSize",
         "key": "ctrl+0",
         "mac": "cmd+0",
         "when": "activeWebviewPanelId == 'markdown.preview'"

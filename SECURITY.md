@@ -4,7 +4,7 @@ A Markdown file is untrusted input: opening someone else's document must never r
 
 ## Supported versions
 
-MarkDownPreview is pre-release. Only the latest [release](https://github.com/adhunna/MarkDownPreview/releases) receives fixes.
+Markdown PreviewEdit is pre-release. Only the latest [release](https://github.com/adhunna/markdown-previewedit/releases) receives fixes.
 
 | Version | Supported |
 |---|---|
@@ -17,7 +17,7 @@ MarkDownPreview is pre-release. Only the latest [release](https://github.com/adh
 **Please do not open a public issue.** Report privately through GitHub:
 
 1. Go to the repository's **Security** tab.
-2. Click **Report a vulnerability** ([direct link](https://github.com/adhunna/MarkDownPreview/security/advisories/new)).
+2. Click **Report a vulnerability** ([direct link](https://github.com/adhunna/markdown-previewedit/security/advisories/new)).
 3. Describe the problem and attach a Markdown file (or steps) that reproduces it, plus your VS Code and extension versions.
 
 We aim to acknowledge reports within **5 working days** and to agree a fix and disclosure date with you. We credit reporters in the release notes unless you prefer otherwise.

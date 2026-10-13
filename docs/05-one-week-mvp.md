@@ -1,5 +1,7 @@
 # 05 — One-Week MVP (Fast Track)
 
+> **Name:** this project was called *MarkDownPreview* (command prefix `mdp.`) when this document was written. It is now **Markdown PreviewEdit** (prefix `previewEdit.`); see decision D1 in [04-implementation-plan.md](04-implementation-plan.md).
+
 > **Outcome:** superseded by [ADR-001](adr/001-stack-typescript-builtin-preview.md). With the TypeScript stack the MVP (v0.1.0) was built in one session instead of one week, and covers more than this plan (including PDF export). This page is kept as the record of the C# fast-track option.
 
 > **Purpose:** Get a working, installable C#-powered Markdown preview on your Windows PC in **5 working days**, with a deliberately short feature list.

@@ -84,7 +84,7 @@ export async function renderDocx(markdown: string, options: DocxExportOptions = 
   const title = frontMatterTitle ?? firstHeading(body) ?? 'Document';
 
   const doc = new Document({
-    creator: options.author ?? 'MarkDownPreview',
+    creator: options.author ?? 'Markdown PreviewEdit',
     title,
     styles: {
       paragraphStyles: [

@@ -1,5 +1,7 @@
 # 01 — Market Research
 
+> **Name:** this project was called *MarkDownPreview* (command prefix `mdp.`) when this document was written. It is now **Markdown PreviewEdit** (prefix `previewEdit.`); see decision D1 in [04-implementation-plan.md](04-implementation-plan.md).
+
 > **Purpose:** Understand the VS Code Markdown-preview market as of **October 2026**, find the gaps, and decide how a C#/.NET-based extension can win.
 > **Researched on:** 2026-10-12. Versions and dates below were checked on that date (see [Sources](#sources)).
 > **Limitation:** The VS Code Marketplace and Open VSX websites were unreachable from the research environment, so **install counts are not quoted**. Check them manually before making business decisions.

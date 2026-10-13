@@ -136,7 +136,7 @@ Run from the repository root (Node.js 22 LTS):
 | Type-check | `npm run typecheck` |
 | Tests (plugins, exports, security corpus, PDF if a browser is found) | `npm test` — set `MDP_TEST_BROWSER=<path>` to force a browser |
 | Refresh third-party licence notices | `npm run notices` (`-- --check` to verify) |
-| Package the VSIX | `npm run package` → `markdownpreview-<version>.vsix` |
+| Package the VSIX | `npm run package` → `markdown-previewedit-<version>.vsix` |
 | Release | See [docs/releasing.md](docs/releasing.md) (tag `vX.Y.Z` → GitHub Release) |
 | Debug in VS Code | Open the folder, press **F5** (Extension Development Host) |
 
@@ -152,7 +152,9 @@ Run from the repository root (Node.js 22 LTS):
 
 ### Naming
 
-- Commands: `mdp.<verb><Object>` (e.g. `mdp.openPreviewToSide`); settings: `mdp.<area>.<name>` (e.g. `mdp.export.browserPath`). Prefix `mdp` is a placeholder until decision **D1** is made.
+- Product name: **Markdown PreviewEdit** (decision D1); extension ID `adhunna.markdown-previewedit`.
+- Commands: `previewEdit.<verb><Object>` (e.g. `previewEdit.openPreviewToSide`), shown under the **PreviewEdit** category; settings: `previewEdit.<area>.<name>` (e.g. `previewEdit.export.browserPath`).
+- Internal CSS/DOM names keep the short `mdp-` prefix (`mdp-mermaid`, `data-mdp-theme`). They are never shown to users; do not rename them.
 
 ---
 
@@ -186,7 +188,7 @@ A Feature ID is **Done** when:
 - Adding a setting, command or feature not in the catalog
 - Anything involving publishing, version bumps, signing, CI secrets or release workflows
 - Deleting files or directories you did not create in the current task
-- Decisions listed as open (D1–D8) in the implementation plan
+- Decisions listed as open (D4–D7) in the implementation plan
 
 ## 10. Communication style
 

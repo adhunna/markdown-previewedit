@@ -28,5 +28,5 @@ These documents show how the project was planned. They are kept for context; whe
 |---|---|
 | [01 — Market research](01-market-research.md) | Competitors (Markdown Preview Enhanced and others), trends, gaps, positioning |
 | [03 — C#/.NET architecture](03-architecture.md) | The original engine design, kept as a future option (superseded by ADR-001) |
-| [04 — Implementation plan](04-implementation-plan.md) | Phases, testing strategy, risks, open decisions (D1–D8) |
+| [04 — Implementation plan](04-implementation-plan.md) | Phases, testing strategy, risks, decisions (D1–D8) |
 | [05 — One-week MVP](05-one-week-mvp.md) | The first fast-track plan (superseded) |

@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to MarkDownPreview are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses [Semantic Versioning](https://semver.org/) (while below 1.0, a minor version may change behaviour).
+All notable changes to Markdown PreviewEdit are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses [Semantic Versioning](https://semver.org/) (while below 1.0, a minor version may change behaviour).
 
 Codes such as `A24` are Feature IDs from the [feature catalog](docs/02-feature-catalog.md). See the [roadmap](ROADMAP.md) for what's next.
 
@@ -14,7 +14,7 @@ First public release.
 
 ### Added
 
-- **Format from the preview (A24).** A new **Edit Preview** (pencil button on Markdown files, or "MDP: Open Edit Preview"). Select text and use the toolbar for:
+- **Format from the preview (A24).** A new **Edit Preview** (pencil button on Markdown files, or "PreviewEdit: Open Edit Preview"). Select text and use the toolbar for:
   - text style and headings
   - bold, italic, strikethrough, underline, highlight, code, subscript, superscript and links
   - bulleted, numbered and task lists, quotes and alert types
@@ -28,6 +28,7 @@ First public release.
 
 ### Changed
 
+- **New name: Markdown PreviewEdit** (formerly *MarkDownPreview*), because the extension now edits as well as previews. The extension ID is `adhunna.markdown-previewedit`. Commands appear under **PreviewEdit** in the Command Palette, and settings moved from `mdp.*` to `previewEdit.*` (for example `previewEdit.preview.theme`). Settings from test builds must be set again.
 - **Word export** now understands inline HTML: tags are no longer printed as text, and HTML blocks keep their visible text.
 - Any CSS other than colour, background colour and font size (50–300 %) is removed from documents in all exports.
 
@@ -49,7 +50,7 @@ Not published; included in 0.3.0.
 - **Full-screen preview (A23):** a button on the preview's title bar fills the VS Code window with the preview, hiding the other editors, side bars and panel. Click it again to restore.
 - **Open Preview to the Side button (A01)** on every Markdown file (hold `Alt` to open it in the same tab).
 - **Preview text size (A12):** zoom buttons, and `Ctrl+=` / `Ctrl+-` / `Ctrl+0` while the preview has focus. Uses VS Code's `markdown.preview.fontSize` (8–40 px).
-- **Preview theme (A10):** `mdp.preview.theme` — Auto (follow VS Code), Light or Dark — with a colour-mode button. Code, alerts and Mermaid diagrams follow it; exports stay light.
+- **Preview theme (A10):** `previewEdit.preview.theme` — Auto (follow VS Code), Light or Dark — with a colour-mode button. Code, alerts and Mermaid diagrams follow it; exports stay light.
 - Open-source project files: MIT licence, contributing guide, code of conduct, security policy, issue and pull-request templates, roadmap.
 - `THIRD_PARTY_NOTICES.md` lists every bundled package with its licence and ships inside the extension. `npm run notices` regenerates it, and CI checks it is current.
 
@@ -69,7 +70,7 @@ Not published; included in 0.3.0.
 - **Export to HTML:** one self-contained, offline page with math and diagrams.
 - Exported HTML is sanitized: scripts, frames, forms, event handlers and `javascript:` links are removed.
 
-[Unreleased]: https://github.com/adhunna/MarkDownPreview/compare/v0.3.0...HEAD
-[0.3.0]: https://github.com/adhunna/MarkDownPreview/releases/tag/v0.3.0
-[0.2.0]: https://github.com/adhunna/MarkDownPreview/blob/develop/CHANGELOG.md#020---2026-10-12
-[0.1.0]: https://github.com/adhunna/MarkDownPreview/blob/develop/CHANGELOG.md#010---2026-10-12
+[Unreleased]: https://github.com/adhunna/markdown-previewedit/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/adhunna/markdown-previewedit/releases/tag/v0.3.0
+[0.2.0]: https://github.com/adhunna/markdown-previewedit/blob/develop/CHANGELOG.md#020---2026-10-12
+[0.1.0]: https://github.com/adhunna/markdown-previewedit/blob/develop/CHANGELOG.md#010---2026-10-12

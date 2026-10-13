@@ -21,7 +21,7 @@
 
 | ID | Feature | Pri | Phase | Owner | Status |
 |---|---|---|---|---|---|
-| A01 | Open preview in current tab / to the side; editor-title button; keybindings (`Ctrl+K V`, `Ctrl+Shift+V` — configurable) | P0 | 1 | S | Built-in ✅ + MDP title-bar button (v0.2.0) |
+| A01 | Open preview in current tab / to the side; editor-title button; keybindings (`Ctrl+K V`, `Ctrl+Shift+V` — configurable) | P0 | 1 | S | Built-in ✅ + PreviewEdit title-bar button (v0.2.0) |
 | A02 | Locked preview (stays on one file) and toggle lock | P1 | 2 | S | Built-in ✅ |
 | A03 | Single-preview vs multiple-preview mode | P1 | 2 | S | Planned |
 | A04 | Live update while typing, debounced; stale renders cancelled | P0 | 1 | S+E | Built-in ✅ |

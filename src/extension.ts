@@ -21,27 +21,27 @@ const FILTERS: Record<ExportKind, Record<string, string[]>> = {
 
 let log: vscode.LogOutputChannel;
 
-/** Set while the preview is in full-screen mode (mirrored to the `mdp.previewFullScreen` context key). */
+/** Set while the preview is in full-screen mode (mirrored to the `previewEdit.previewFullScreen` context key). */
 let fullScreen: FullScreenState | undefined;
 
 export function activate(context: vscode.ExtensionContext) {
-  log = vscode.window.createOutputChannel('MarkDownPreview', { log: true });
+  log = vscode.window.createOutputChannel('Markdown PreviewEdit', { log: true });
   context.subscriptions.push(log);
 
   for (const kind of ['docx', 'pdf', 'html'] as const) {
-    const command = `mdp.export${kind === 'docx' ? 'Docx' : kind === 'pdf' ? 'Pdf' : 'Html'}`;
+    const command = `previewEdit.export${kind === 'docx' ? 'Docx' : kind === 'pdf' ? 'Pdf' : 'Html'}`;
     context.subscriptions.push(vscode.commands.registerCommand(command, (uri?: vscode.Uri) => exportDocument(context, kind, uri)));
   }
 
   context.subscriptions.push(
     // A01: our own title-bar button, because VS Code hides its built-in one in some setups.
-    vscode.commands.registerCommand('mdp.openPreviewToSide', (uri?: vscode.Uri) => vscode.commands.executeCommand('markdown.showPreviewToSide', uri)),
-    vscode.commands.registerCommand('mdp.preview.increaseFontSize', () => changeFontSize(1)),
-    vscode.commands.registerCommand('mdp.preview.decreaseFontSize', () => changeFontSize(-1)),
-    vscode.commands.registerCommand('mdp.preview.resetFontSize', () => changeFontSize(0)),
-    vscode.commands.registerCommand('mdp.preview.toggleTheme', toggleTheme),
-    vscode.commands.registerCommand('mdp.preview.toggleFullScreen', () => (fullScreen ? exitFullScreen() : enterFullScreen())),
-    vscode.commands.registerCommand('mdp.preview.exitFullScreen', exitFullScreen),
+    vscode.commands.registerCommand('previewEdit.openPreviewToSide', (uri?: vscode.Uri) => vscode.commands.executeCommand('markdown.showPreviewToSide', uri)),
+    vscode.commands.registerCommand('previewEdit.preview.increaseFontSize', () => changeFontSize(1)),
+    vscode.commands.registerCommand('previewEdit.preview.decreaseFontSize', () => changeFontSize(-1)),
+    vscode.commands.registerCommand('previewEdit.preview.resetFontSize', () => changeFontSize(0)),
+    vscode.commands.registerCommand('previewEdit.preview.toggleTheme', toggleTheme),
+    vscode.commands.registerCommand('previewEdit.preview.toggleFullScreen', () => (fullScreen ? exitFullScreen() : enterFullScreen())),
+    vscode.commands.registerCommand('previewEdit.preview.exitFullScreen', exitFullScreen),
     // If the last preview is closed while full screen, put the side bar back and reset the button.
     vscode.window.tabGroups.onDidChangeTabs(() => {
       if (fullScreen && !hasMarkdownPreviewTab()) {
@@ -55,7 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
   const editPreviews = new EditPreviewManager(
     context,
     {
-      mermaid: () => vscode.workspace.getConfiguration('mdp').get<boolean>('mermaid.enabled', true),
+      mermaid: () => vscode.workspace.getConfiguration('previewEdit').get<boolean>('mermaid.enabled', true),
       theme: currentPreviewTheme,
       fontSize: () => stepFontSize(vscode.workspace.getConfiguration('markdown.preview').get<number>('fontSize'), 0),
     },
@@ -63,7 +63,7 @@ export function activate(context: vscode.ExtensionContext) {
   );
   context.subscriptions.push(
     editPreviews,
-    vscode.commands.registerCommand('mdp.openEditPreview', async (uri?: vscode.Uri) => {
+    vscode.commands.registerCommand('previewEdit.openEditPreview', async (uri?: vscode.Uri) => {
       const document = await resolveDocument(uri);
       if (!document || document.languageId !== 'markdown') {
         void vscode.window.showWarningMessage('Open a Markdown file to format it from the preview.');
@@ -75,10 +75,10 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.workspace.onDidChangeConfiguration((event) => {
-      if (event.affectsConfiguration('mdp.mermaid.enabled') || event.affectsConfiguration('mdp.preview.theme')) {
+      if (event.affectsConfiguration('previewEdit.mermaid.enabled') || event.affectsConfiguration('previewEdit.preview.theme')) {
         void vscode.commands.executeCommand('markdown.preview.refresh');
       }
-      if (event.affectsConfiguration('mdp.mermaid.enabled') || event.affectsConfiguration('mdp.preview.theme') || event.affectsConfiguration('markdown.preview.fontSize')) {
+      if (event.affectsConfiguration('previewEdit.mermaid.enabled') || event.affectsConfiguration('previewEdit.preview.theme') || event.affectsConfiguration('markdown.preview.fontSize')) {
         editPreviews.refreshAll();
       }
     }),
@@ -88,7 +88,7 @@ export function activate(context: vscode.ExtensionContext) {
   return {
     extendMarkdownIt(md: MarkdownIt): MarkdownIt {
       return extendMarkdownIt(md, {
-        isMermaidEnabled: () => vscode.workspace.getConfiguration('mdp').get<boolean>('mermaid.enabled', true),
+        isMermaidEnabled: () => vscode.workspace.getConfiguration('previewEdit').get<boolean>('mermaid.enabled', true),
         addHeadingIds: false,
         previewTheme: currentPreviewTheme,
       });
@@ -97,7 +97,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function currentPreviewTheme(): PreviewTheme {
-  const value = vscode.workspace.getConfiguration('mdp').get<string>('preview.theme', 'auto');
+  const value = vscode.workspace.getConfiguration('previewEdit').get<string>('preview.theme', 'auto');
   return isPreviewTheme(value) ? value : 'auto';
 }
 
@@ -116,7 +116,7 @@ async function changeFontSize(delta: number): Promise<void> {
 
 async function toggleTheme(): Promise<void> {
   const next = nextPreviewTheme(currentPreviewTheme());
-  await vscode.workspace.getConfiguration('mdp').update('preview.theme', next, vscode.ConfigurationTarget.Global);
+  await vscode.workspace.getConfiguration('previewEdit').update('preview.theme', next, vscode.ConfigurationTarget.Global);
   const label = { auto: 'Auto (follows VS Code)', light: 'Light', dark: 'Dark' }[next];
   vscode.window.setStatusBarMessage(`Markdown preview theme: ${label}`, 3000);
 }
@@ -149,7 +149,7 @@ async function runCommands(commands: readonly string[]): Promise<void> {
 }
 
 function setFullScreenContext(value: boolean): Thenable<unknown> {
-  return vscode.commands.executeCommand('setContext', 'mdp.previewFullScreen', value);
+  return vscode.commands.executeCommand('setContext', 'previewEdit.previewFullScreen', value);
 }
 
 function hasMarkdownPreviewTab(): boolean {
@@ -185,7 +185,7 @@ async function exportDocument(context: vscode.ExtensionContext, kind: ExportKind
       return;
     }
 
-    const config = vscode.workspace.getConfiguration('mdp', document.uri);
+    const config = vscode.workspace.getConfiguration('previewEdit', document.uri);
     const started = Date.now();
     const bytes = await vscode.window.withProgress(
       { location: vscode.ProgressLocation.Notification, title: `Exporting ${basename(sourcePath)} to ${kind.toUpperCase()}…` },
@@ -227,11 +227,11 @@ async function produce(context: vscode.ExtensionContext, kind: ExportKind, markd
   const browserPath = findBrowser(config.get<string>('export.browserPath') || undefined);
   if (!browserPath) {
     const choice = await vscode.window.showErrorMessage(
-      'PDF export needs Microsoft Edge, Google Chrome or Chromium. None was found — set "mdp.export.browserPath" to your browser.',
+      'PDF export needs Microsoft Edge, Google Chrome or Chromium. None was found — set "previewEdit.export.browserPath" to your browser.',
       'Open Settings',
     );
     if (choice) {
-      await vscode.commands.executeCommand('workbench.action.openSettings', 'mdp.export.browserPath');
+      await vscode.commands.executeCommand('workbench.action.openSettings', 'previewEdit.export.browserPath');
     }
     return undefined;
   }

@@ -1,6 +1,6 @@
 # Architecture
 
-How MarkDownPreview is built today. This is for contributors; users want the [user guide](user-guide.md).
+How Markdown PreviewEdit is built today. This is for contributors; users want the [user guide](user-guide.md).
 
 The decisions behind this design are recorded in [ADR-001](adr/001-stack-typescript-builtin-preview.md) (TypeScript on top of VS Code's built-in preview) and [ADR-002](adr/002-edit-preview-webview.md) (our own Edit Preview webview). The C#/.NET design in [03-architecture.md](03-architecture.md) is a possible future, not the current code.
 
@@ -66,6 +66,8 @@ Four ideas carry the whole design:
 | `src/preview-settings.ts`, `src/full-screen.ts` | Pure helpers for font size, theme cycling and full-screen layout commands | no |
 | `media/` | Stylesheets (preview, export, Edit Preview) and the extension icon | — |
 | `esbuild.mjs` | Builds `dist/extension.js` (Node), `dist/preview/mermaid.js` and `dist/edit/toolbar.js` (browser), and `dist/katex-inline.css` | — |
+
+Names: commands, settings and the context key use the `previewEdit.` prefix (user-visible). CSS classes and DOM attributes use the short internal prefix `mdp-` (`mdp-mermaid`, `data-mdp-theme`), which users never see.
 
 Keeping `src/markdown/`, `src/export/` and `src/edit/` free of `import 'vscode'` (except `panel.ts`) is what makes almost everything unit-testable with plain Node.
 

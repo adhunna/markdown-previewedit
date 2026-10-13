@@ -47,7 +47,7 @@ jobs:
             const end = rest.search(/^## \[|^\[[^\]]+\]: /m);
             const notes = (end === -1 ? rest : rest.slice(0, end)).trim();
             // Relative links (docs/...) would break on the release page: point them at this tag.
-            const base = "https://github.com/" + (process.env.GITHUB_REPOSITORY || "adhunna/MarkDownPreview") + "/blob/" + (process.env.RELEASE_TAG || "v" + version) + "/";
+            const base = "https://github.com/" + (process.env.GITHUB_REPOSITORY || "adhunna/markdown-previewedit") + "/blob/" + (process.env.RELEASE_TAG || "v" + version) + "/";
             fs.writeFileSync("release-notes.md", notes.replace(/\]\((?!https?:|mailto:|#)([^)]+)\)/g, (m, link) => "](" + base + link + ")") + "\n");
           '
       - name: Create GitHub Release
@@ -59,6 +59,6 @@ jobs:
           # --target is used only when the tag does not exist yet (a run started from the Actions tab).
           gh release create "$RELEASE_TAG" ./*.vsix \
             --target "$GITHUB_SHA" \
-            --title "MarkDownPreview $RELEASE_TAG" \
+            --title "Markdown PreviewEdit $RELEASE_TAG" \
             --notes-file release-notes.md \
             $prerelease

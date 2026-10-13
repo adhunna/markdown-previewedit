@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Please check the [roadmap](https://github.com/adhunna/MarkDownPreview/blob/develop/ROADMAP.md) first — your idea may already be planned. If so, give its Feature ID below.
+        Please check the [roadmap](https://github.com/adhunna/markdown-previewedit/blob/develop/ROADMAP.md) first — your idea may already be planned. If so, give its Feature ID below.
   - type: input
     id: feature-id
     attributes:
