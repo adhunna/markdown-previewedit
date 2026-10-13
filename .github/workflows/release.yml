@@ -1,0 +1,58 @@
+name: Release
+
+# Builds the extension and publishes a GitHub Release when a version tag (v1.2.3) is pushed.
+# See docs/releasing.md. Nothing is published to the VS Code Marketplace.
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Check that the tag matches package.json
+        run: |
+          version=$(node -p "require('./package.json').version")
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match package.json version $version" >&2
+            exit 1
+          fi
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run notices -- --check
+      - run: npm test
+      - run: npm run package
+      - name: Release notes from CHANGELOG.md
+        run: |
+          node -e '
+            const fs = require("fs");
+            const version = require("./package.json").version;
+            const text = fs.readFileSync("CHANGELOG.md", "utf8");
+            const start = text.indexOf("## [" + version + "]");
+            if (start === -1) { console.error("No CHANGELOG section for " + version); process.exit(1); }
+            const rest = text.slice(start).split("\n").slice(1).join("\n");
+            const end = rest.search(/^## \[|^\[[^\]]+\]: /m);
+            const notes = (end === -1 ? rest : rest.slice(0, end)).trim();
+            // Relative links (docs/...) would break on the release page: point them at this tag.
+            const base = "https://github.com/" + (process.env.GITHUB_REPOSITORY || "adhunna/MarkDownPreview") + "/blob/" + (process.env.GITHUB_REF_NAME || "v" + version) + "/";
+            fs.writeFileSync("release-notes.md", notes.replace(/\]\((?!https?:|mailto:|#)([^)]+)\)/g, (m, link) => "](" + base + link + ")") + "\n");
+          '
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          prerelease=""
+          case "$GITHUB_REF_NAME" in v0.*) prerelease="--prerelease" ;; esac
+          gh release create "$GITHUB_REF_NAME" ./*.vsix \
+            --title "MarkDownPreview $GITHUB_REF_NAME" \
+            --notes-file release-notes.md \
+            $prerelease
