@@ -1,5 +1,7 @@
 # 03 — Architecture
 
+> **Name:** this project was called *MarkDownPreview* (command prefix `mdp.`) when this document was written. It is now **Markdown PreviewEdit** (prefix `previewEdit.`); see decision D1 in [04-implementation-plan.md](04-implementation-plan.md).
+
 > **Current stack:** superseded for the MVP by [ADR-001](adr/001-stack-typescript-builtin-preview.md) — a TypeScript extension on VS Code's built-in preview. This C#/.NET design is kept as the long-term option (e.g. for a richer Word engine or own webview).
 
 > **Purpose:** How a C#/.NET-first Markdown preview runs inside VS Code, which code goes where, and the key technical decisions.
@@ -180,8 +182,7 @@ Versions are **starting points**; Phase 0 pins exact versions in `Directory.Pack
 ## 9. Repository layout (target)
 
 ```
-/AGENTS.md                  rules for coding agents (Claude Code, Copilot, …)
-/CLAUDE.md                  imports AGENTS.md
+/AGENTS.md                  rules for AI coding agents
 /README.md
 /docs/                      research, features, architecture, plan, adr/
 /samples/                   Markdown test documents (feature demos + malicious corpus)

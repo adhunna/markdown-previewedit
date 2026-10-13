@@ -1,5 +1,7 @@
 # 01 — Market Research
 
+> **Name:** this project was called *MarkDownPreview* (command prefix `mdp.`) when this document was written. It is now **Markdown PreviewEdit** (prefix `previewEdit.`); see decision D1 in [04-implementation-plan.md](04-implementation-plan.md).
+
 > **Purpose:** Understand the VS Code Markdown-preview market as of **October 2026**, find the gaps, and decide how a C#/.NET-based extension can win.
 > **Researched on:** 2026-10-12. Versions and dates below were checked on that date (see [Sources](#sources)).
 > **Limitation:** The VS Code Marketplace and Open VSX websites were unreachable from the research environment, so **install counts are not quoted**. Check them manually before making business decisions.
@@ -72,7 +74,7 @@ VS Code ships a built-in Markdown extension (`markdown-language-features`). As o
 
 1. **VS Code moved to weekly releases and added a built-in rich Markdown editor.** The bar for "basic preview" is rising; extensions must offer depth.
 2. **Security scrutiny of Markdown tooling.** CVEs and responsible disclosures hit MPE repeatedly; Markdown PDF changed its defaults to sanitize HTML.
-3. **AI agents write and read Markdown.** `AGENTS.md`, `CLAUDE.md`, skills, specs and plans are Markdown; agents output Mermaid diagrams, GitHub alerts and task lists. VS Code exposes **Language Model Tools** so extensions (e.g. Marp) can offer actions to the built-in agent; MCP is the cross-tool standard.
+3. **AI agents write and read Markdown.** `AGENTS.md`, skills, specs and plans are Markdown; agents output Mermaid diagrams, GitHub alerts and task lists. VS Code exposes **Language Model Tools** so extensions (e.g. Marp) can offer actions to the built-in agent; MCP is the cross-tool standard.
 4. **VS Code forks matter.** Cursor, Windsurf, VSCodium and others install from **Open VSX**; MPE started publishing there in March 2026.
 5. **Microsoft 365 is embracing Markdown** (Message Center MC1261592: viewing/editing Markdown files in OneDrive and SharePoint). Bridging **Markdown ⇄ Word/Excel/Outlook** is increasingly valuable for Office users.
 6. **Diagrams-as-code keep growing** (Mermaid 12, D2, Graphviz, Kroki).

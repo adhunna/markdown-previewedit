@@ -38,7 +38,7 @@ export function renderHtmlDocument(markdown: string, assets: ExportAssets, optio
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="generator" content="MarkDownPreview">
+<meta name="generator" content="Markdown PreviewEdit">
 <title>${md.utils.escapeHtml(title)}</title>
 ${base}<style>
 ${assets.exportCss}

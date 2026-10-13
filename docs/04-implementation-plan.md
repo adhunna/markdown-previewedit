@@ -31,7 +31,7 @@
 | 0.2 | Scaffold `src/engine` solution: `global.json` (SDK 10.0.x, `rollForward: latestFeature`), `Directory.Build.props` (`net10.0`, nullable, `TreatWarningsAsErrors`, `IsAotCompatible`, analyzers), `Directory.Packages.props` (central package management) | `dotnet build` and `dotnet test` pass |
 | 0.3 | Scaffold `src/extension` (TypeScript strict, esbuild, ESLint flat config, `@vscode/test-cli`) | `npm run build`, `npm run lint`, `npm test` pass |
 | 0.4 | Scaffold `src/webview` (TypeScript, esbuild, no UI framework) | Bundle built into the extension's `media/` |
-| 0.5 | **Spike S1 — NativeAOT JSON-RPC:** `MarkDownPreview.Host` with StreamJsonRpc (`SystemTextJsonFormatter`, source-generated contracts); `ping` + `document/render`; publish NativeAOT `win-x64`; TS client spawns it | Zero AOT/trim warnings · cold start < 150 ms · binary size recorded · fallback decision recorded in ADR-002 |
+| 0.5 | **Spike S1 — NativeAOT JSON-RPC:** `Markdown PreviewEdit.Host` with StreamJsonRpc (`SystemTextJsonFormatter`, source-generated contracts); `ping` + `document/render`; publish NativeAOT `win-x64`; TS client spawns it | Zero AOT/trim warnings · cold start < 150 ms · binary size recorded · fallback decision recorded in ADR-002 |
 | 0.6 | **Spike S2 — render + scroll sync:** Markdig with precise source locations → `data-line-*` attributes + block hashes; webview morphs blocks and syncs scroll | Typing in a 50 KB doc updates preview < 100 ms; scroll sync both ways |
 | 0.7 | **Spike S3 — library AOT check:** Open XML SDK (heading + table + image DOCX), HtmlSanitizer, YamlDotNet, ReverseMarkdown, PuppeteerSharp (PDF via installed Edge) | Each library: works under NativeAOT ✅ / needs workaround ⚠️ / blocked ❌ — results in ADR-001 |
 | 0.8 | **Spike S4 — dev & fallback mode:** shell runs the engine framework-dependent (via `dotnet` or the .NET Install Tool's `dotnet.acquire`) | F5 debugging works with C# breakpoints (attach to engine process) |
@@ -115,7 +115,7 @@ node --version     # an LTS version
 git --version
 ```
 
-After Phase 0: clone the repo, open the folder in VS Code, press **F5** → an *Extension Development Host* window opens → open any `.md` file → run **"MDP: Open Preview to the Side"** from the Command Palette (`Ctrl+Shift+P`).
+After Phase 0: clone the repo, open the folder in VS Code, press **F5** → an *Extension Development Host* window opens → open any `.md` file → run **"PreviewEdit: Open Preview to the Side"** from the Command Palette (`Ctrl+Shift+P`).
 
 > Windows 10 has been past Microsoft's end of mainstream support since 14 Oct 2025. If an installer above refuses to run, that is the likely cause; CI also tests on current Windows runners.
 
@@ -137,11 +137,11 @@ After Phase 0: clone the repo, open the folder in VS Code, press **F5** → an *
 
 ## 9. Decisions (owner to confirm — recommended default in **bold**)
 
-**Decided:** D2 and D8 — the project is public open source under the MIT licence (v0.2.0); D3 — superseded by [ADR-001](adr/001-stack-typescript-builtin-preview.md) (one universal TypeScript VSIX). The rest are still open.
+**Decided:** D1 (name: Markdown PreviewEdit), D2 and D8 — the project is public open source under the MIT licence (v0.2.0); D3 — superseded by [ADR-001](adr/001-stack-typescript-builtin-preview.md) (one universal TypeScript VSIX). The rest are still open.
 
 | ID | Decision | Recommendation / outcome |
 |---|---|---|
-| D1 | Product display name, Marketplace publisher ID, command/setting prefix | Working codename **MarkDownPreview**, prefix **`mdp.`**; pick final name before Phase 2 (check Marketplace for conflicts) |
+| D1 | Product display name, Marketplace publisher ID, command/setting prefix | ✅ **Decided (v0.3.0): Markdown PreviewEdit**, extension ID `adhunna.markdown-previewedit`, prefix `previewEdit.` (formerly the codename MarkDownPreview with prefix `mdp.`). Check the Marketplace for conflicts before publishing there. |
 | D2 | Licence | ✅ **Decided: MIT** — see `LICENSE`; bundled packages and their licences in `THIRD_PARTY_NOTICES.md` (includes elkjs, EPL-2.0, via Mermaid) |
 | D3 | Engine hosting model | ✅ **Superseded** by ADR-001: no separate engine, one universal VSIX |
 | D4 | Minimum VS Code version | **A version ~3 months older than the release date** |

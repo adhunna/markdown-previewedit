@@ -15,5 +15,5 @@
 
 - [ ] Follows [AGENTS.md](../AGENTS.md) (built-in first, security rules, no new dependency or setting without agreement)
 - [ ] Tests added or updated (security fixes add a file to `samples/malicious/`)
-- [ ] Docs updated: catalog *Status*, `ROADMAP.md`, README (if users see it), `CHANGELOG.md` (top section)
+- [ ] Docs updated: catalog *Status*, `ROADMAP.md`, README (if users see it), user guide, `CHANGELOG.md` under *Unreleased*
 - [ ] `npm run notices` run if dependencies changed

@@ -7,7 +7,7 @@ import { normalizeSource, renderEditPreview } from './render';
 import type { PreviewTheme } from '../preview-settings';
 
 /**
- * A24: the "MDP Edit Preview" panel — a preview of one Markdown document where selected text can
+ * A24: the "Edit Preview" panel — a preview of one Markdown document where selected text can
  * be formatted from a toolbar. VS Code's built-in preview cannot send messages to extensions, so
  * this is our own webview (ADR-002). Edits go through `WorkspaceEdit`, so they are undoable.
  */
@@ -71,7 +71,7 @@ class EditPreviewPanel {
   ) {
     const documentFolder = vscode.Uri.file(dirname(document.uri.fsPath));
     this.panel = vscode.window.createWebviewPanel(
-      'mdp.editPreview',
+      'previewEdit.editPreview',
       `Edit: ${basename(document.uri.fsPath)}`,
       { viewColumn: vscode.ViewColumn.Beside, preserveFocus: true },
       {

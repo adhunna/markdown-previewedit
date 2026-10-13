@@ -1,8 +1,8 @@
 # Roadmap
 
-What MarkDownPreview can do today, and everything planned for later. Every item has a **Feature ID** from the [feature catalog](docs/02-feature-catalog.md), which has the full descriptions and the original market research behind them ([docs/01-market-research.md](docs/01-market-research.md)).
+What Markdown PreviewEdit can do today, and everything planned for later. Every item has a **Feature ID** from the [feature catalog](docs/02-feature-catalog.md), which has the full descriptions and the original market research behind them ([docs/01-market-research.md](docs/01-market-research.md)).
 
-**Where we are:** v0.3.0 in development (pre-release, installed from a `.vsix` file). Of the 130 catalogued features (128 from the original research plus 2 requested since), **23 are done**, **10 are partly done**, **16 come free with VS Code's built-in preview** (we extend it rather than replace it), and **1 is no longer needed** with the TypeScript stack. The other **80**, plus the unfinished parts of the partial items, are in the [future list](#future-list) below.
+**Where we are:** [v0.3.0](https://github.com/adhunna/markdown-previewedit/releases), the first public pre-release (installed from a `.vsix` file). Of the 130 catalogued features (128 from the original research plus 2 requested since), **23 are done**, **10 are partly done**, **16 come free with VS Code's built-in preview** (we extend it rather than replace it), and **1 is no longer needed** with the TypeScript stack. The other **80**, plus the unfinished parts of the partial items, are in the [future list](#future-list) below.
 
 ★ = a differentiator: something Markdown Preview Enhanced and similar extensions do not offer.
 
@@ -12,7 +12,7 @@ Want to help? Pick an item, comment on (or open) an issue that names its ID, and
 
 ## Implemented
 
-### Added by MarkDownPreview
+### Added by Markdown PreviewEdit
 
 | ID | Feature | Since |
 |---|---|---|
@@ -46,7 +46,7 @@ Want to help? Pick an item, comment on (or open) an issue that names its ID, and
 | J11 | Hostile-Markdown test corpus run on every build | 0.1.0 |
 | K01, K02, K08 | One universal `.vsix` for Windows, macOS and Linux (no native code) | 0.1.0 |
 | M01 | Small settings set: 6 settings (MPE has 74) | 0.1.0 |
-| N02 | "MarkDownPreview" log in the Output panel *(partial)* | 0.1.0 |
+| N02 | "Markdown PreviewEdit" log in the Output panel *(partial)* | 0.1.0 |
 | N04 | Errors are isolated per diagram *(partial)* | 0.1.0 |
 
 ### Provided by VS Code's built-in preview (kept working)
@@ -85,7 +85,7 @@ Ordered by priority. **Next** = wanted for v1.0, **Later** = v1.x, **Ideas** = o
 | A05 | Preview | Incremental updates: only changed blocks are replaced, so scroll position, diagrams and images stay stable |
 | A08 | Preview | Highlight the block under the editor cursor in the preview |
 | A10 *(rest)* | Preview | Preview styles: GitHub Light/Dark, **"Word document" look** ★, Academic/print |
-| A11 | Preview | Custom CSS: user, workspace (`.mdp/style.css`) and front matter `css:` |
+| A11 | Preview | Custom CSS: user, workspace (`.previewedit/style.css`) and front matter `css:` |
 | A12 *(rest)* | Preview | `Ctrl`+mouse-wheel zoom |
 | A13 | Preview | Outline (TOC) side panel in the preview: collapsible, highlights the current section |
 | A19 | Preview | Large-document mode: render budget, progressive rendering, pause live update above a size |
@@ -156,7 +156,7 @@ Ordered by priority. **Next** = wanted for v1.0, **Later** = v1.x, **Ideas** = o
 | I04 | Authoring | Snippets: alerts, Mermaid, math, `details` |
 | K07 | Platform | Translations of the user interface |
 | L01 | AI | Tools for VS Code agent mode: "export this file to Word/PDF", "render this diagram" ★ |
-| M03 | Settings | Workspace config file `.mdp/config.json` (declarative, never code) ★ |
+| M03 | Settings | Workspace config file `.previewedit/config.json` (declarative, never code) ★ |
 | M04 | Settings | IntelliSense (JSON schemas) for front matter and config |
 
 ### Ideas — only if users ask
@@ -177,7 +177,7 @@ Ordered by priority. **Next** = wanted for v1.0, **Later** = v1.x, **Ideas** = o
 | H03 | Notes | Graph view |
 | K09 | Platform | VS Code for the Web (vscode.dev / github.dev) ★ |
 | L02 | AI | MCP server so external agents can render and export ★ |
-| L03 | AI | Nicer rendering of `AGENTS.md`, `CLAUDE.md`, `SKILL.md` and prompt files |
+| L03 | AI | Nicer rendering of `AGENTS.md`, `SKILL.md`, prompt files and other agent instruction files |
 | M05 | Settings | Public API for other extensions to add CSS or renderers |
 
 ### Not planned

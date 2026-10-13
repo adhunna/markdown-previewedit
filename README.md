@@ -1,141 +1,110 @@
-# MarkDownPreview
+<p align="center">
+  <img src="media/icon.png" width="96" height="96" alt="Markdown PreviewEdit logo">
+</p>
 
-[![CI](https://github.com/adhunna/MarkDownPreview/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/adhunna/MarkDownPreview/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+<h1 align="center">Markdown PreviewEdit</h1>
 
-A free, open-source VS Code extension that adds the missing pieces to **VS Code's built-in Markdown preview**: Mermaid diagrams, GitHub alerts, task lists, a table of contents, a Dark/Light switch, zoom and a full-screen view. You can **format text straight from a preview** (headings, bold, lists, colours…) and it is written into your `.md` file. It also exports your Markdown to **Word, PDF and HTML**.
+<p align="center">
+  <b>Preview <i>and edit</i> Markdown in VS Code: diagrams, alerts, formatting straight from the preview, and export to Word, PDF and HTML.</b><br>
+  Free, open source, offline, no telemetry.
+</p>
 
-It works offline, sends no telemetry, and treats every Markdown file as untrusted.
+<p align="center">
+  <a href="https://github.com/adhunna/markdown-previewedit/actions/workflows/ci.yml"><img src="https://github.com/adhunna/markdown-previewedit/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a>
+  <a href="https://github.com/adhunna/markdown-previewedit/releases"><img src="https://img.shields.io/github/v/release/adhunna/markdown-previewedit?include_prereleases&label=release" alt="Latest release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT licence"></a>
+</p>
 
-> **Status:** v0.3.0 in development (pre-release). It is not on the Marketplace yet; install it from a `.vsix` file (see [Install](#install)). See the [roadmap](ROADMAP.md) for what's done and what's next.
+<p align="center">
+  <img src="docs/images/edit-preview.png" alt="Selecting text in the Edit Preview shows a formatting toolbar" width="820">
+</p>
 
-## Features
+Markdown PreviewEdit builds on **VS Code's own Markdown preview** instead of replacing it, so live update, scroll sync, math and your theme keep working. It adds what's missing:
 
-### Preview buttons
+- 🧜 **Mermaid diagrams**, **GitHub alerts**, task lists, a table of contents, footnotes and more
+- ✏️ **Format from the preview:** select text and make it a title, bold, a list, red, bigger… The change is written into your `.md` file.
+- 📄 **Export to Word, PDF and HTML.** Word files use real Word styles, and PDFs are printed by the Edge already on your PC.
+- 🌗 **Light/Dark switch, zoom and full screen** for the preview, whatever your VS Code theme
+- 🔒 **Safe with untrusted files:** everything is bundled, nothing is downloaded, and nothing in a document can run code
 
-When a Markdown file is open, click the **Open Preview to the Side** button (top right of the editor). Hold `Alt` while clicking to open the preview in the same tab. `Ctrl+K V` and `Ctrl+Shift+V` work too.
-
-The preview tab then gets these buttons (top right):
-
-| Button | Shortcut (click in the preview first) | What it does |
-|---|---|---|
-| Zoom out / zoom in | `Ctrl+-` / `Ctrl+=` | Smaller / larger text (8–40 px) |
-| — | `Ctrl+0` | Reset the text size |
-| Colour mode (half circle) | — | Cycle the preview theme: **Auto** (follow VS Code) → **Light** → **Dark** |
-| Full screen (four corners) | — | Fill the VS Code window with the preview: other editors, side bars and the panel are hidden. Click again to restore. |
-
-All of these are also in the Command Palette (`Ctrl+Shift+P`, type **MDP**).
-
-### Format from the preview (Edit Preview)
-
-Click the **pencil button** next to the preview button on a Markdown file (or `Ctrl+Shift+P` → **MDP: Open Edit Preview**). An *Edit Preview* opens beside the file. Select any text in it and a toolbar appears:
-
-| Toolbar | What it writes into the `.md` file |
-|---|---|
-| Text style | Normal text, **Title** (`#`), Heading 2–6 (`##` … `######`) |
-| **B** *I* S U H `</>` x₂ x² | `**bold**`, `*italic*`, `~~strike~~`, `++underline++`, `==highlight==`, `` `code` ``, `~sub~`, `^sup^`. Click again to remove. |
-| 🔗 | `[text](url)`; asks for the address (empty removes the link) |
-| • 1. ☐ ❝ Alert | Bulleted, numbered or task list; quote; GitHub alert (Note, Tip, Important, Warning, Caution) |
-| Aa | UPPERCASE, lowercase, Title Case, Sentence case |
-| Colour, Fill, Size | `<span style="color:…">` etc. — **HTML**, because Markdown has no colours or sizes. Shown in the previews and in Word/PDF/HTML exports, but not on GitHub. |
-| ✕ | Clear formatting (keeps the text) |
-
-`Ctrl+B` / `Ctrl+I` work while text is selected. Every change is a normal edit: undo it with `Ctrl+Z` in the editor; nothing is saved until you save. Double-click in the Edit Preview to jump to that line in the editor. You still type text in the editor; the Edit Preview only formats.
-
-### Extra Markdown
-
-| Feature | Syntax |
-|---|---|
-| Mermaid diagrams (offline, follow the theme, clear error box if broken) | ```` ```mermaid ```` |
-| GitHub alerts | `> [!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]`, `[!CAUTION]` |
-| Boxes and collapsible sections | `::: warning Title` … `:::`, `::: details Summary` … `:::` |
-| Table of contents | `[TOC]` on its own line |
-| Task lists | `- [ ]` / `- [x]` |
-| Footnotes, definition lists, abbreviations | `[^1]`, `Term` + `: Definition`, `*[HTML]: …` |
-| Highlight, inserted, sub/superscript, emoji | `==mark==`, `++ins++`, `H~2~O`, `x^2^`, `:tada:` |
-
-Everything the built-in preview already does keeps working: math (`$…$`, `$$…$$`), front matter, scroll sync, live update, links, find (`Ctrl+F`).
-
-### Export
-
-Right-click in a Markdown file → **MDP: Export**, or `Ctrl+Shift+P` → "MDP: Export…":
-
-| Command | Result |
-|---|---|
-| **MDP: Export to Word (.docx)** | A native Word file with real Heading, list, table, quote and code styles. *Images, diagrams and equations are placeholders in this version.* |
-| **MDP: Export to PDF** | Printed by the **Microsoft Edge** already on your PC (or Chrome/Chromium); nothing is downloaded. Includes diagrams and math. |
-| **MDP: Export to HTML** | One self-contained page that works offline, with diagrams and math. |
-
-Exports always use a light, print-friendly style, whatever the preview theme. Text colour, fill and size set with `<span style>` (for example from the Edit Preview) are kept in all three formats.
+> **Status:** 0.3.0 pre-release. Install it from a [GitHub Release](https://github.com/adhunna/markdown-previewedit/releases); it is not on the VS Code Marketplace yet.
 
 ## Install
 
-1. Download `markdownpreview-<version>.vsix`. Pick the latest successful [CI run](https://github.com/adhunna/MarkDownPreview/actions/workflows/ci.yml) and open its **Artifacts** section. Or [build it yourself](#build-from-source).
+1. Download `markdown-previewedit-<version>.vsix` from the latest [GitHub Release](https://github.com/adhunna/markdown-previewedit/releases).
 2. In VS Code, open the **Extensions** view (`Ctrl+Shift+X`), click the **`…`** menu at the top right of the view, choose **Install from VSIX…** and pick the file.
-3. Open any `.md` file and click the preview button at the top right.
+3. Reload VS Code if it asks.
 
-Requires VS Code 1.95 or newer, on Windows, macOS or Linux. PDF export needs Microsoft Edge, Google Chrome or Chromium.
+You need VS Code 1.95 or newer on Windows, macOS or Linux. PDF export also needs Microsoft Edge, Google Chrome or Chromium.
 
-## Settings
+## Quick start
 
-| Setting | Default | Meaning |
-|---|---|---|
-| `mdp.preview.theme` | `auto` | Preview colours: `auto` (follow VS Code), `light`, `dark` |
-| `markdown.preview.fontSize` | `14` | VS Code's own preview font size, changed by the zoom buttons |
-| `mdp.mermaid.enabled` | `true` | Render Mermaid code blocks as diagrams |
-| `mdp.export.openAfterExport` | `true` | Open the exported file (for example in Word) when done |
-| `mdp.export.browserPath` | *(auto)* | Browser for PDF export, if Edge/Chrome is not found automatically |
-| `mdp.export.pdf.format` | `A4` | Paper size: A4, A3, A5, Letter, Legal |
-| `mdp.export.pdf.margin` | `20mm` | Page margin |
+1. Open any `.md` file. You can try [`samples/features/all.md`](samples/features/all.md), which uses every feature.
+2. Click **Open Preview to the Side** (top right). In the preview, use the zoom, colour-mode and full-screen buttons.
+3. Click the **pencil** button instead to open the **Edit Preview**, then select some text and use the toolbar.
+4. Right-click in the file → **PreviewEdit: Export** → Word, PDF or HTML.
 
-## Security and privacy
+Everything is explained in the **[user guide](docs/user-guide.md)**: all buttons, commands, shortcuts, settings and syntax.
 
-- Works inside VS Code's preview security (Content-Security-Policy, sanitizer) and never asks you to loosen it.
-- Exported HTML is sanitized: scripts, frames, forms, event handlers and `javascript:` links are removed. A set of hostile Markdown files ([`samples/malicious/`](samples/malicious/)) is tested on every build.
-- PDF export starts a local browser, so it is disabled in untrusted (Restricted Mode) workspaces.
-- The Edit Preview only accepts a fixed set of checked messages and changes nothing but the document you opened it for. The only CSS it writes or keeps is text colour, background colour and a limited font size.
-- Nothing is downloaded at runtime. No telemetry.
+## What it looks like
 
-Found a vulnerability? Please report it privately. See [SECURITY.md](SECURITY.md).
+<p align="center">
+  <img src="docs/images/preview-light-dark.png" alt="The same document with a Mermaid diagram, an alert and a task list, in Light and Dark" width="820">
+</p>
+
+| Extra syntax | Write |
+|---|---|
+| Mermaid diagram | ```` ```mermaid ```` |
+| GitHub alert | `> [!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]`, `[!CAUTION]` |
+| Box / collapsible | `::: warning Title` … `:::` · `::: details Summary` … `:::` |
+| Table of contents | `[TOC]` |
+| Task list | `- [ ]` / `- [x]` |
+| Footnotes, definitions, abbreviations | `[^1]`, `Term` + `: Definition`, `*[HTML]: …` |
+| Highlight, inserted, sub/superscript, emoji | `==mark==`, `++ins++`, `H~2~O`, `x^2^`, `:tada:` |
+
+*Screenshots are rendered outside VS Code; in VS Code the preview uses your theme's fonts and colours.*
+
+## Privacy and security
+
+- No telemetry and no network access: Mermaid, KaTeX and everything else are bundled.
+- Works inside VS Code's preview security and never asks you to loosen it.
+- Exported HTML is sanitized. Scripts, frames, forms, event handlers and `javascript:` links are removed, and the only CSS kept is text colour, background colour and font size.
+- The Edit Preview accepts only a fixed set of checked messages and edits nothing but its own document.
+- PDF export starts your local browser, so it is off in untrusted (Restricted Mode) workspaces.
+- A set of hostile Markdown files ([`samples/malicious/`](samples/malicious/)) is tested on every build.
+
+Found a vulnerability? Please report it privately; see [SECURITY.md](SECURITY.md).
 
 ## Roadmap
 
-[ROADMAP.md](ROADMAP.md) lists what is implemented and every planned feature. That covers 128 researched features, ordered **Next (v1.0)**, **Later** and **Ideas**. Highlights coming next include a Word reference template, copying as rich text for Outlook and Teams, smart paste from Word/Excel, images and diagrams in Word, Graphviz, file imports and custom CSS.
+130 catalogued features, from the original market research, are tracked in [ROADMAP.md](ROADMAP.md). Coming next:
+- a Word reference template
+- **copy as rich text** for Outlook and Teams
+- smart paste from Word and Excel
+- images and diagrams in Word
+- diagram styling from the preview
+- Graphviz, file imports and custom CSS
 
 ## Contributing
 
-Contributions are welcome: bug reports, ideas, docs and code. Start with [CONTRIBUTING.md](CONTRIBUTING.md). Everyone taking part follows the [Code of Conduct](CODE_OF_CONDUCT.md).
-
-### Build from source
-
-Requires Node.js 22 LTS.
+Bug reports, ideas, documentation and code are all welcome. Start with **[CONTRIBUTING.md](CONTRIBUTING.md)** and the [architecture guide](docs/architecture.md). Everyone taking part follows the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ```powershell
-git clone https://github.com/adhunna/MarkDownPreview.git
-cd MarkDownPreview
+git clone https://github.com/adhunna/markdown-previewedit.git
+cd markdown-previewedit
 npm ci
-npm test            # plugins, exports, security corpus (+ PDF if Edge/Chrome is installed)
-npm run package     # → markdownpreview-<version>.vsix
+npm test          # unit, export and security tests
+npm run package   # → markdown-previewedit-<version>.vsix
 ```
 
-Press **F5** in VS Code to run the extension in a development window.
+Press **F5** in VS Code to try your changes in a development window. All project documents are listed in [docs/README.md](docs/README.md).
 
-### Project documents
+## Acknowledgements
 
-| Document | Contents |
-|---|---|
-| [ROADMAP.md](ROADMAP.md) | Implemented features and the future list |
-| [CHANGELOG.md](CHANGELOG.md) | What changed in each version |
-| [docs/adr/001-stack-typescript-builtin-preview.md](docs/adr/001-stack-typescript-builtin-preview.md) | Why TypeScript on top of the built-in preview |
-| [docs/01-market-research.md](docs/01-market-research.md) | Competitors, trends, gaps, positioning |
-| [docs/02-feature-catalog.md](docs/02-feature-catalog.md) | All 128 features with IDs, priorities and status |
-| [docs/03-architecture.md](docs/03-architecture.md) | Long-term C#/.NET design (future option) |
-| [docs/04-implementation-plan.md](docs/04-implementation-plan.md) | Phases, testing, release, risks, decisions |
-| [docs/05-one-week-mvp.md](docs/05-one-week-mvp.md) | The original one-week C# plan (superseded) |
-| [AGENTS.md](AGENTS.md) | Project rules and glossary for contributors and AI coding agents |
-
-## License
-
-[MIT](LICENSE) © The MarkDownPreview contributors. The extension bundles open-source packages under their own licences, which are listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Built on [VS Code's Markdown preview](https://github.com/microsoft/vscode/tree/main/extensions/markdown-language-features), [markdown-it](https://github.com/markdown-it/markdown-it), [Mermaid](https://mermaid.js.org/), [KaTeX](https://katex.org/), [docx](https://github.com/dolanmiu/docx), [puppeteer-core](https://pptr.dev/) and [sanitize-html](https://github.com/apostrophecms/sanitize-html). Every bundled package and its licence is listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 Inspired by [Markdown Preview Enhanced](https://github.com/shd101wyy/vscode-markdown-preview-enhanced); no code is shared.
+
+## Licence
+
+[MIT](LICENSE) © The Markdown PreviewEdit contributors

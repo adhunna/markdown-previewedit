@@ -1,9 +1,9 @@
 ---
-title: MarkDownPreview Feature Tour
-author: MarkDownPreview
+title: Markdown PreviewEdit Feature Tour
+author: Markdown PreviewEdit
 ---
 
-# MarkDownPreview Feature Tour
+# Markdown PreviewEdit Feature Tour
 
 [TOC]
 

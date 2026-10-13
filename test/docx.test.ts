@@ -14,7 +14,7 @@ async function documentXml(markdown: string): Promise<{ doc: string; core: strin
 
 test('feature tour becomes a Word document with real styles', async () => {
   const { doc, core } = await documentXml(sample('features', 'all.md'));
-  assert.match(core, /<dc:title>MarkDownPreview Feature Tour<\/dc:title>/);
+  assert.match(core, /<dc:title>Markdown PreviewEdit Feature Tour<\/dc:title>/);
   assert.match(doc, /<w:pStyle w:val="Heading1"\/>/);
   assert.match(doc, /<w:pStyle w:val="Heading2"\/>/);
   assert.match(doc, /<w:numPr>/, 'lists use Word numbering');
@@ -27,7 +27,7 @@ test('feature tour becomes a Word document with real styles', async () => {
   assert.match(doc, /☐ <\/w:t>[\s\S]{0,200}Ship the MVP/);
   assert.match(doc, /Mermaid diagram/);
   assert.match(doc, /<w:t xml:space="preserve">Contents<\/w:t>/);
-  assert.doesNotMatch(doc, /title: MarkDownPreview/, 'front matter is not exported');
+  assert.doesNotMatch(doc, /title: Markdown PreviewEdit/, 'front matter is not exported');
   assert.match(doc, /<w:highlight w:val="yellow"\/>/, '==mark== is highlighted');
   assert.match(doc, /<w:vertAlign w:val="subscript"\/>/, 'H~2~O uses subscript');
   assert.match(doc, /<w:vertAlign w:val="superscript"\/>/, 'x^2^ and footnote refs use superscript');

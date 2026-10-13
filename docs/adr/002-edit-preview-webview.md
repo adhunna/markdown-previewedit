@@ -14,7 +14,7 @@ Recent VS Code also ships a rich "Markdown Editor" (WYSIWYG). The catalog lists 
 
 ## Decision
 
-- Add a second, opt-in preview: **"MDP Edit Preview"** (`mdp.openEditPreview`, pencil button on Markdown files). The built-in preview stays the main reading preview.
+- Add a second, opt-in preview: **"Edit Preview"** (`previewEdit.openEditPreview`, pencil button on Markdown files). The built-in preview stays the main reading preview.
 - **Format only, no typing.** Text is still typed in the editor. The preview offers a selection toolbar; this keeps us out of WYSIWYG territory and makes every change a small, predictable Markdown edit.
 - **Rendering** reuses the export engine (`createExportMarkdownIt`): the same plugins, KaTeX and sanitizer. A source-map plugin (`src/markdown/sourceMap.ts`) tags blocks with their lines and every text character with its source offset.
 - **Edits** are computed by a pure module (`src/edit/format.ts`) and applied with `WorkspaceEdit` (undoable, file not saved automatically). The webview sends only the allowlisted, fully validated messages in `src/edit/messages.ts`, with the document version they refer to. A stale version is refused.
@@ -25,7 +25,7 @@ Recent VS Code also ships a rich "Markdown Editor" (WYSIWYG). The catalog lists 
 
 - ✅ Formatting from the preview works with VS Code's stable API, without touching the built-in preview.
 - ✅ One engine: preview, Edit Preview and exports render the same syntax.
-- ⚠️ Two previews to keep visually close. The Edit Preview uses VS Code theme variables, `mdp.preview.theme` and `markdown.preview.fontSize`.
+- ⚠️ Two previews to keep visually close. The Edit Preview uses VS Code theme variables, `previewEdit.preview.theme` and `markdown.preview.fontSize`.
 - ⚠️ Text that cannot be traced exactly to the source (generated TOC entries, emoji shortcodes, math) cannot be formatted from the preview; the toolbar ignores it.
 - ⚠️ `src/edit/panel.ts` is a second file that imports `vscode` (besides `src/extension.ts`). Everything else in `src/edit/` stays VS Code-free and unit-tested.
 - The message allowlist (J04) is back in scope and covered by `test/messages.test.ts`.

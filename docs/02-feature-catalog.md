@@ -1,7 +1,7 @@
 # 02 — Feature Catalog
 
 > **Purpose:** The single, numbered list of everything the extension may do. Every piece of work references a **Feature ID** from this file (e.g. `E04`).
-> **Status:** v0.2.0 (see [ROADMAP.md](../ROADMAP.md) for the implemented / future summary and [ADR-001](adr/001-stack-typescript-builtin-preview.md) for the stack). *Built-in ✅* = provided by VS Code's own Markdown preview, which this extension extends. *Done* / *Partial* = implemented here. *N/A* = not needed with the TypeScript stack. Agents update the *Status* column as work lands — see [AGENTS.md](../AGENTS.md).
+> **Status:** v0.3.0 (see [ROADMAP.md](../ROADMAP.md) for the implemented / future summary and [ADR-001](adr/001-stack-typescript-builtin-preview.md) for the stack). *Built-in ✅* = provided by VS Code's own Markdown preview, which this extension extends. *Done* / *Partial* = implemented here. *N/A* = not needed with the TypeScript stack. Agents update the *Status* column as work lands — see [AGENTS.md](../AGENTS.md).
 
 ## Legend
 
@@ -21,7 +21,7 @@
 
 | ID | Feature | Pri | Phase | Owner | Status |
 |---|---|---|---|---|---|
-| A01 | Open preview in current tab / to the side; editor-title button; keybindings (`Ctrl+K V`, `Ctrl+Shift+V` — configurable) | P0 | 1 | S | Built-in ✅ + MDP title-bar button (v0.2.0) |
+| A01 | Open preview in current tab / to the side; editor-title button; keybindings (`Ctrl+K V`, `Ctrl+Shift+V` — configurable) | P0 | 1 | S | Built-in ✅ + PreviewEdit title-bar button (v0.2.0) |
 | A02 | Locked preview (stays on one file) and toggle lock | P1 | 2 | S | Built-in ✅ |
 | A03 | Single-preview vs multiple-preview mode | P1 | 2 | S | Planned |
 | A04 | Live update while typing, debounced; stale renders cancelled | P0 | 1 | S+E | Built-in ✅ |
@@ -31,7 +31,7 @@
 | A08 | Highlight the block under the editor cursor in the preview | P1 | 2 | W | Planned |
 | A09 | Preview follows the VS Code theme (light / dark / high-contrast) via `--vscode-*` CSS variables | P0 | 1 | W | Built-in ✅ |
 | A10 | Built-in preview themes: GitHub Light/Dark, **"Word document" look** ★, Academic/print | P1 | 2 | W | Partial (v0.2.0: Auto/Light/Dark) |
-| A11 | Custom CSS: user-level, workspace-level (`.mdp/style.css`), front-matter `css:` | P1 | 2 | S+E | Planned |
+| A11 | Custom CSS: user-level, workspace-level (`.previewedit/style.css`), front-matter `css:` | P1 | 2 | S+E | Planned |
 | A12 | Font family / size / line height; zoom in/out/reset (`Ctrl +/-/0`, `Ctrl`+wheel) | P1 | 2 | W | Partial (v0.2.0: font size; built-in font/line height) |
 | A13 | Outline (TOC) sidebar inside the preview: collapsible, resizable, highlights current section | P1 | 2 | E+W | Planned |
 | A14 | Find in preview (`Ctrl+F`) | P1 | 2 | S | Built-in ✅ |
@@ -197,8 +197,8 @@
 | ID | Feature | Pri | Phase | Owner | Status |
 |---|---|---|---|---|---|
 | L01 | **Language Model Tools** for VS Code agent mode: "export this file to DOCX/PDF", "render this diagram", "convert this HTML to Markdown" ★ | P2 | 4 | S+E | Planned |
-| L02 | **MCP server mode** of the engine so external agents (Claude Code, Copilot CLI, …) can render/export ★ | P3 | 5 | E | Planned |
-| L03 | Agent-file awareness: nicer rendering of `AGENTS.md`, `CLAUDE.md`, `SKILL.md`, prompt files (front matter) | P3 | 5 | E | Planned |
+| L02 | **MCP server mode** of the engine so external coding agents and CLIs can render/export ★ | P3 | 5 | E | Planned |
+| L03 | Agent-file awareness: nicer rendering of `AGENTS.md`, `SKILL.md`, prompt files and other agent instruction files (front matter) | P3 | 5 | E | Planned |
 
 ## M. Configuration
 
@@ -206,7 +206,7 @@
 |---|---|---|---|---|---|
 | M01 | Small, well-defaulted settings set (target **≤ 30 settings** at v1.0; MPE has 74) | P0 | 1 | S | Done (v0.1.0) |
 | M02 | Per-document overrides in front matter | P1 | 2 | E | Planned |
-| M03 | Workspace config `.mdp/config.json` — declarative JSON with a schema, **never executable code** ★ | P2 | 4 | E | Planned |
+| M03 | Workspace config `.previewedit/config.json` — declarative JSON with a schema, **never executable code** ★ | P2 | 4 | E | Planned |
 | M04 | JSON Schemas for front matter and config (IntelliSense) | P2 | 4 | S | Planned |
 | M05 | Public extension API so other extensions can contribute CSS / renderers | P3 | 5 | S | Planned |
 
