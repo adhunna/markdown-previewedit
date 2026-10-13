@@ -1,9 +1,15 @@
 {
   "name": "markdownpreview",
   "displayName": "MarkDownPreview",
-  "description": "Mermaid diagrams, GitHub alerts, extra Markdown syntax, and Word/PDF/HTML export for VS Code's Markdown preview.",
-  "version": "0.2.0",
+  "description": "Mermaid diagrams, GitHub alerts, formatting from the preview, and Word/PDF/HTML export for VS Code's Markdown preview. Offline, no telemetry.",
+  "version": "0.3.0",
   "publisher": "adhunna",
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#1a4fb5",
+    "theme": "dark"
+  },
+  "preview": true,
   "license": "MIT",
   "private": true,
   "repository": {
@@ -19,6 +25,7 @@
   },
   "categories": [
     "Visualization",
+    "Formatters",
     "Other"
   ],
   "keywords": [
@@ -26,11 +33,13 @@
     "preview",
     "mermaid",
     "github alerts",
-    "docx",
     "word",
+    "docx",
     "pdf",
     "html export",
-    "katex"
+    "formatting",
+    "katex",
+    "diagrams"
   ],
   "main": "./dist/extension.js",
   "activationEvents": [
