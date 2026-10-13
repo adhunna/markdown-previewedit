@@ -27,9 +27,13 @@ Markdown PreviewEdit builds on **VS Code's own Markdown preview** instead of rep
 - 🌗 **Light/Dark switch, zoom and full screen** for the preview, whatever your VS Code theme
 - 🔒 **Safe with untrusted files:** everything is bundled, nothing is downloaded, and nothing in a document can run code
 
-> **Status:** 0.3.0 pre-release. Install it from a [GitHub Release](https://github.com/adhunna/markdown-previewedit/releases); it is not on the VS Code Marketplace yet.
+> **Status:** 0.3.0 preview release. Feedback and bug reports are welcome on [GitHub Issues](https://github.com/adhunna/markdown-previewedit/issues).
 
 ## Install
+
+**From the VS Code Marketplace:** open the **Extensions** view (`Ctrl+Shift+X`), search for **Markdown PreviewEdit** and click **Install**. Or run `ext install adhunna.markdown-previewedit` from Quick Open (`Ctrl+P`).
+
+**From a file:**
 
 1. Download `markdown-previewedit-<version>.vsix` from the latest [GitHub Release](https://github.com/adhunna/markdown-previewedit/releases).
 2. In VS Code, open the **Extensions** view (`Ctrl+Shift+X`), click the **`…`** menu at the top right of the view, choose **Install from VSIX…** and pick the file.

@@ -20,6 +20,8 @@
     "url": "https://github.com/adhunna/markdown-previewedit/issues"
   },
   "homepage": "https://github.com/adhunna/markdown-previewedit#readme",
+  "qna": "https://github.com/adhunna/markdown-previewedit/issues",
+  "pricing": "Free",
   "engines": {
     "vscode": "^1.95.0"
   },

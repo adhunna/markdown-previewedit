@@ -89,7 +89,7 @@ Read these before any non-trivial change — they are the source of truth:
 ### 3.4 Dependencies
 
 1. Do not add an npm package without the owner's approval. When proposing one, state: purpose, licence, bundle size, maintenance status and alternatives. Prefer versions published at least two weeks ago.
-2. Allowed licences: MIT, BSD, Apache-2.0, ISC, MS-PL, EPL-2.0 (tools only). **No GPL/AGPL/LGPL in shipped code.**
+2. Allowed licences: MIT, BSD, Apache-2.0, ISC, MS-PL. EPL-2.0 is allowed for tools, and for **unmodified** libraries bundled through an approved dependency, listed in `THIRD_PARTY_NOTICES.md` (today: `elkjs`, pulled in by Mermaid). **No GPL/AGPL/LGPL in shipped code.**
 3. Versions are pinned exactly in `package.json`; commit `package-lock.json`.
 4. After any dependency change run `npm run notices` and commit `THIRD_PARTY_NOTICES.md` (CI fails if it is out of date).
 
