@@ -24,7 +24,7 @@ First public release.
   Changes are written into the `.md` file as normal, undoable edits. See [ADR-002](docs/adr/002-edit-preview-webview.md).
 - **Colours in exports.** `<span style>` with text colour, background colour or font size is kept in HTML and PDF exports, and becomes coloured, shaded or resized text in Word.
 - An extension icon, a [user guide](docs/user-guide.md), an [architecture guide](docs/architecture.md) and a [release guide](docs/releasing.md).
-- Releases are built and published automatically when a `v*` tag is pushed.
+- Releases are built and published automatically, when a `v*` tag is pushed or when the Release workflow is run from the Actions tab.
 
 ### Changed
 

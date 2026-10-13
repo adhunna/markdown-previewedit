@@ -22,7 +22,7 @@ Releases are **GitHub Releases** with the `.vsix` attached. Publishing to the VS
    npm run package    # → markdownpreview-0.4.0.vsix; install it and try it
    ```
 
-5. **Tag and push:**
+5. **Tag and push** (or use the alternative below):
 
    ```powershell
    git tag -a v0.4.0 -m "MarkDownPreview 0.4.0"
@@ -30,6 +30,8 @@ Releases are **GitHub Releases** with the `.vsix` attached. Publishing to the VS
    ```
 
    The tag must match the `package.json` version, or the workflow stops.
+
+   **Alternative without pushing a tag:** merge the release commit into `main`. Then, on GitHub, open **Actions → Release → Run workflow**, choose `main` and run it. The workflow creates the `vX.Y.Z` tag on that commit itself.
 6. **The [Release workflow](../.github/workflows/release.yml) does the rest.** It runs the checks again, builds the `.vsix`, and creates a GitHub Release whose notes are that version's section of `CHANGELOG.md`, with the `.vsix` attached. While the version is below 1.0, the release is marked as a *pre-release*.
 7. **Merge `develop` into `main`** with a pull request, so `main` always holds the latest release.
 
