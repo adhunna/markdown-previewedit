@@ -1,7 +1,7 @@
 # 02 — Feature Catalog
 
 > **Purpose:** The single, numbered list of everything the extension may do. Every piece of work references a **Feature ID** from this file (e.g. `E04`).
-> **Status:** v0.2.0 (see [ROADMAP.md](../ROADMAP.md) for the implemented / future summary and [ADR-001](adr/001-stack-typescript-builtin-preview.md) for the stack). *Built-in ✅* = provided by VS Code's own Markdown preview, which this extension extends. *Done* / *Partial* = implemented here. *N/A* = not needed with the TypeScript stack. Agents update the *Status* column as work lands — see [AGENTS.md](../AGENTS.md).
+> **Status:** v0.3.0 (see [ROADMAP.md](../ROADMAP.md) for the implemented / future summary and [ADR-001](adr/001-stack-typescript-builtin-preview.md) for the stack). *Built-in ✅* = provided by VS Code's own Markdown preview, which this extension extends. *Done* / *Partial* = implemented here. *N/A* = not needed with the TypeScript stack. Agents update the *Status* column as work lands — see [AGENTS.md](../AGENTS.md).
 
 ## Legend
 

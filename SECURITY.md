@@ -4,11 +4,11 @@ A Markdown file is untrusted input: opening someone else's document must never r
 
 ## Supported versions
 
-MarkDownPreview is pre-release. Only the latest version on the `develop` branch receives fixes.
+MarkDownPreview is pre-release. Only the latest [release](https://github.com/adhunna/MarkDownPreview/releases) receives fixes.
 
 | Version | Supported |
 |---|---|
-| 0.3.x (latest, in development) | ✅ |
+| 0.3.x (latest) | ✅ |
 | 0.2.x | ❌ |
 | older | ❌ |
 

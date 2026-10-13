@@ -14,6 +14,8 @@ Read these before any non-trivial change — they are the source of truth:
 
 | File | Use it for |
 |---|---|
+| [docs/architecture.md](docs/architecture.md) | **How** the current code fits together; where to change things |
+| [docs/user-guide.md](docs/user-guide.md) | What users see: every button, command, setting and syntax — keep it in sync |
 | [docs/01-market-research.md](docs/01-market-research.md) | Why we build what we build |
 | [docs/02-feature-catalog.md](docs/02-feature-catalog.md) | **What** to build — every task maps to a Feature ID |
 | [docs/03-architecture.md](docs/03-architecture.md) | Long-term C# design (future option; see ADR-001 for the current stack) |
@@ -22,7 +24,7 @@ Read these before any non-trivial change — they are the source of truth:
 | [docs/05-one-week-mvp.md](docs/05-one-week-mvp.md) | Original one-week C# plan (superseded) |
 | [docs/adr/](docs/adr/) | Accepted decisions — start with ADR-001 (stack) |
 
-**Current phase:** v0.3.0 in development (see `CHANGELOG.md`). Next work is chosen by the owner from the *Next — v1.0* list in `ROADMAP.md`. Do not start large features without a plan approved by the owner.
+**Current phase:** v0.3.0 released (see `CHANGELOG.md`). Next work is chosen by the owner from the *Next — v1.0* list in `ROADMAP.md`. Do not start large features without a plan approved by the owner.
 
 ---
 
@@ -109,12 +111,12 @@ Plugins run on every keystroke in the preview: no regexes with catastrophic back
 2. **Plan** — for anything over ~1 hour or touching more than one layer, write a short plan (files, steps, tests) and share it first.
 3. **Implement** in small, focused commits.
 4. **Test** — add/update tests at the right level (see §6). Run the fast checks locally.
-5. **Document** — update the feature catalog *Status* column, `ROADMAP.md`, the README (settings, commands, buttons), `CHANGELOG.md`, and ADRs when a decision changes.
+5. **Document** — update the feature catalog *Status* column, `ROADMAP.md`, the [user guide](docs/user-guide.md) (settings, commands, buttons, syntax), the README when a headline feature changes, `CHANGELOG.md` (under *Unreleased*), `docs/architecture.md` when modules change, and ADRs when a decision changes.
 6. **Report** — say what was done, what was verified (with command output), and what was **not** verified. Never claim a test passed that you did not run.
 
 ### Git rules
 
-- Integration branch: **`develop`**. Never commit directly to `main`. Feature branches: `feat/<feature-id>-<slug>` (e.g. `feat/E04-docx-export`), fixes: `fix/<slug>`.
+- Integration branch: **`develop`**. `main` holds the latest release and is updated only by pull request from `develop`. Never commit directly to `main`. Feature branches: `feat/<feature-id>-<slug>` (e.g. `feat/E04-docx-export`), fixes: `fix/<slug>`.
 - **Conventional Commits** with the Feature ID as scope: `feat(E04): write tables to DOCX`, `fix(A06): scroll sync drift on long tables`, `docs: …`, `test: …`, `chore: …`.
 - Never force-push shared branches, rewrite published history, or delete branches without approval.
 - AI agents open pull requests only when the owner asks. Outside contributors: see `CONTRIBUTING.md`.
@@ -135,6 +137,7 @@ Run from the repository root (Node.js 22 LTS):
 | Tests (plugins, exports, security corpus, PDF if a browser is found) | `npm test` — set `MDP_TEST_BROWSER=<path>` to force a browser |
 | Refresh third-party licence notices | `npm run notices` (`-- --check` to verify) |
 | Package the VSIX | `npm run package` → `markdownpreview-<version>.vsix` |
+| Release | See [docs/releasing.md](docs/releasing.md) (tag `vX.Y.Z` → GitHub Release) |
 | Debug in VS Code | Open the folder, press **F5** (Extension Development Host) |
 
 ## 6. Coding standards
@@ -170,7 +173,7 @@ A Feature ID is **Done** when:
 - [ ] Tests added and passing (`npm run typecheck && npm test`)
 - [ ] Security rules (§3.2) respected; malicious corpus passes
 - [ ] Works in Restricted Mode (degrades safely)
-- [ ] Docs updated: catalog *Status*, `ROADMAP.md`, settings/README, CHANGELOG
+- [ ] Docs updated: catalog *Status*, `ROADMAP.md`, user guide, CHANGELOG *Unreleased*
 - [ ] No new warnings; lint and format clean
 
 ---
