@@ -8,6 +8,16 @@ Codes such as `A24` are Feature IDs from the [feature catalog](docs/02-feature-c
 
 Nothing yet.
 
+## [0.3.1] - 2026-10-13
+
+First version on the VS Code Marketplace.
+
+### Changed
+
+- README: install from the VS Code Marketplace (search **Markdown PreviewEdit**), with the `.vsix` file as the alternative.
+- The Marketplace listing shows the extension as free and links questions to GitHub Issues.
+- `docs/releasing.md` explains how to upload a version to the Marketplace and Open VSX.
+
 ## [0.3.0] - 2026-10-13
 
 First public release.
@@ -70,7 +80,8 @@ Not published; included in 0.3.0.
 - **Export to HTML:** one self-contained, offline page with math and diagrams.
 - Exported HTML is sanitized: scripts, frames, forms, event handlers and `javascript:` links are removed.
 
-[Unreleased]: https://github.com/adhunna/markdown-previewedit/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/adhunna/markdown-previewedit/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/adhunna/markdown-previewedit/releases/tag/v0.3.1
 [0.3.0]: https://github.com/adhunna/markdown-previewedit/releases/tag/v0.3.0
 [0.2.0]: https://github.com/adhunna/markdown-previewedit/blob/develop/CHANGELOG.md#020---2026-10-12
 [0.1.0]: https://github.com/adhunna/markdown-previewedit/blob/develop/CHANGELOG.md#010---2026-10-12

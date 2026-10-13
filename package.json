@@ -2,7 +2,7 @@
   "name": "markdown-previewedit",
   "displayName": "Markdown PreviewEdit",
   "description": "Preview and edit Markdown in VS Code: Mermaid diagrams, GitHub alerts, formatting from the preview, and Word/PDF/HTML export. Offline, no telemetry.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "publisher": "adhunna",
   "icon": "media/icon.png",
   "galleryBanner": {
@@ -20,6 +20,8 @@
     "url": "https://github.com/adhunna/markdown-previewedit/issues"
   },
   "homepage": "https://github.com/adhunna/markdown-previewedit#readme",
+  "qna": "https://github.com/adhunna/markdown-previewedit/issues",
+  "pricing": "Free",
   "engines": {
     "vscode": "^1.95.0"
   },

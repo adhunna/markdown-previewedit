@@ -142,7 +142,7 @@ After Phase 0: clone the repo, open the folder in VS Code, press **F5** → an *
 | ID | Decision | Recommendation / outcome |
 |---|---|---|
 | D1 | Product display name, Marketplace publisher ID, command/setting prefix | ✅ **Decided (v0.3.0): Markdown PreviewEdit**, extension ID `adhunna.markdown-previewedit`, prefix `previewEdit.` (formerly the codename MarkDownPreview with prefix `mdp.`). Check the Marketplace for conflicts before publishing there. |
-| D2 | Licence | ✅ **Decided: MIT** — see `LICENSE`; bundled packages and their licences in `THIRD_PARTY_NOTICES.md` (includes elkjs, EPL-2.0, via Mermaid) |
+| D2 | Licence | ✅ **Decided: MIT** — see `LICENSE`; bundled packages and their licences in `THIRD_PARTY_NOTICES.md` (includes elkjs, EPL-2.0, via Mermaid). The EPL-2.0 `elkjs` inside Mermaid is accepted as an unmodified bundled library (owner decision, v0.3.0; see AGENTS.md §3.4). |
 | D3 | Engine hosting model | ✅ **Superseded** by ADR-001: no separate engine, one universal VSIX |
 | D4 | Minimum VS Code version | **A version ~3 months older than the release date** |
 | D5 | Publish to Open VSX too | **Yes** (Cursor, Windsurf, VSCodium users) |
