@@ -31,7 +31,7 @@
 | A08 | Highlight the block under the editor cursor in the preview | P1 | 2 | W | Planned |
 | A09 | Preview follows the VS Code theme (light / dark / high-contrast) via `--vscode-*` CSS variables | P0 | 1 | W | Built-in ✅ |
 | A10 | Built-in preview themes: GitHub Light/Dark, **"Word document" look** ★, Academic/print | P1 | 2 | W | Partial (v0.2.0: Auto/Light/Dark) |
-| A11 | Custom CSS: user-level, workspace-level (`.mdp/style.css`), front-matter `css:` | P1 | 2 | S+E | Planned |
+| A11 | Custom CSS: user-level, workspace-level (`.previewedit/style.css`), front-matter `css:` | P1 | 2 | S+E | Planned |
 | A12 | Font family / size / line height; zoom in/out/reset (`Ctrl +/-/0`, `Ctrl`+wheel) | P1 | 2 | W | Partial (v0.2.0: font size; built-in font/line height) |
 | A13 | Outline (TOC) sidebar inside the preview: collapsible, resizable, highlights current section | P1 | 2 | E+W | Planned |
 | A14 | Find in preview (`Ctrl+F`) | P1 | 2 | S | Built-in ✅ |
@@ -206,7 +206,7 @@
 |---|---|---|---|---|---|
 | M01 | Small, well-defaulted settings set (target **≤ 30 settings** at v1.0; MPE has 74) | P0 | 1 | S | Done (v0.1.0) |
 | M02 | Per-document overrides in front matter | P1 | 2 | E | Planned |
-| M03 | Workspace config `.mdp/config.json` — declarative JSON with a schema, **never executable code** ★ | P2 | 4 | E | Planned |
+| M03 | Workspace config `.previewedit/config.json` — declarative JSON with a schema, **never executable code** ★ | P2 | 4 | E | Planned |
 | M04 | JSON Schemas for front matter and config (IntelliSense) | P2 | 4 | S | Planned |
 | M05 | Public extension API so other extensions can contribute CSS / renderers | P3 | 5 | S | Planned |
 

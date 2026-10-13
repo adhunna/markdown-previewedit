@@ -85,7 +85,7 @@ Ordered by priority. **Next** = wanted for v1.0, **Later** = v1.x, **Ideas** = o
 | A05 | Preview | Incremental updates: only changed blocks are replaced, so scroll position, diagrams and images stay stable |
 | A08 | Preview | Highlight the block under the editor cursor in the preview |
 | A10 *(rest)* | Preview | Preview styles: GitHub Light/Dark, **"Word document" look** ★, Academic/print |
-| A11 | Preview | Custom CSS: user, workspace (`.mdp/style.css`) and front matter `css:` |
+| A11 | Preview | Custom CSS: user, workspace (`.previewedit/style.css`) and front matter `css:` |
 | A12 *(rest)* | Preview | `Ctrl`+mouse-wheel zoom |
 | A13 | Preview | Outline (TOC) side panel in the preview: collapsible, highlights the current section |
 | A19 | Preview | Large-document mode: render budget, progressive rendering, pause live update above a size |
@@ -156,7 +156,7 @@ Ordered by priority. **Next** = wanted for v1.0, **Later** = v1.x, **Ideas** = o
 | I04 | Authoring | Snippets: alerts, Mermaid, math, `details` |
 | K07 | Platform | Translations of the user interface |
 | L01 | AI | Tools for VS Code agent mode: "export this file to Word/PDF", "render this diagram" ★ |
-| M03 | Settings | Workspace config file `.mdp/config.json` (declarative, never code) ★ |
+| M03 | Settings | Workspace config file `.previewedit/config.json` (declarative, never code) ★ |
 | M04 | Settings | IntelliSense (JSON schemas) for front matter and config |
 
 ### Ideas — only if users ask
