@@ -27,7 +27,7 @@ Markdown PreviewEdit builds on **VS Code's own Markdown preview** instead of rep
 - 🌗 **Light/Dark switch, zoom and full screen** for the preview, whatever your VS Code theme
 - 🔒 **Safe with untrusted files:** everything is bundled, nothing is downloaded, and nothing in a document can run code
 
-> **Status:** 0.3.0 preview release. Feedback and bug reports are welcome on [GitHub Issues](https://github.com/adhunna/markdown-previewedit/issues).
+> **Status:** preview release (0.x). Feedback and bug reports are welcome on [GitHub Issues](https://github.com/adhunna/markdown-previewedit/issues).
 
 ## Install
 
