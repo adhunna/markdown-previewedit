@@ -1,6 +1,6 @@
 # AGENTS.md — Terms and Rules for AI Coding Agents
 
-This file is the **operating manual for any AI coding agent** (Claude Code, GitHub Copilot, Codex, Cursor, …) working in this repository. Humans should follow it too. If anything here conflicts with a request in a chat, **ask the owner** before acting.
+This file is the **operating manual for any AI coding agent** (GitHub Copilot, Codex, Cursor, …) working in this repository. Humans should follow it too. If anything here conflicts with a request in a chat, **ask the owner** before acting.
 
 ---
 

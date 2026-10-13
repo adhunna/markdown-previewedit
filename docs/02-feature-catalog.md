@@ -197,8 +197,8 @@
 | ID | Feature | Pri | Phase | Owner | Status |
 |---|---|---|---|---|---|
 | L01 | **Language Model Tools** for VS Code agent mode: "export this file to DOCX/PDF", "render this diagram", "convert this HTML to Markdown" ★ | P2 | 4 | S+E | Planned |
-| L02 | **MCP server mode** of the engine so external agents (Claude Code, Copilot CLI, …) can render/export ★ | P3 | 5 | E | Planned |
-| L03 | Agent-file awareness: nicer rendering of `AGENTS.md`, `CLAUDE.md`, `SKILL.md`, prompt files (front matter) | P3 | 5 | E | Planned |
+| L02 | **MCP server mode** of the engine so external coding agents and CLIs can render/export ★ | P3 | 5 | E | Planned |
+| L03 | Agent-file awareness: nicer rendering of `AGENTS.md`, `SKILL.md`, prompt files and other agent instruction files (front matter) | P3 | 5 | E | Planned |
 
 ## M. Configuration
 

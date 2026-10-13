@@ -177,7 +177,7 @@ Ordered by priority. **Next** = wanted for v1.0, **Later** = v1.x, **Ideas** = o
 | H03 | Notes | Graph view |
 | K09 | Platform | VS Code for the Web (vscode.dev / github.dev) ★ |
 | L02 | AI | MCP server so external agents can render and export ★ |
-| L03 | AI | Nicer rendering of `AGENTS.md`, `CLAUDE.md`, `SKILL.md` and prompt files |
+| L03 | AI | Nicer rendering of `AGENTS.md`, `SKILL.md`, prompt files and other agent instruction files |
 | M05 | Settings | Public API for other extensions to add CSS or renderers |
 
 ### Not planned

@@ -182,8 +182,7 @@ Versions are **starting points**; Phase 0 pins exact versions in `Directory.Pack
 ## 9. Repository layout (target)
 
 ```
-/AGENTS.md                  rules for coding agents (Claude Code, Copilot, …)
-/CLAUDE.md                  imports AGENTS.md
+/AGENTS.md                  rules for AI coding agents
 /README.md
 /docs/                      research, features, architecture, plan, adr/
 /samples/                   Markdown test documents (feature demos + malicious corpus)
