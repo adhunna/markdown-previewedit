@@ -6,6 +6,12 @@ Codes such as `A24` are Feature IDs from the [feature catalog](docs/02-feature-c
 
 ## [Unreleased]
 
+Nothing yet.
+
+## [1.0.0] - 2026-10-31
+
+First stable release. The Marketplace no longer shows a *Preview* badge.
+
 ### Added
 
 - **Open Full Preview** button (A01) on every Markdown file: opens the preview in the same tab, full width. The title bar now shows three buttons: Full preview, Split preview, Edit Preview.
@@ -86,7 +92,8 @@ Not published; included in 0.3.0.
 - **Export to HTML:** one self-contained, offline page with math and diagrams.
 - Exported HTML is sanitized: scripts, frames, forms, event handlers and `javascript:` links are removed.
 
-[Unreleased]: https://github.com/adhunna/markdown-previewedit/compare/v0.3.1...HEAD
+[Unreleased]: https://github.com/adhunna/markdown-previewedit/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/adhunna/markdown-previewedit/releases/tag/v1.0.0
 [0.3.1]: https://github.com/adhunna/markdown-previewedit/releases/tag/v0.3.1
 [0.3.0]: https://github.com/adhunna/markdown-previewedit/releases/tag/v0.3.0
 [0.2.0]: https://github.com/adhunna/markdown-previewedit/blob/develop/CHANGELOG.md#020---2026-10-12

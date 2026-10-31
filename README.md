@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://github.com/adhunna/markdown-previewedit/actions/workflows/ci.yml"><img src="https://github.com/adhunna/markdown-previewedit/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a>
-  <a href="https://github.com/adhunna/markdown-previewedit/releases"><img src="https://img.shields.io/github/v/release/adhunna/markdown-previewedit?include_prereleases&label=release" alt="Latest release"></a>
+  <a href="https://github.com/adhunna/markdown-previewedit/releases"><img src="https://img.shields.io/github/v/release/adhunna/markdown-previewedit?label=release" alt="Latest release"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT licence"></a>
 </p>
 
@@ -27,7 +27,7 @@ Markdown PreviewEdit builds on **VS Code's own Markdown preview** instead of rep
 - 🌗 **Light/Dark switch, zoom and full screen** for the preview, whatever your VS Code theme
 - 🔒 **Safe with untrusted files:** everything is bundled, nothing is downloaded, and nothing in a document can run code
 
-> **Status:** preview release (0.x). Feedback and bug reports are welcome on [GitHub Issues](https://github.com/adhunna/markdown-previewedit/issues).
+> **Status:** stable release (1.x). Feedback and bug reports are welcome on [GitHub Issues](https://github.com/adhunna/markdown-previewedit/issues).
 
 ## Install
 
