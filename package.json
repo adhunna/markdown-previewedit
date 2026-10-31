@@ -87,8 +87,14 @@
         "category": "PreviewEdit"
       },
       {
+        "command": "previewEdit.openPreview",
+        "title": "Open Full Preview",
+        "category": "PreviewEdit",
+        "icon": "$(preview)"
+      },
+      {
         "command": "previewEdit.openPreviewToSide",
-        "title": "Open Preview to the Side",
+        "title": "Open Split Preview",
         "category": "PreviewEdit",
         "icon": "$(open-preview)"
       },
@@ -149,6 +155,10 @@
           "when": "editorLangId == markdown"
         },
         {
+          "command": "previewEdit.openPreview",
+          "when": "editorLangId == markdown"
+        },
+        {
           "command": "previewEdit.openPreviewToSide",
           "when": "editorLangId == markdown"
         },
@@ -194,8 +204,12 @@
       ],
       "editor/title": [
         {
+          "command": "previewEdit.openPreview",
+          "when": "editorLangId == markdown && !notebookEditorFocused",
+          "group": "navigation@0"
+        },
+        {
           "command": "previewEdit.openPreviewToSide",
-          "alt": "markdown.showPreview",
           "when": "editorLangId == markdown && !notebookEditorFocused",
           "group": "navigation@0"
         },

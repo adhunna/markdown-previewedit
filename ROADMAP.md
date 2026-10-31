@@ -16,7 +16,7 @@ Want to help? Pick an item, comment on (or open) an issue that names its ID, and
 
 | ID | Feature | Since |
 |---|---|---|
-| A01 | **Open Preview to the Side** button on every Markdown file (`Alt`+click opens it in the same tab) | 0.2.0 |
+| A01 | **Open Full Preview** and **Open Split Preview** buttons on every Markdown file | 0.2.0 (full-tab button: Unreleased) |
 | A10 | Preview theme: **Auto / Light / Dark**, independent of the VS Code theme *(partial; see future list)* | 0.2.0 |
 | A12 | Preview **font size**: zoom buttons, `Ctrl+=` / `Ctrl+-` / `Ctrl+0` *(partial)* | 0.2.0 |
 | A23 | **Full-screen preview** inside the VS Code window *(partial)* | 0.2.0 |

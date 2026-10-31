@@ -6,7 +6,13 @@ Codes such as `A24` are Feature IDs from the [feature catalog](docs/02-feature-c
 
 ## [Unreleased]
 
-Nothing yet.
+### Added
+
+- **Open Full Preview** button (A01) on every Markdown file: opens the preview in the same tab, full width. The title bar now shows three buttons: Full preview, Split preview, Edit Preview.
+
+### Changed
+
+- The split button is now called **Open Split Preview** (command ID `previewEdit.openPreviewToSide` unchanged) and no longer needs `Alt`+click for the same tab. The user guide explains how to hide VS Code's own duplicate split button.
 
 ## [0.3.1] - 2026-10-13
 

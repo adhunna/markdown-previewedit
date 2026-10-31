@@ -44,7 +44,7 @@ You need VS Code 1.95 or newer on Windows, macOS or Linux. PDF export also needs
 ## Quick start
 
 1. Open any `.md` file. You can try [`samples/features/all.md`](samples/features/all.md), which uses every feature.
-2. Click **Open Preview to the Side** (top right). In the preview, use the zoom, colour-mode and full-screen buttons.
+2. Click **Open Full Preview** or **Open Split Preview** (top right). In the preview, use the zoom, colour-mode and full-screen buttons.
 3. Click the **pencil** button instead to open the **Edit Preview**, then select some text and use the toolbar.
 4. Right-click in the file → **PreviewEdit: Export** → Word, PDF or HTML.
 
