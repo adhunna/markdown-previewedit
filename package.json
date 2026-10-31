@@ -2,14 +2,13 @@
   "name": "markdown-previewedit",
   "displayName": "Markdown PreviewEdit",
   "description": "Preview and edit Markdown in VS Code: Mermaid diagrams, GitHub alerts, formatting from the preview, and Word/PDF/HTML export. Offline, no telemetry.",
-  "version": "0.3.1",
+  "version": "1.0.0",
   "publisher": "adhunna",
   "icon": "media/icon.png",
   "galleryBanner": {
     "color": "#1a4fb5",
     "theme": "dark"
   },
-  "preview": true,
   "license": "MIT",
   "private": true,
   "repository": {
@@ -87,8 +86,14 @@
         "category": "PreviewEdit"
       },
       {
+        "command": "previewEdit.openPreview",
+        "title": "Open Full Preview",
+        "category": "PreviewEdit",
+        "icon": "$(preview)"
+      },
+      {
         "command": "previewEdit.openPreviewToSide",
-        "title": "Open Preview to the Side",
+        "title": "Open Split Preview",
         "category": "PreviewEdit",
         "icon": "$(open-preview)"
       },
@@ -149,6 +154,10 @@
           "when": "editorLangId == markdown"
         },
         {
+          "command": "previewEdit.openPreview",
+          "when": "editorLangId == markdown"
+        },
+        {
           "command": "previewEdit.openPreviewToSide",
           "when": "editorLangId == markdown"
         },
@@ -194,8 +203,12 @@
       ],
       "editor/title": [
         {
+          "command": "previewEdit.openPreview",
+          "when": "editorLangId == markdown && !notebookEditorFocused",
+          "group": "navigation@0"
+        },
+        {
           "command": "previewEdit.openPreviewToSide",
-          "alt": "markdown.showPreview",
           "when": "editorLangId == markdown && !notebookEditorFocused",
           "group": "navigation@0"
         },

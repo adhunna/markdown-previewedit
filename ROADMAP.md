@@ -2,7 +2,7 @@
 
 What Markdown PreviewEdit can do today, and everything planned for later. Every item has a **Feature ID** from the [feature catalog](docs/02-feature-catalog.md), which has the full descriptions and the original market research behind them ([docs/01-market-research.md](docs/01-market-research.md)).
 
-**Where we are:** [v0.3.1](https://github.com/adhunna/markdown-previewedit/releases), a public preview release (VS Code Marketplace and `.vsix` file). Of the 130 catalogued features (128 from the original research plus 2 requested since), **23 are done**, **10 are partly done**, **16 come free with VS Code's built-in preview** (we extend it rather than replace it), and **1 is no longer needed** with the TypeScript stack. The other **80**, plus the unfinished parts of the partial items, are in the [future list](#future-list) below.
+**Where we are:** [v1.0.0](https://github.com/adhunna/markdown-previewedit/releases), the first stable release (VS Code Marketplace and `.vsix` file). Of the 130 catalogued features (128 from the original research plus 2 requested since), **23 are done**, **10 are partly done**, **16 come free with VS Code's built-in preview** (we extend it rather than replace it), and **1 is no longer needed** with the TypeScript stack. The other **80**, plus the unfinished parts of the partial items, are in the [future list](#future-list) below.
 
 ★ = a differentiator: something Markdown Preview Enhanced and similar extensions do not offer.
 
@@ -16,7 +16,7 @@ Want to help? Pick an item, comment on (or open) an issue that names its ID, and
 
 | ID | Feature | Since |
 |---|---|---|
-| A01 | **Open Preview to the Side** button on every Markdown file (`Alt`+click opens it in the same tab) | 0.2.0 |
+| A01 | **Open Full Preview** and **Open Split Preview** buttons on every Markdown file | 0.2.0 (full-tab button: Unreleased) |
 | A10 | Preview theme: **Auto / Light / Dark**, independent of the VS Code theme *(partial; see future list)* | 0.2.0 |
 | A12 | Preview **font size**: zoom buttons, `Ctrl+=` / `Ctrl+-` / `Ctrl+0` *(partial)* | 0.2.0 |
 | A23 | **Full-screen preview** inside the VS Code window *(partial)* | 0.2.0 |
@@ -75,9 +75,9 @@ Want to help? Pick an item, comment on (or open) an issue that names its ID, and
 
 ## Future list
 
-Ordered by priority. **Next** = wanted for v1.0, **Later** = v1.x, **Ideas** = only if users ask. Items marked *(rest)* finish a partly done feature.
+Ordered by priority. **Next** = wanted for the next minor release (v1.1), **Later** = v1.x, **Ideas** = only if users ask. Items marked *(rest)* finish a partly done feature.
 
-### Next — v1.0
+### Next — v1.1
 
 | ID | Area | Feature |
 |---|---|---|

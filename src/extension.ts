@@ -34,7 +34,8 @@ export function activate(context: vscode.ExtensionContext) {
   }
 
   context.subscriptions.push(
-    // A01: our own title-bar button, because VS Code hides its built-in one in some setups.
+    // A01: our own title-bar buttons (full tab and split), because VS Code hides its built-in one in some setups.
+    vscode.commands.registerCommand('previewEdit.openPreview', (uri?: vscode.Uri) => vscode.commands.executeCommand('markdown.showPreview', uri)),
     vscode.commands.registerCommand('previewEdit.openPreviewToSide', (uri?: vscode.Uri) => vscode.commands.executeCommand('markdown.showPreviewToSide', uri)),
     vscode.commands.registerCommand('previewEdit.preview.increaseFontSize', () => changeFontSize(1)),
     vscode.commands.registerCommand('previewEdit.preview.decreaseFontSize', () => changeFontSize(-1)),

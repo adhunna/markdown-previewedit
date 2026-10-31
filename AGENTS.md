@@ -24,7 +24,7 @@ Read these before any non-trivial change — they are the source of truth:
 | [docs/05-one-week-mvp.md](docs/05-one-week-mvp.md) | Original one-week C# plan (superseded) |
 | [docs/adr/](docs/adr/) | Accepted decisions — start with ADR-001 (stack) |
 
-**Current phase:** v0.3.1 released (see `CHANGELOG.md`). Next work is chosen by the owner from the *Next — v1.0* list in `ROADMAP.md`. Do not start large features without a plan approved by the owner.
+**Current phase:** v1.0.0 released (see `CHANGELOG.md`). Next work is chosen by the owner from the *Next — v1.1* list in `ROADMAP.md`. Do not start large features without a plan approved by the owner.
 
 ---
 

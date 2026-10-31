@@ -20,9 +20,12 @@ Markdown PreviewEdit extends **VS Code's own Markdown preview**, so everything y
 
 | How | Result |
 |---|---|
-| **Open Preview to the Side** button (top right of a `.md` file) | Preview beside the file |
-| `Alt` + that button | Preview in the same tab |
-| `Ctrl+K V` / `Ctrl+Shift+V` | VS Code's own shortcuts: to the side / same tab |
+| **Open Full Preview** button (top right of a `.md` file, single-page icon) | Preview in the same tab, full width |
+| **Open Split Preview** button (next to it, split icon) | Preview beside the file |
+| **Open Edit Preview** button (pencil) | Edit Preview beside the file (see below) |
+| `Ctrl+Shift+V` / `Ctrl+K V` | VS Code's own shortcuts: same tab / to the side |
+
+> **Seeing two split-preview icons?** One is VS Code's own *Open Preview to the Side*. Right-click the title bar of the `.md` file and untick **Open Preview to the Side** to hide it; PreviewEdit's **Open Split Preview** does the same thing.
 
 The preview updates as you type and scrolls with the editor. Double-click the preview to jump to that line in the source. `Ctrl+F` searches inside it.
 
@@ -136,7 +139,8 @@ All commands are in the Command Palette (`Ctrl+Shift+P`) under **PreviewEdit**.
 
 | Command | Shortcut | Where the button is |
 |---|---|---|
-| PreviewEdit: Open Preview to the Side | VS Code: `Ctrl+K V` | Title bar of a `.md` file |
+| PreviewEdit: Open Full Preview | VS Code: `Ctrl+Shift+V` | Title bar of a `.md` file |
+| PreviewEdit: Open Split Preview | VS Code: `Ctrl+K V` | Title bar of a `.md` file |
 | PreviewEdit: Open Edit Preview (format from preview) | — | Title bar of a `.md` file (pencil); editor right-click menu |
 | PreviewEdit: Increase Preview Font Size | `Ctrl+=` (preview focused) | Preview title bar |
 | PreviewEdit: Decrease Preview Font Size | `Ctrl+-` (preview focused) | Preview title bar |
